@@ -1,26 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pharus/features/home/home_page.dart';
-import 'package:pharus/features/splashscreen/splashscreen_page.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pharus/app/app_module.dart';
+import 'package:pharus/app/app_widget.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(ModularApp(module: AppModule(), child: const AppWidget()));
+  //runApp(const MyApp());
 }
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Pharus',
-      initialRoute: "/",
-      debugShowCheckedModeBanner: false,
-      routes: <String, WidgetBuilder>{
-        '/': (BuildContext context) => SplashPage(),
-        '/home': (BuildContext context) =>  const HomePage(title: 'Flutter Pharus',),
-      },
-    );
-  }
-}
-
