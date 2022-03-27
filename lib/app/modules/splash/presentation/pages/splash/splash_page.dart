@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'splash_controller.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -9,20 +10,11 @@ class SplashPage extends StatefulWidget {
   SplashPageState createState() => SplashPageState();
 }
 
-class SplashPageState extends State<SplashPage> {
-  void navigationToNextPage() {
-    Navigator.pushReplacementNamed(context, '/home');
-  }
-
-  startSplashScreenTimer() async {
-    var _duration = const Duration(seconds: 5);
-    return Timer(_duration, navigationToNextPage);
-  }
-
+class SplashPageState extends ModularState<SplashPage, SplashController> {
   @override
   void initState() {
     super.initState();
-    startSplashScreenTimer();
+    controller.startSplashScreenTimer();
   }
 
   @override
@@ -38,10 +30,17 @@ class SplashPageState extends State<SplashPage> {
             Image.asset(
               'images/logo_ioasys.png',
             ),
-            const Text(
-              'Pharus',
-              style: TextStyle(color: Colors.white),
-            )
+            const Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: Text(
+                'Pharus',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ],
         ),
       ),
