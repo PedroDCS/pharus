@@ -28,7 +28,7 @@ class SplashPageState extends ModularState<SplashPage, SplashController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'images/logo_ioasys.png',
+              'assets/images/logo_ioasys.png',
             ),
             const Padding(
               padding: EdgeInsets.only(top: 20),
