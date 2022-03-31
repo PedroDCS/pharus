@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 class SplashController {
   void navigationToNextPage() {
-    Modular.to.navigate('/auth/');
+    Modular.to.navigate('/projects/');
   }
 
   startSplashScreenTimer() async {
