@@ -1,19 +1,16 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginPageController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   bool validacao(String email, String password) {
-    print(password.length);
     if (email.isEmpty) {
       return false;
     }
 
     if (password.isEmpty) {
-      //TODO validacao da senha
       return false;
     }
 
@@ -25,19 +22,21 @@ class LoginPageController {
 
     if (!RegExp(r"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z$*&@#]{8,32}$")
         .hasMatch(password)) {
-      print("object");
       return false;
     }
     return true;
   }
 
   void login() {
-    //validação
+    // TODO modificar depois
+    /*
+    por enquanto o aplicativo está navegando para a proxima tela, sem validar o email
+    ou senha, e nem verifica se é aluno, empresa ou escola,
+    */
+    Modular.to.navigate('/start/studenthome');
+    return;
     if (!validacao(emailController.text, passwordController.text)) {
-      print("Deu Errado");
       return;
     }
-
-    print("tudo certo");
   }
 }
