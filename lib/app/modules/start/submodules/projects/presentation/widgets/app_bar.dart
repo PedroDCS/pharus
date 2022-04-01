@@ -11,7 +11,10 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
         leading: IconButton(
-          onPressed: () => Navigator.of(context),
+          onPressed: () {
+            Navigator.of(context).pop();
+            //Modular.to.canPop();
+          },
           icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
@@ -21,7 +24,7 @@ class AppBarWidget extends StatelessWidget {
           title,
           style: const TextStyle(
             color: Colors.black,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
             fontSize: 20,
           ),
         ),

@@ -8,6 +8,7 @@ class AuthModule extends Module {
         Bind.factory((i) => LoginPageController()),
       ];
   @override
-  List<ModularRoute> get routes =>
-      [ChildRoute('/', child: (context, args) => const LoginPage())];
+  List<ModularRoute> get routes => [
+        ChildRoute('/', child: (context, args) => const LoginPage()),
+      ];
 }
