@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "22628408623",
+    "project_id": "pharus-bootcamp",
+    "storage_bucket": "pharus-bootcamp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22628408623:android:0b51e2153ce6d7228a15da",
+        "android_client_info": {
+          "package_name": "com.example.pharus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22628408623-fk9prjb8j5m5omo12i29dm5e5i69sh6d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pharus",
+            "certificate_hash": "d1076c82acab151ec29d2e2e0c9457c2d2587cfa"
+          }
+        },
+        {
+          "client_id": "22628408623-bfrjc18pnqe3q385hr699jtpge1n3e6e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAs2i6I3P03dIg2STsbX6eyNmd8D7SVn54"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22628408623-bfrjc18pnqe3q385hr699jtpge1n3e6e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -17,6 +17,11 @@ dependencies:
   json_serializable: ^6.1.4
   flutter_modular: ^4.4.0
   percent_indicator: ^3.4.0
+  firebase_core: ^1.14.0
+  firebase_storage: ^10.2.10
+  plugin_platform_interface: ^2.1.2
+  image_picker: ^0.8.4+11
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
