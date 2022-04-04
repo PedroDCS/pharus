@@ -13,9 +13,13 @@ class SplashPage extends StatefulWidget {
 
 class SplashPageState extends ModularState<SplashPage, SplashController> {
   @override
-  void initState() async {
+  void initState() {
     super.initState();
     controller.startSplashScreenTimer();
+    initializeFirebase();
+  }
+
+  void initializeFirebase() async {
     await Firebase.initializeApp();
   }
 
