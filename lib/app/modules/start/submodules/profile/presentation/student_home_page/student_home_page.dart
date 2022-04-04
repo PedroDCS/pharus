@@ -10,12 +10,12 @@ class StudentHomePage extends StatelessWidget {
         appBar: AppBar(),
         body: Column(
           children: [
-            Text("Area do Aluno"),
+            const Text("Area do Aluno"),
             ElevatedButton(
               onPressed: () {
                 Modular.to.pushNamed("edit");
               },
-              child: Text("Editar perfil do aluno"),
+              child: const Text("Editar perfil do aluno"),
             )
           ],
         ));

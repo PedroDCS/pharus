@@ -1,21 +1,67 @@
+import 'dart:io';
+import 'package:intl/intl.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:pharus/app/modules/start/submodules/projects/presentation/pages/project_details_page/widgets/project_modal_upload_files.dart';
 import '../../../domain/entities/project_entity.dart';
 import '../../widgets/app_bar.dart';
 import 'widgets/project_details_head_widget.dart';
 import 'widgets/project_game_rules_widget.dart';
 import 'widgets/project_task_list_widget.dart';
 
-class ProjectDetailsPage extends StatelessWidget {
+class ProjectDetailsPage extends StatefulWidget {
   const ProjectDetailsPage({
     Key? key,
     required this.project,
   }) : super(key: key);
   final ProjectEntity project;
+
+  @override
+  State<ProjectDetailsPage> createState() => _ProjectDetailsPageState();
+}
+
+class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
+  final FirebaseStorage storage = FirebaseStorage.instance;
+  XFile? image;
+  var isData = ValueNotifier<bool>(false);
+  var nameImage = ValueNotifier<String>('');
+
+  Future<void> _getFile() async {
+    final ImagePicker _pick = ImagePicker();
+    image = await _pick.pickImage(source: ImageSource.gallery);
+    if(image != null){
+      nameImage.value = image!.name;
+      isData.value = true;
+    }else{
+      isData.value = false;
+    }
+  }
+
+  Future<void> upload(String path) async {
+    Navigator.pop(context);
+    if (isData.value) {
+      File file = File(path);
+      try {
+        String ref =
+            'images/img-${DateTime.now()}.jpg';
+        var data = await storage.ref(ref).putFile(file);
+        // String url = await data.ref.getDownloadURL();
+      } on FirebaseException catch (e) {
+        throw Exception('Error no upload: ${e.code}');
+      }
+    }
+  }
+
+  void clearData() {
+    isData.value = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        child: AppBarWidget(title: project.name),
+        child: AppBarWidget(title: widget.project.name),
         preferredSize: const Size.fromHeight(60),
       ),
       body: SingleChildScrollView(
@@ -36,8 +82,8 @@ class ProjectDetailsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ProjectDetailsHeadWidget(
-                      mentor: project.mentor,
-                      description: project.description,
+                      mentor: widget.project.mentor,
+                      description: widget.project.description,
                     ),
                     TextButton(
                         style: TextButton.styleFrom(
@@ -71,7 +117,27 @@ class ProjectDetailsPage extends StatelessWidget {
                     const ProjectTaskListWidget(),
                     Center(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showModalBottomSheet<void>(
+                            elevation: 0,
+                            backgroundColor: const Color(0xFFE1E1E1),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(25),
+                                    topRight: Radius.circular(25)),
+                                side: BorderSide(color: Colors.white)),
+                            context: context,
+                            builder: (BuildContext context) {
+                              return ModalUploadFiles(
+                                clearData: clearData,
+                                getFile: _getFile,
+                                imageName: nameImage,
+                                isFile: isData,
+                                uploadFiles: () => upload(image!.path),
+                              );
+                            },
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           fixedSize: const Size.fromWidth(195),
                           minimumSize: const Size.square(44),

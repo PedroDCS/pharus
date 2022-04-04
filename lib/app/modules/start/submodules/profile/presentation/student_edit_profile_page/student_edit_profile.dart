@@ -24,7 +24,7 @@ class StudentEditProfile extends StatelessWidget {
             const EditInputAreaWidget(
               areaname: 'Celular',
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             ElevatedButton(onPressed: () {}, child: const Text("Salvar"))

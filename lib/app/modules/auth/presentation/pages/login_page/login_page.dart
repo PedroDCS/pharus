@@ -17,23 +17,27 @@ class _LoginPageState extends ModularState<LoginPage, LoginPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        reverse: true,
         physics: const ScrollPhysics(),
         child: Padding(
-            padding: const EdgeInsets.fromLTRB(32, 34.33, 32, 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const LoginHeadWidget(),
-                LoginInputGroupWidget(controller: controller),
-                Padding(
-                  padding: const EdgeInsets.only(top: 36.0),
-                  child: GetInButtonWidget(login: () {
+          padding: const EdgeInsets.fromLTRB(32, 34.33, 32, 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const LoginHeadWidget(),
+              LoginInputGroupWidget(controller: controller),
+              Padding(
+                padding: const EdgeInsets.only(top: 36.0),
+                child: GetInButtonWidget(
+                  login: () {
                     controller.login();
-                  }),
+                  },
                 ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
