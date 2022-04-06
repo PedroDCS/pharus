@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:pharus/app/modules/start/submodules/projects/presentation/pages/project_details_page/widgets/project_modal_upload_files.dart';
+import 'package:pharus/app/modules/student/submodules/projects/presentation/pages/project_details_page/widgets/project_modal_upload_files.dart';
 import '../../../domain/entities/project_entity.dart';
 import '../../widgets/app_bar.dart';
 import 'widgets/project_details_head_widget.dart';
@@ -30,10 +30,10 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   Future<void> _getFile() async {
     final ImagePicker _pick = ImagePicker();
     image = await _pick.pickImage(source: ImageSource.gallery);
-    if(image != null){
+    if (image != null) {
       nameImage.value = image!.name;
       isData.value = true;
-    }else{
+    } else {
       isData.value = false;
     }
   }
@@ -43,8 +43,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
     if (isData.value) {
       File file = File(path);
       try {
-        String ref =
-            'images/img-${DateTime.now()}.jpg';
+        String ref = 'images/img-${DateTime.now()}.jpg';
         var data = await storage.ref(ref).putFile(file);
         // String url = await data.ref.getDownloadURL();
       } on FirebaseException catch (e) {

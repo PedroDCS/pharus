@@ -33,7 +33,7 @@ class LoginPageController {
     por enquanto o aplicativo está navegando para a proxima tela, sem validar o email
     ou senha, e nem verifica se é aluno, empresa ou escola,
     */
-    Modular.to.navigate('/start/studenthome');
+    Modular.to.navigate('/student/studenthome');
     return;
     if (!validacao(emailController.text, passwordController.text)) {
       return;
