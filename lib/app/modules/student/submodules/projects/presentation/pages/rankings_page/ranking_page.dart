@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import '../../../../../presentation/widgets/student_app_bar.dart';
 
 import '../../../domain/entities/project_entity.dart';
-import '../../widgets/app_bar.dart';
 import 'controller/rankings_controller.dart';
 import 'widgets/ranking_project_item_widget.dart';
 
@@ -18,7 +18,12 @@ class _RankingPageState extends ModularState<RankingPage, RankingsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const PreferredSize(
-        child: AppBarWidget(title: 'Seus Rankings'),
+        child: StudentAppBarWidget(
+          title: 'Seus Rankings',
+          barColor: Colors.white,
+          imageAsset: 'assets/images/perfil_default.png',
+          buttomGoBack: false,
+        ),
         preferredSize: Size.fromHeight(60),
       ),
       body: SingleChildScrollView(

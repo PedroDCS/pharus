@@ -1,13 +1,15 @@
 import 'dart:io';
-import 'package:intl/intl.dart';
+
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:pharus/app/modules/student/submodules/projects/presentation/pages/project_details_page/widgets/project_modal_upload_files.dart';
+import 'package:intl/intl.dart';
+
+import '../../../../../presentation/widgets/student_app_bar.dart';
 import '../../../domain/entities/project_entity.dart';
-import '../../widgets/app_bar.dart';
 import 'widgets/project_details_head_widget.dart';
 import 'widgets/project_game_rules_widget.dart';
+import 'widgets/project_modal_upload_files.dart';
 import 'widgets/project_task_list_widget.dart';
 
 class ProjectDetailsPage extends StatefulWidget {
@@ -60,7 +62,11 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        child: AppBarWidget(title: widget.project.name),
+        child: StudentAppBarWidget(
+          title: widget.project.name,
+          barColor: Colors.white,
+          imageAsset: 'assets/images/perfil_default.png',
+        ),
         preferredSize: const Size.fromHeight(60),
       ),
       body: SingleChildScrollView(
@@ -94,10 +100,9 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                               borderRadius: BorderRadius.circular(16.0),
                             ),
                             constraints: BoxConstraints.tightFor(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.60,
-                                width:
-                                    MediaQuery.of(context).size.width * 0.90),
+                              height: MediaQuery.of(context).size.height * 0.80,
+                              width: MediaQuery.of(context).size.width * 0.90,
+                            ),
                             isScrollControlled: true,
                             context: context,
                             builder: (BuildContext context) {
@@ -118,14 +123,18 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                       child: ElevatedButton(
                         onPressed: () {
                           showModalBottomSheet<void>(
-                            elevation: 0,
                             backgroundColor: const Color(0xFFE1E1E1),
                             shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(25),
-                                    topRight: Radius.circular(25)),
-                                side: BorderSide(color: Colors.white)),
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(25),
+                                  topRight: Radius.circular(25)),
+                            ),
+                            constraints: BoxConstraints.tightFor(
+                              height: MediaQuery.of(context).size.height * 0.65,
+                              width: MediaQuery.of(context).size.width * 0.90,
+                            ),
                             context: context,
+                            isScrollControlled: true,
                             builder: (BuildContext context) {
                               return ModalUploadFiles(
                                 clearData: clearData,
