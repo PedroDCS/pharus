@@ -22,7 +22,8 @@ dependencies:
   plugin_platform_interface: ^2.1.2
   image_picker: ^0.8.4+11
   intl: ^0.17.0
-
+  carousel_slider: ^4.0.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -35,3 +36,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf

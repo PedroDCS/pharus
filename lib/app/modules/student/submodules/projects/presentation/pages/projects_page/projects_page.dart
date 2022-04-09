@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import '../../../../../presentation/widgets/student_app_bar.dart';
 import 'controller/projects_controller.dart';
-import '../../widgets/app_bar.dart';
 import 'widgets/project_list_widget.dart';
 
 class ProjectsPage extends StatefulWidget {
@@ -18,7 +18,12 @@ class _ProjectsPageState
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const PreferredSize(
-        child: AppBarWidget(title: 'Seus Projetos'),
+        child: StudentAppBarWidget(
+          title: 'Seus Projetos',
+          barColor: Colors.white,
+          imageAsset: 'assets/images/perfil_default.png',
+          buttomGoBack: false,
+        ),
         preferredSize: Size.fromHeight(60),
       ),
       body: SingleChildScrollView(

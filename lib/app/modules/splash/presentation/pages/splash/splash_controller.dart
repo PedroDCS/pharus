@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class SplashController {
@@ -7,7 +8,8 @@ class SplashController {
   }
 
   startSplashScreenTimer() async {
-    var _duration = const Duration(seconds: 5);
+    var _duration = const Duration(seconds: 2);
+    await Firebase.initializeApp();
     return Timer(_duration, navigationToNextPage);
   }
 }
