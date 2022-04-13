@@ -1,15 +1,15 @@
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter/cupertino.dart';
 
 class AvatarController {
   final repository = 'ProjectRepository()';
+  var size = ValueNotifier<double>(0.55);
+  final double initialSize = 0.55;
+  final double expandSize = 0.7;
+  bool get initialSizeValue => size.value == initialSize;
 
-  // navigateToDetails(ProjectEntity proj) {
-  //   Modular.to.pushNamed('projectdetails', arguments: proj);
-  // }
+  Future<void> animatedSize() async {
+    size.value = initialSizeValue ? expandSize : initialSize;
+  }
 
-  // Future<List<ProjectEntity>> getProjectListRepository(String link) async {
-  //   return await _repository
-  //       .getProjectList(link: link)
-  //       .onError((error, stackTrace) => throw Error());
-  // }
+ 
 }
