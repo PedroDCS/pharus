@@ -24,6 +24,8 @@ dependencies:
   intl: ^0.17.0
   animated: ^2.0.0
 
+  carousel_slider: ^4.0.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -36,3 +38,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf

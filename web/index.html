@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -27,11 +28,12 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <title>pharus</title>
   <link rel="manifest" href="manifest.json">
 </head>
+
 <body>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
@@ -100,5 +102,24 @@
       loadMainDartJs();
     }
   </script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
+
+  <script>
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD-HmL61jJHSJn744e7-6a7Tr2gakGymXE",
+      authDomain: "pharus-bootcamp.firebaseapp.com",
+      projectId: "pharus-bootcamp",
+      storageBucket: "pharus-bootcamp.appspot.com",
+      messagingSenderId: "22628408623",
+      appId: "1:22628408623:web:1d530f6fb370a8e58a15da",
+      measurementId: "G-MJ7P40D4Q0"
+    }
+
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </body>
+
 </html>

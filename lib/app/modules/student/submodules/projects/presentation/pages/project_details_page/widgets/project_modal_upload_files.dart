@@ -125,7 +125,7 @@ class ModalUploadFiles extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: clearData,
-                        icon: Icon(Icons.clear),
+                        icon: const Icon(Icons.clear),
                       )
                     ],
                   ),

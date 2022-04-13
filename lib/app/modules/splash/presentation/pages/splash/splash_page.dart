@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'splash_controller.dart';
 
 class SplashPage extends StatefulWidget {
@@ -16,11 +15,6 @@ class SplashPageState extends ModularState<SplashPage, SplashController> {
   void initState() {
     super.initState();
     controller.startSplashScreenTimer();
-    initializeFirebase();
-  }
-
-  void initializeFirebase() async {
-    await Firebase.initializeApp();
   }
 
   @override
