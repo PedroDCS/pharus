@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pharus/app/modules/student/submodules/avatar/avatar_module.dart';
 import 'presentation/controller/custom_bottom_navbar_controller.dart';
 import 'presentation/pages/home_page/home_page.dart';
 import 'presentation/pages/home_page/student_home_controller.dart';
@@ -20,7 +21,7 @@ class StudentModule extends Module {
         ChildRoute('/', child: (context, args) => const StartPage(), children: [
           ChildRoute('/studenthome',
               child: (context, args) => const HomePage()),
-          ModuleRoute('/counter', module: CounterModule()),
+          ModuleRoute('/avatar', module: AvatarModule()),
           ModuleRoute('/projects', module: ProjectsModule()),
           ModuleRoute('/profile', module: ProfileModule()),
         ]),

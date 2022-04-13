@@ -18,13 +18,20 @@ class ModalUploadFiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(25, 32, 25, 5),
+      padding: const EdgeInsets.fromLTRB(25, 5, 25, 5),
       decoration: BoxDecoration(
         color: const Color(0xFFE1E1E1),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         children: <Widget>[
+          Container(
+            alignment: Alignment.topRight,
+            child: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(Icons.close),
+              ),
+          ),
           const Text(
             'Enviar arquivos',
             style: TextStyle(
@@ -33,7 +40,7 @@ class ModalUploadFiles extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.only(top: 24, bottom: 24),
+            padding: EdgeInsets.only(top: 12, bottom: 18),
             child: Text(
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum elit tellus, at condimentum mauris sagittis ut. Nam auctor nunc non ipsum blandit tempus.',
               style: TextStyle(

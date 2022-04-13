@@ -7,7 +7,7 @@ class CustomBottomNavbarController {
     '/student/studenthome',
     '/student/projects/',
     '/student/projects/rankings',
-    '/student/counter/',
+    '/student/avatar/',
     '/student/profile/',
   ];
 
