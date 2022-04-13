@@ -3,8 +3,11 @@ import 'package:intl/intl.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pharus/app/modules/student/submodules/projects/domain/entities/project_entity.dart';
+import 'package:pharus/app/modules/student/submodules/projects/presentation/pages/project_details_page/state_page/modal_state_enum.dart';
 import 'package:pharus/app/modules/student/submodules/projects/presentation/pages/project_details_page/widgets/project_modal_upload_files.dart';
-import '../../../domain/entities/project_entity.dart';
+import 'package:pharus/app/modules/student/widgets/custom_modal_loading_widget.dart';
+import 'package:pharus/app/modules/student/widgets/custom_modal_success_widget.dart';
 import '../../widgets/app_bar.dart';
 import 'widgets/project_details_head_widget.dart';
 import 'widgets/project_game_rules_widget.dart';
@@ -23,30 +26,56 @@ class ProjectDetailsPage extends StatefulWidget {
 
 class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   final FirebaseStorage storage = FirebaseStorage.instance;
+  var modalStatusEnum = ValueNotifier<ModalStatusEnum>(ModalStatusEnum.initial);
+
   XFile? image;
   var isData = ValueNotifier<bool>(false);
   var nameImage = ValueNotifier<String>('');
+  String path = '';
 
   Future<void> _getFile() async {
     final ImagePicker _pick = ImagePicker();
     image = await _pick.pickImage(source: ImageSource.gallery);
     if (image != null) {
       nameImage.value = image!.name;
+      path = image!.path;
       isData.value = true;
     } else {
       isData.value = false;
     }
   }
 
+  void _showToast(BuildContext context) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: const Text(
+          'Atenção Adicione uma Imagem!',
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.transparent,
+        action: SnackBarAction(
+            label: 'OK', onPressed: scaffold.hideCurrentSnackBar),
+      ),
+    );
+  }
+
   Future<void> upload(String path) async {
-    Navigator.pop(context);
+    if (path.isEmpty) {
+      _showToast(context);
+      return;
+    }
+    modalStatusEnum.value = ModalStatusEnum.loading;
     if (isData.value) {
       File file = File(path);
       try {
         String ref = 'images/img-${DateTime.now()}.jpg';
         var data = await storage.ref(ref).putFile(file);
-        // String url = await data.ref.getDownloadURL();
+        data != null
+            ? modalStatusEnum.value = ModalStatusEnum.success
+            : modalStatusEnum.value = ModalStatusEnum.failure;
       } on FirebaseException catch (e) {
+        modalStatusEnum.value = ModalStatusEnum.failure;
         throw Exception('Error no upload: ${e.code}');
       }
     }
@@ -54,6 +83,11 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
 
   void clearData() {
     isData.value = false;
+  }
+
+  void onClose() async {
+    isData.value = false;
+    Navigator.pop(context);
   }
 
   @override
@@ -121,18 +155,34 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                             elevation: 0,
                             backgroundColor: const Color(0xFFE1E1E1),
                             shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(25),
-                                    topRight: Radius.circular(25)),
-                                side: BorderSide(color: Colors.white)),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(25),
+                                topRight: Radius.circular(25),
+                              ),
+                              side: BorderSide(color: Colors.white),
+                            ),
                             context: context,
                             builder: (BuildContext context) {
-                              return ModalUploadFiles(
-                                clearData: clearData,
-                                getFile: _getFile,
-                                imageName: nameImage,
-                                isFile: isData,
-                                uploadFiles: () => upload(image!.path),
+                              return ValueListenableBuilder(
+                                valueListenable: modalStatusEnum,
+                                builder: (_, ModalStatusEnum state, __) {
+                                  if (state == ModalStatusEnum.loading) {
+                                    return ModalLoadingWidget();
+                                  }
+                                  if (state == ModalStatusEnum.success) {
+                                    return ModalSuccessWidget(
+                                      modalState: modalStatusEnum,
+                                      onClose: onClose,
+                                    );
+                                  }
+                                  return ModalUploadFiles(
+                                    clearData: clearData,
+                                    getFile: _getFile,
+                                    imageName: nameImage,
+                                    isFile: isData,
+                                    uploadFiles: () => upload(path),
+                                  );
+                                },
                               );
                             },
                           );
