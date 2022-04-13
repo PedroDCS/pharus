@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pharus/app/modules/student/presentation/widgets/student_app_bar.dart';
 import 'package:pharus/app/modules/student/submodules/avatar/presentation/pages/avatar_page/controller/avatar_controller.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AvatarPage extends StatefulWidget {
   const AvatarPage({Key? key}) : super(key: key);
@@ -12,6 +13,38 @@ class AvatarPage extends StatefulWidget {
 
 class _AvatarPageState extends ModularState<AvatarPage, AvatarController>
     with TickerProviderStateMixin {
+  final List<dynamic> avatar = [
+    {
+      'avatar': {
+        'profile': 'assets/images/profile_avatar_1.png',
+        'avatar_img': 'assets/images/avatar_1.svg'
+      }
+    },
+    {
+      'avatar': {
+        'profile': 'assets/images/profile_avatar_2.png',
+        'avatar_img': 'assets/images/avatar_2.svg'
+      }
+    },
+    {
+      'avatar': {
+        'profile': 'assets/images/profile_avatar_3.png',
+        'avatar_img': 'assets/images/avatar_3.svg'
+      }
+    },
+    {
+      'avatar': {
+        'profile': 'assets/images/profile_avatar_4.png',
+        'avatar_img': 'assets/images/avatar_4.svg'
+      }
+    },
+    {
+      'avatar': {
+        'profile': 'assets/images/profile_avatar_5.png',
+        'avatar_img': 'assets/images/avatar_5.svg'
+      }
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +54,7 @@ class _AvatarPageState extends ModularState<AvatarPage, AvatarController>
           title: 'Avatar',
           imageAsset: 'assets/images/perfil_default.png',
           barColor: Color(0xFFFFFFFF),
-          buttomGoBack: true,
+          buttomGoBack: false,
         ),
         preferredSize: Size.fromHeight(60),
       ),
@@ -48,7 +81,12 @@ class _AvatarPageState extends ModularState<AvatarPage, AvatarController>
                       child: CircleAvatar(
                         radius: 20,
                         backgroundColor: const Color.fromRGBO(182, 182, 182, 1),
-                        child: Image.asset('assets/icons/expand.png'),
+                        child: ValueListenableBuilder(
+                          valueListenable: controller.iconTypeActive,
+                          builder: (_, String iconType, __) {
+                            return Image.asset(iconType);
+                          },
+                        ),
                       ),
                     ),
                   ),
@@ -57,43 +95,37 @@ class _AvatarPageState extends ModularState<AvatarPage, AvatarController>
               const SizedBox(
                 height: 25,
               ),
-              const Text('Escolha o seu avatar'),
+              const Text(
+                'Escolha o seu avatar',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20,
+                ),
+              ),
               Container(
                 height: 150,
                 child: ListView.builder(
-                    itemCount: 4,
+                    itemCount: avatar.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return Center(
-                        child: CircleAvatar(
-                          radius: 50,
-                          backgroundColor: const Color.fromRGBO(182, 182, 182, 1),
-                          child: Image.asset(
-                            'assets/images/avatar_girl_bg.png',
-                            fit: BoxFit.scaleDown,
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: () =>
+                                controller.onChangeAvatar(avatar[index]),
+                            child: CircleAvatar(
+                              radius: 50,
+                              backgroundColor:
+                                  const Color.fromRGBO(182, 182, 182, 1),
+                              child: Image.asset(
+                                avatar[index]['avatar']['profile'],
+                                fit: BoxFit.scaleDown,
+                              ),
+                            ),
                           ),
                         ),
                       );
-                      // return Container(
-                      //   width: 80,
-                      //   height: 85,
-                      //   decoration: const BoxDecoration(
-                      //     color: Colors.amberAccent,
-                      //     image: DecorationImage(
-                      //       image: AssetImage(
-                      //         'assets/images/avatar_girl_bg.png',
-                      //       ),
-                      //     ),
-                      //   ),
-                      // );
-                      // return Center(
-                      //   child: CircleAvatar(
-
-                      //     child: Image.asset(
-                      //       'assets/images/avatar_girl_bg.png',
-                      //     ),
-                      //   ),
-                      // );
                     }),
               )
             ],
@@ -104,12 +136,16 @@ class _AvatarPageState extends ModularState<AvatarPage, AvatarController>
   }
 
   Widget _buildChild() {
-    return Image.asset(
-      'assets/images/avatar_girl_bg.png',
-      fit: BoxFit.fitHeight,
-      height: 200,
-      width: 200,
-    );
+    return ValueListenableBuilder(
+        valueListenable: controller.assetImgAvatar,
+        builder: (_, String imgAvatar, __) {
+          return SvgPicture.asset(
+            imgAvatar,
+            fit: BoxFit.fitHeight,
+            height: 200,
+            width: 200,
+          );
+        });
   }
 
   Widget _buildAnimatedSize(double size) {
