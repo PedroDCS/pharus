@@ -22,24 +22,22 @@ class SplashPageState extends ModularState<SplashPage, SplashController> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset(
-              'assets/images/logo_ioasys.png',
-            ),
-            const Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: Text(
-                'Pharus',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+              child: Image.asset(
+                'assets/images/Pharus_animado.gif',
+                height: 406,
+                width: 304,
               ),
+            ),
+            Image.asset(
+              'assets/images/pharus_name.png',
             ),
           ],
         ),
