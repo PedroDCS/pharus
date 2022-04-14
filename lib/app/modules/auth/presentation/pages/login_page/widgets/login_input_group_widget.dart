@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../../../shared/app_colors/app_colors.dart';
 import '../controller/login_page_controller.dart';
 import 'login_input_area_widget.dart';
 
@@ -38,8 +39,13 @@ class LoginInputGroupWidget extends StatelessWidget {
               ),
             ),
             onPressed: () {},
-            child: const Text("Esqueci minha senha!",
-                style: TextStyle(color: Colors.black, fontSize: 12)),
+            child: Text(
+              "Esqueci minha senha!",
+              style: TextStyle(
+                color: AppColors.secondaryColor400,
+                fontSize: 12,
+              ),
+            ),
           ),
         ),
       ],

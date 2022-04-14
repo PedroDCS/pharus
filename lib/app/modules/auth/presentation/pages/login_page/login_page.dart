@@ -17,10 +17,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        reverse: true,
         physics: const ScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(32, 34.33, 32, 10),
+          padding: const EdgeInsets.fromLTRB(32, 48, 32, 10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,

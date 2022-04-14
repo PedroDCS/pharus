@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../shared/app_colors/app_colors.dart';
+
 class LoginHeadWidget extends StatelessWidget {
   const LoginHeadWidget({
     Key? key,
@@ -10,16 +12,19 @@ class LoginHeadWidget extends StatelessWidget {
     return Column(
       children: [
         Container(
-            padding: const EdgeInsets.only(bottom: 82.33),
+            padding: const EdgeInsets.only(bottom: 56),
             alignment: Alignment.center,
-            child: Image.asset('assets/images/pharos_icon.png',
-                height: 51.33, width: 36.56)),
+            child: Image.asset('assets/images/Logo_Pharus.png',
+                height: 112, width: 117.5)),
         Container(
           alignment: Alignment.center,
-          child: const Text(
+          child: Text(
             'Login',
             style: TextStyle(
-                color: Colors.black, fontSize: 24, fontWeight: FontWeight.w700),
+              color: AppColors.secondaryColor500,
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
       ],
