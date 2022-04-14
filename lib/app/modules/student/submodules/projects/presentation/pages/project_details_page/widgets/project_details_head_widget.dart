@@ -14,9 +14,30 @@ class ProjectDetailsHeadWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Mentor: $mentor',
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width * .6,
+              child: Text(
+                'Mentor: $mentor',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              padding: EdgeInsets.all(0),
+              icon: const ImageIcon(
+                AssetImage('assets/icons/icon-envelope.png'),
+                color: Colors.black,
+              ),
+              color: Colors.blue,
+            )
+          ],
         ),
         const Padding(
           padding: EdgeInsets.only(top: 24, bottom: 16),
@@ -27,7 +48,9 @@ class ProjectDetailsHeadWidget extends StatelessWidget {
         ),
         Text(
           description,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+          style: const TextStyle(
+            fontSize: 14,
+          ),
         ),
       ],
     );

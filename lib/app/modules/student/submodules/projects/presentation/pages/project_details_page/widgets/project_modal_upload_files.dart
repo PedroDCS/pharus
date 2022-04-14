@@ -28,9 +28,9 @@ class ModalUploadFiles extends StatelessWidget {
           Container(
             alignment: Alignment.topRight,
             child: IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: Icon(Icons.close),
-              ),
+              onPressed: () => Navigator.pop(context),
+              icon: Icon(Icons.close),
+            ),
           ),
           const Text(
             'Enviar arquivos',
@@ -58,7 +58,7 @@ class ModalUploadFiles extends StatelessWidget {
           GestureDetector(
             onTap: getFile,
             child: Container(
-              height: 110,
+              height: 120,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
                 color: const Color(0xFFC3C3C3),
@@ -72,7 +72,7 @@ class ModalUploadFiles extends StatelessWidget {
                     const Text(
                       'Selecione os arquivos para enviar',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 15,
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
                       ),

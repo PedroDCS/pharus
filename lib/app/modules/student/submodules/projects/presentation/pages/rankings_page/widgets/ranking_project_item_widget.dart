@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../../../../../../../../shared/app_colors/app_colors.dart';
 import '../../../../domain/entities/project_entity.dart';
 import 'Ranking_project_item_coment_widget.dart';
 import 'ranking_project_item_head_widget.dart';
@@ -9,17 +11,20 @@ class RankingProjectItemWidget extends StatelessWidget {
     Key? key,
     required this.project,
     required this.ontap,
+    required this.place,
+    required this.medal,
   }) : super(key: key);
   final ProjectEntity project;
   final VoidCallback ontap;
-
+  final String place;
+  final String medal;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: ontap,
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFFE1E1E1),
+          color: AppColors.secondaryColor400,
           borderRadius: BorderRadius.circular(16),
         ),
         margin: const EdgeInsets.only(bottom: 32),
@@ -28,7 +33,7 @@ class RankingProjectItemWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             RankingProjectItemHeadWidget(name: project.name),
-            const RankingProjectItemMedalWidget(),
+            RankingProjectItemMedalWidget(place: place, medal: medal),
             const RankingProjectItemComentWidget(),
           ],
         ),

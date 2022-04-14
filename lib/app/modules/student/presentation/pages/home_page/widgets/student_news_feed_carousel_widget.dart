@@ -24,7 +24,7 @@ class _StudentNewsFeedCarouselWidgetState
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFFC8C8C8),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
       width: double.infinity,

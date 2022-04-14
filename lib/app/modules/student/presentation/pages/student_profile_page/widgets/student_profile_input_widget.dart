@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../shared/app_colors/app_colors.dart';
+
 class StudentProfileInputWidget extends StatelessWidget {
   const StudentProfileInputWidget({
     Key? key,
@@ -21,17 +23,19 @@ class StudentProfileInputWidget extends StatelessWidget {
         children: [
           Text(
             areaName,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
+              color: AppColors.neutralColor10,
             ),
           ),
           TextFormField(
             decoration: const InputDecoration(border: InputBorder.none),
             readOnly: readOnly,
             initialValue: textValue,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14,
+              color: AppColors.neutralColor10,
               fontWeight: FontWeight.w400,
             ),
           ),
