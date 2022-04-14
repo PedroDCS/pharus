@@ -6,9 +6,9 @@ class CustomBottomNavbarController {
   List<String> routesOptions = <String>[
     '/student/studenthome',
     '/student/projects/',
-    '/student/projects/rankings',
     '/student/avatar/',
-    '/student/profile/',
+    '/student/projects/rankings',
+    '/student/profile',
   ];
 
   changePage(int id) {

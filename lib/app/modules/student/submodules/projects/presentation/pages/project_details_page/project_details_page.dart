@@ -3,16 +3,15 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:pharus/app/modules/student/submodules/projects/domain/entities/project_entity.dart';
-import 'package:pharus/app/modules/student/submodules/projects/presentation/pages/project_details_page/state_page/modal_state_enum.dart';
-import 'package:pharus/app/modules/student/submodules/projects/presentation/pages/project_details_page/widgets/project_modal_upload_files.dart';
-import 'package:pharus/app/modules/student/widgets/custom_modal_loading_widget.dart';
-import 'package:pharus/app/modules/student/widgets/custom_modal_success_widget.dart';
-import '../../../../../presentation/widgets/student_app_bar.dart';
 import '../../../domain/entities/project_entity.dart';
+import 'state_page/modal_state_enum.dart';
+import 'widgets/project_modal_upload_files.dart';
+import '../../../../../widgets/custom_modal_loading_widget.dart';
+import '../../../../../widgets/custom_modal_success_widget.dart';
+import '../../../../../../../shared/app_colors/app_colors.dart';
+import '../../../../../presentation/widgets/student_app_bar.dart';
 import 'widgets/project_details_head_widget.dart';
 import 'widgets/project_game_rules_widget.dart';
-import 'widgets/project_modal_upload_files.dart';
 import 'widgets/project_task_list_widget.dart';
 
 class ProjectDetailsPage extends StatefulWidget {
@@ -94,37 +93,50 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        child: StudentAppBarWidget(
-          title: widget.project.name,
-          barColor: Colors.white,
-          imageAsset: 'assets/images/perfil_default.png',
-        ),
-        preferredSize: const Size.fromHeight(60),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.secondaryColor600,
+              AppColors.tertiaryColor100,
+              AppColors.primaryColor80,
+            ]),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(16, 53, 16, 10),
-        physics: const ScrollPhysics(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFFE1E1E1),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              width: double.infinity,
-              padding: const EdgeInsets.fromLTRB(24, 16, 24, 25),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ProjectDetailsHeadWidget(
-                      mentor: widget.project.mentor,
-                      description: widget.project.description,
-                    ),
-                    TextButton(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: PreferredSize(
+          child: StudentAppBarWidget(
+            title: widget.project.name,
+            barColor: Colors.transparent,
+            imageAsset: 'assets/images/perfil_default.png',
+            textColor: Colors.white,
+          ),
+          preferredSize: const Size.fromHeight(60),
+        ),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(16, 33, 16, 10),
+          physics: const ScrollPhysics(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.primaryColor20,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                width: double.infinity,
+                padding: const EdgeInsets.fromLTRB(24, 16, 24, 25),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ProjectDetailsHeadWidget(
+                        mentor: widget.project.mentor,
+                        description: widget.project.description,
+                      ),
+                      TextButton(
                         style: TextButton.styleFrom(
                           padding: const EdgeInsets.only(top: 32, bottom: 32),
                         ),
@@ -144,17 +156,26 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                             },
                           );
                         },
-                        child: const Text(
-                          "Veja aqui as regras do projeto",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        )),
-                    const ProjectTaskListWidget(),
-                    Center(
-                      child: ElevatedButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const ImageIcon(
+                              AssetImage("assets/icons/icon-book.png"),
+                              color: Colors.black,
+                            ),
+                            Text(
+                              " Atividades do Projeto",
+                              style: TextStyle(
+                                color: AppColors.tertiaryColor500,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const ProjectTaskListWidget(),
+                      ElevatedButton(
                         onPressed: () {
                           showModalBottomSheet<void>(
                             backgroundColor: const Color(0xFFE1E1E1),
@@ -195,9 +216,8 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          fixedSize: const Size.fromWidth(195),
-                          minimumSize: const Size.square(44),
-                          primary: const Color(0xFFC3C3C3),
+                          minimumSize: const Size.fromHeight(58),
+                          primary: AppColors.secondaryColor500,
                           padding: const EdgeInsets.symmetric(
                               horizontal: 27.5, vertical: 11),
                           shape: RoundedRectangleBorder(
@@ -207,15 +227,15 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                         child: const Text(
                           "Enviar Arquivos",
                           style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black),
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                    ),
-                  ]),
-            ),
-          ],
+                    ]),
+              ),
+            ],
+          ),
         ),
       ),
     );

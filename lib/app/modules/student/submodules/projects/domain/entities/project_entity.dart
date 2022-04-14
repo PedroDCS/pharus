@@ -1,7 +1,11 @@
+import 'task_entity.dart';
+
 class ProjectEntity {
   final String name;
   final int score;
   final String medal;
+  final int place;
+  final List<TaskEntity> taskList;
   final String description;
   final String scoreDescription;
   final DateTime startDate;
@@ -15,6 +19,8 @@ class ProjectEntity {
     required this.name,
     required this.score,
     required this.medal,
+    required this.place,
+    required this.taskList,
     required this.description,
     required this.scoreDescription,
     required this.startDate,

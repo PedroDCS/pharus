@@ -5,8 +5,7 @@ import 'presentation/pages/home_page/home_page.dart';
 import 'presentation/pages/home_page/student_home_controller.dart';
 import 'presentation/pages/start_page/start_page.dart';
 
-import 'submodules/counter/counter_module.dart';
-import 'submodules/profile/profile_module.dart';
+import 'presentation/pages/student_profile_page/student_profile.dart';
 import 'submodules/projects/projects_module.dart';
 
 class StudentModule extends Module {
@@ -23,7 +22,8 @@ class StudentModule extends Module {
               child: (context, args) => const HomePage()),
           ModuleRoute('/avatar', module: AvatarModule()),
           ModuleRoute('/projects', module: ProjectsModule()),
-          ModuleRoute('/profile', module: ProfileModule()),
+          ChildRoute('/profile',
+              child: (context, args) => const StudentProfile()),
         ]),
       ];
 }

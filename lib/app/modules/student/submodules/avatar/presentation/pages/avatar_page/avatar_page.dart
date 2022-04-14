@@ -4,6 +4,8 @@ import 'package:pharus/app/modules/student/presentation/widgets/student_app_bar.
 import 'package:pharus/app/modules/student/submodules/avatar/presentation/pages/avatar_page/controller/avatar_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../../../../shared/app_colors/app_colors.dart';
+
 class AvatarPage extends StatefulWidget {
   const AvatarPage({Key? key}) : super(key: key);
 
@@ -47,88 +49,103 @@ class _AvatarPageState extends ModularState<AvatarPage, AvatarController>
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: const PreferredSize(
-        child: StudentAppBarWidget(
-          title: 'Avatar',
-          imageAsset: 'assets/images/perfil_default.png',
-          barColor: Color(0xFFFFFFFF),
-          buttomGoBack: false,
-        ),
-        preferredSize: Size.fromHeight(60),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.secondaryColor600,
+              AppColors.tertiaryColor100,
+              AppColors.primaryColor80,
+            ]),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 20, left: 20, right: 10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Stack(
-                alignment: Alignment.bottomRight,
-                children: [
-                  ValueListenableBuilder(
-                    valueListenable: controller.size,
-                    builder: (BuildContext context, double size, _) {
-                      return _buildAnimatedSize(size);
-                    },
-                  ),
-                  GestureDetector(
-                    onTap: controller.animatedSize,
-                    child: Container(
-                      margin: const EdgeInsets.only(right: 99),
-                      alignment: Alignment.bottomRight,
-                      child: CircleAvatar(
-                        radius: 20,
-                        backgroundColor: const Color.fromRGBO(182, 182, 182, 1),
-                        child: ValueListenableBuilder(
-                          valueListenable: controller.iconTypeActive,
-                          builder: (_, String iconType, __) {
-                            return Image.asset(iconType);
-                          },
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: const PreferredSize(
+          child: StudentAppBarWidget(
+            title: 'Avatar',
+            imageAsset: 'assets/images/perfil_default.png',
+            barColor: Colors.transparent,
+            buttomGoBack: false,
+            textColor: Colors.white,
+          ),
+          preferredSize: Size.fromHeight(60),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Stack(
+                  alignment: Alignment.bottomRight,
+                  children: [
+                    ValueListenableBuilder(
+                      valueListenable: controller.size,
+                      builder: (BuildContext context, double size, _) {
+                        return _buildAnimatedSize(size);
+                      },
+                    ),
+                    GestureDetector(
+                      onTap: controller.animatedSize,
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 99),
+                        alignment: Alignment.bottomRight,
+                        child: CircleAvatar(
+                          radius: 20,
+                          backgroundColor:
+                              const Color.fromRGBO(182, 182, 182, 1),
+                          child: ValueListenableBuilder(
+                            valueListenable: controller.iconTypeActive,
+                            builder: (_, String iconType, __) {
+                              return Image.asset(iconType);
+                            },
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              const Text(
-                'Escolha o seu avatar',
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 20,
+                  ],
                 ),
-              ),
-              Container(
-                height: 150,
-                child: ListView.builder(
-                    itemCount: avatar.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Center(
-                          child: GestureDetector(
-                            onTap: () =>
-                                controller.onChangeAvatar(avatar[index]),
-                            child: CircleAvatar(
-                              radius: 50,
-                              backgroundColor:
-                                  const Color.fromRGBO(182, 182, 182, 1),
-                              child: Image.asset(
-                                avatar[index]['avatar']['profile'],
-                                fit: BoxFit.scaleDown,
+                const SizedBox(
+                  height: 25,
+                ),
+                Text(
+                  'Escolha o seu avatar',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 20,
+                    color: AppColors.neutralColor10,
+                  ),
+                ),
+                Container(
+                  height: 150,
+                  child: ListView.builder(
+                      itemCount: avatar.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: () =>
+                                  controller.onChangeAvatar(avatar[index]),
+                              child: CircleAvatar(
+                                radius: 50,
+                                backgroundColor:
+                                    const Color.fromRGBO(182, 182, 182, 1),
+                                child: Image.asset(
+                                  avatar[index]['avatar']['profile'],
+                                  fit: BoxFit.scaleDown,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    }),
-              )
-            ],
+                        );
+                      }),
+                )
+              ],
+            ),
           ),
         ),
       ),

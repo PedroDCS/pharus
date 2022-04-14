@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../../../shared/app_colors/app_colors.dart';
 import 'project_item_body_widget.dart';
 import 'project_item_head_widget.dart';
 
@@ -30,7 +31,7 @@ class ProjectItemWidget extends StatelessWidget {
       onTap: ontap,
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFFE1E1E1),
+          color: AppColors.primaryColor,
           borderRadius: BorderRadius.circular(16),
         ),
         margin: const EdgeInsets.only(bottom: 32),
