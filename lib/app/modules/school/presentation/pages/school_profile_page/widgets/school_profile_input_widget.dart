@@ -14,7 +14,7 @@ class SchoolProfileInputWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 40),
+      padding: const EdgeInsets.only(top: 35),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +27,9 @@ class SchoolProfileInputWidget extends StatelessWidget {
             ),
           ),
           TextFormField(
-            decoration: const InputDecoration(border: InputBorder.none),
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+            ),
             readOnly: readOnly,
             initialValue: textValue,
             style: const TextStyle(

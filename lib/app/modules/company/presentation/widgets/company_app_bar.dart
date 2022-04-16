@@ -6,11 +6,13 @@ class CompanyAppBarWidget extends StatelessWidget {
     required this.title,
     required this.imageAsset,
     required this.barColor,
+    required this.textColor,
     this.buttomGoBack = true,
   }) : super(key: key);
   final String title;
   final String imageAsset;
   final Color barColor;
+  final Color textColor;
   final bool buttomGoBack;
   @override
   Widget build(BuildContext context) {
@@ -21,17 +23,17 @@ class CompanyAppBarWidget extends StatelessWidget {
                   Navigator.of(context).pop();
                   //Modular.to.canPop();
                 },
-                icon: const Icon(
+                icon: Icon(
                   Icons.arrow_back,
-                  color: Colors.black,
+                  color: textColor,
                 ),
               )
             : null,
         automaticallyImplyLeading: buttomGoBack,
         title: Text(
           title,
-          style: const TextStyle(
-            color: Colors.black,
+          style: TextStyle(
+            color: textColor,
             fontWeight: FontWeight.w700,
             fontSize: 20,
           ),
@@ -45,7 +47,6 @@ class CompanyAppBarWidget extends StatelessWidget {
             width: 50,
             margin: const EdgeInsets.only(right: 19),
             decoration: BoxDecoration(
-              color: Colors.white,
               borderRadius: BorderRadius.circular(50),
               image: DecorationImage(image: AssetImage(imageAsset)),
               boxShadow: [

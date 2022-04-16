@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../../shared/app_colors/app_colors.dart';
 import '../../../domain/entities/project_entity.dart';
 import '../../widgets/company_app_bar.dart';
 import 'widgets/company_project_details_head_widget.dart';
@@ -45,7 +46,7 @@ class _ProjectDetailsPageState extends State<CompanyProjectDetailsPage> {
       try {
         String ref = 'images/img-${DateTime.now()}.jpg';
         var data = await storage.ref(ref).putFile(file);
-        // String url = await data.ref.getDownloadURL();
+        String url = await data.ref.getDownloadURL();
       } on FirebaseException catch (e) {
         throw Exception('Error no upload: ${e.code}');
       }
@@ -61,11 +62,14 @@ class _ProjectDetailsPageState extends State<CompanyProjectDetailsPage> {
     return Scaffold(
       appBar: PreferredSize(
         child: CompanyAppBarWidget(
-            title: widget.project.name,
-            imageAsset: 'assets/icons/company.png',
-            barColor: Colors.white),
+          title: widget.project.name,
+          imageAsset: 'assets/icons/company.png',
+          barColor: Colors.transparent,
+          textColor: Colors.white,
+        ),
         preferredSize: const Size.fromHeight(60),
       ),
+      backgroundColor: AppColors.neutralColor800,
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(16, 53, 16, 10),
         physics: const ScrollPhysics(),
@@ -75,7 +79,7 @@ class _ProjectDetailsPageState extends State<CompanyProjectDetailsPage> {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: const Color(0xFFE1E1E1),
+                color: AppColors.primaryColor20,
                 borderRadius: BorderRadius.circular(16),
               ),
               width: double.infinity,
@@ -88,34 +92,43 @@ class _ProjectDetailsPageState extends State<CompanyProjectDetailsPage> {
                       description: widget.project.description,
                     ),
                     TextButton(
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.only(top: 32, bottom: 32),
-                        ),
-                        onPressed: () {
-                          showModalBottomSheet<void>(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            constraints: BoxConstraints.tightFor(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.60,
-                                width:
-                                    MediaQuery.of(context).size.width * 0.90),
-                            isScrollControlled: true,
-                            context: context,
-                            builder: (BuildContext context) {
-                              return const CompanyProjectGameRulesWidget();
-                            },
-                          );
-                        },
-                        child: const Text(
-                          "Veja aqui as regras do projeto",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(top: 32, bottom: 32),
+                      ),
+                      onPressed: () {
+                        showModalBottomSheet<void>(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16.0),
                           ),
-                        )),
+                          constraints: BoxConstraints.tightFor(
+                            height: MediaQuery.of(context).size.height * 0.80,
+                            width: MediaQuery.of(context).size.width * 0.90,
+                          ),
+                          isScrollControlled: true,
+                          context: context,
+                          builder: (BuildContext context) {
+                            return const CompanyProjectGameRulesWidget();
+                          },
+                        );
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const ImageIcon(
+                            AssetImage("assets/icons/icon-book.png"),
+                            color: Colors.black,
+                          ),
+                          Text(
+                            " Atividades do Projeto",
+                            style: TextStyle(
+                              color: AppColors.tertiaryColor500,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                     const CompanyProjectTaskListWidget(),
                   ]),
             ),
