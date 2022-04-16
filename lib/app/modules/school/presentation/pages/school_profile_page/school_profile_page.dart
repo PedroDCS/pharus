@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../../shared/app_colors/app_colors.dart';
 import 'widgets/school_profile_input_widget.dart';
 import '../../widgets/school_app_bar.dart';
 
@@ -8,12 +9,13 @@ class SchoolProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE6E6E6),
+      backgroundColor: AppColors.primaryColor30,
       appBar: const PreferredSize(
         child: SchoolAppBarWidget(
           title: 'Perfil',
           imageAsset: 'assets/icons/exit.png',
-          barColor: Color(0xFFE6E6E6),
+          barColor: Colors.transparent,
+          textColor: Colors.black,
         ),
         preferredSize: Size.fromHeight(60),
       ),

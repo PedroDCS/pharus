@@ -6,11 +6,13 @@ class SchoolAppBarWidget extends StatelessWidget {
     required this.title,
     required this.imageAsset,
     required this.barColor,
+    required this.textColor,
     this.buttomGoBack = true,
   }) : super(key: key);
   final String title;
   final String imageAsset;
   final Color barColor;
+  final Color textColor;
   final bool buttomGoBack;
   @override
   Widget build(BuildContext context) {
@@ -30,8 +32,8 @@ class SchoolAppBarWidget extends StatelessWidget {
         automaticallyImplyLeading: buttomGoBack,
         title: Text(
           title,
-          style: const TextStyle(
-            color: Colors.black,
+          style: TextStyle(
+            color: textColor,
             fontWeight: FontWeight.w700,
             fontSize: 20,
           ),
@@ -45,7 +47,6 @@ class SchoolAppBarWidget extends StatelessWidget {
             width: 50,
             margin: const EdgeInsets.only(right: 19),
             decoration: BoxDecoration(
-              color: Colors.white,
               borderRadius: BorderRadius.circular(50),
               image: DecorationImage(image: AssetImage(imageAsset)),
               boxShadow: [

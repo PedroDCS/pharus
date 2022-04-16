@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import '../../../../../../shared/app_colors/app_colors.dart';
 import 'company_project_partnership_widget.dart';
 
 class CompanyProjectItemBodyWidget extends StatelessWidget {
@@ -26,7 +27,7 @@ class CompanyProjectItemBodyWidget extends StatelessWidget {
         Row(
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width / 2.1,
+              width: MediaQuery.of(context).size.width / 2,
               child: Text(
                 description,
                 style: const TextStyle(
@@ -47,18 +48,38 @@ class CompanyProjectItemBodyWidget extends StatelessWidget {
                   SizedBox(
                     width: (MediaQuery.of(context).size.width / 2) / 2,
                     child: CircularPercentIndicator(
+                      curve: Curves.easeInBack,
+                      circularStrokeCap: CircularStrokeCap.round,
+                      linearGradient: LinearGradient(
+                        colors: [
+                          AppColors.secondaryColor600,
+                          AppColors.secondaryColor60,
+                        ],
+                      ),
+                      animation: true,
+                      animationDuration: 700,
                       radius: 72.0,
-                      lineWidth: 5.0,
+                      lineWidth: 10.0,
+                      backgroundWidth: 10,
                       percent: score.toDouble() / 100,
                       center: Text("$score%"),
-                      progressColor: const Color(0xFF272727),
+                      backgroundColor: Colors.white,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16),
+                  Container(
+                    padding: const EdgeInsets.all(2),
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 16,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColor100,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    alignment: Alignment.center,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         const ImageIcon(AssetImage('assets/icons/idea.png'),
                             size: 36),
@@ -75,7 +96,7 @@ class CompanyProjectItemBodyWidget extends StatelessWidget {
             ),
           ],
         ),
-        CompanyProjectPartnershipWidget(urlParter: urlParter),
+        CompanyProjectPartnershipWidget(urlParter: urlParter)
       ],
     );
   }

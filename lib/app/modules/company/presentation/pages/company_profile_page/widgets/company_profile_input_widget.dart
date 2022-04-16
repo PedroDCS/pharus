@@ -24,6 +24,7 @@ class CompanyProfileInputWidget extends StatelessWidget {
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
+              color: Colors.white,
             ),
           ),
           TextFormField(
@@ -32,6 +33,7 @@ class CompanyProfileInputWidget extends StatelessWidget {
             initialValue: textValue,
             style: const TextStyle(
               fontSize: 14,
+              color: Colors.white,
               fontWeight: FontWeight.w400,
             ),
           ),

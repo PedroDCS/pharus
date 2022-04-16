@@ -16,7 +16,7 @@ class ProjectItemHeadWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          'Projeto: $name',
+          name,
           style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w700,
