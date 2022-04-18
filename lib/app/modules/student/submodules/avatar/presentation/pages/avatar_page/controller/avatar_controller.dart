@@ -6,7 +6,7 @@ class AvatarController {
   final double expandSize = 0.7;
   bool get initialSizeValue => size.value == initialSize;
 
-  var iconTypeActive = ValueNotifier<String>('assets/icons/expand.png');
+  var iconTypeActive = ValueNotifier<String>('assets/icons/icon-expand.png');
 
   var assetImgAvatar = ValueNotifier<String>('assets/images/avatar_1.svg');
 
@@ -17,8 +17,8 @@ class AvatarController {
 
   Future<void> iconType(bool initialSizeValue) async {
     iconTypeActive.value = initialSizeValue 
-        ? 'assets/icons/expand.png'
-        : 'assets/icons/retract_icon_bg.png';
+        ? 'assets/icons/icon-expand.png'
+        : 'assets/icons/icon-retract.png';
   }
   Future<void> onChangeAvatar( avatar) async{
     assetImgAvatar.value = avatar['avatar']['avatar_img'];

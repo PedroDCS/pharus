@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import '../../../../../../shared/app_colors/app_colors.dart';
 import '../../../../domain/entities/news_entity.dart';
 import 'school_news_feed_carousel_controller.dart';
 
@@ -24,7 +25,7 @@ class _SchoolNewsFeedCarouselWidgetState
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFFC8C8C8),
+        color: AppColors.neutralColor10,
         borderRadius: BorderRadius.circular(16),
       ),
       width: double.infinity,

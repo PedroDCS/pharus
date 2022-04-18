@@ -8,7 +8,7 @@ class SplashController {
   }
 
   startSplashScreenTimer() async {
-    var _duration = const Duration(seconds: 2);
+    var _duration = const Duration(seconds: 3);
     await Firebase.initializeApp();
     return Timer(_duration, navigationToNextPage);
   }

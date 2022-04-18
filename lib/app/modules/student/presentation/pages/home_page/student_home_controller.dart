@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../../shared/app_colors/app_colors.dart';
 import '../../../data/repositories/news_repository.dart';
 import '../../../data/repositories/notify_repository.dart';
@@ -50,6 +50,19 @@ class StudentHomeController {
         return AppColors.primaryColor50;
       default:
         return AppColors.successColor;
+    }
+  }
+
+  Future<void> lauchLink(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceWebView: false,
+        forceSafariVC: false,
+        enableJavaScript: true
+      );
+    }else{
+      print('Houve um erro ao acessar o link');
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../domain/entities/notify_entity.dart';
 import '../student_home_controller.dart';
@@ -79,8 +80,18 @@ class _HomeStudentBodyWidgetState
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 49, 16, 45),
             child: StudentNewsFeedCarouselWidget(
-              newslist: controller.getNewsListRepository("link"),
-            ),
+                newslist: controller.getNewsListRepository("link"),
+                goToLauch: () async {
+                  if (await canLaunch('https://www.unicef.org/brazil/comunicados-de-imprensa/unicef-lanca-segunda-edicao-do-tmjunicef-programa-de-voluntariado-digital')) {
+                    await launch('https://www.unicef.org/brazil/comunicados-de-imprensa/unicef-lanca-segunda-edicao-do-tmjunicef-programa-de-voluntariado-digital',
+                        forceWebView: false,
+                        forceSafariVC: false,
+                        enableJavaScript: true);
+                  } else {
+                    print('Houve um erro ao acessar o link');
+                  }
+                  
+                }),
           )
         ],
       ),

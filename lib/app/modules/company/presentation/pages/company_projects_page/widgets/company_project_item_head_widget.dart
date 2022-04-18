@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SchoolProjectItemHeadWidget extends StatelessWidget {
-  const SchoolProjectItemHeadWidget({
+class CompanyProjectItemHeadWidget extends StatelessWidget {
+  const CompanyProjectItemHeadWidget({
     Key? key,
     required this.name,
     required this.mentor,
@@ -16,7 +16,7 @@ class SchoolProjectItemHeadWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          'Projeto: $name',
+          name,
           style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w700,

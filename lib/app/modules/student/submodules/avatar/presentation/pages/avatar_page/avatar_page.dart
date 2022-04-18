@@ -90,10 +90,10 @@ class _AvatarPageState extends ModularState<AvatarPage, AvatarController>
                     GestureDetector(
                       onTap: controller.animatedSize,
                       child: Container(
-                        margin: const EdgeInsets.only(right: 99),
+                        margin: const EdgeInsets.only(right: 50),
                         alignment: Alignment.bottomRight,
                         child: CircleAvatar(
-                          radius: 20,
+                          radius: 24,
                           backgroundColor:
                               const Color.fromRGBO(182, 182, 182, 1),
                           child: ValueListenableBuilder(

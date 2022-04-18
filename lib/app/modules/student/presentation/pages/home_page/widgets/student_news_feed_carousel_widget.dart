@@ -7,12 +7,14 @@ class StudentNewsFeedCarouselWidget extends StatefulWidget {
   const StudentNewsFeedCarouselWidget({
     Key? key,
     required this.newslist,
+    required this.goToLauch,
   }) : super(key: key);
 
   @override
   State<StudentNewsFeedCarouselWidget> createState() =>
       _StudentNewsFeedCarouselWidgetState();
   final Future<NewsEntity> newslist;
+  final Function() goToLauch;
 }
 
 class _StudentNewsFeedCarouselWidgetState
@@ -49,19 +51,22 @@ class _StudentNewsFeedCarouselWidgetState
                   );
                 default:
                   return Column(children: [
-                    CarouselSlider(
-                      items: _controller.getNewsList(snapshot.data!),
-                      carouselController: _controller.controller,
-                      options: CarouselOptions(
-                          autoPlay: true,
-                          enlargeCenterPage: true,
-                          height: 150,
-                          viewportFraction: 1,
-                          onPageChanged: (index, reason) {
-                            setState(() {
-                              _controller.current = index;
-                            });
-                          }),
+                    GestureDetector(
+                      onTap: widget.goToLauch,
+                      child: CarouselSlider(
+                        items: _controller.getNewsList(snapshot.data!),
+                        carouselController: _controller.controller,
+                        options: CarouselOptions(
+                            autoPlay: true,
+                            enlargeCenterPage: true,
+                            height: 150,
+                            viewportFraction: 1,
+                            onPageChanged: (index, reason) {
+                              setState(() {
+                                _controller.current = index;
+                              });
+                            }),
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

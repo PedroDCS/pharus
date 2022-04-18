@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import '../../../../../shared/app_colors/app_colors.dart';
 import '../../widgets/company_app_bar.dart';
 import 'controller/company_projects_controller.dart';
 import 'widgets/company_project_list_widget.dart';
@@ -16,12 +17,13 @@ class _CompanyProjectsPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.neutralColor800,
       appBar: const PreferredSize(
         child: CompanyAppBarWidget(
           title: 'Seus Projetos',
           imageAsset: 'assets/icons/company.png',
-          barColor: Colors.white,
+          barColor: Colors.transparent,
+          textColor: Colors.white,
         ),
         preferredSize: Size.fromHeight(60),
       ),

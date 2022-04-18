@@ -3,18 +3,16 @@ import 'package:flutter/material.dart';
 import '../../../../../../shared/app_colors/app_colors.dart';
 
 class GetInButtonWidget extends StatelessWidget {
-  final Function login;
+  final Function() onPressed;
   const GetInButtonWidget({
     Key? key,
-    required this.login,
+    required this.onPressed,
   }) : super(key: key);
 //Theme.of(context).colorScheme.secondary
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        login();
-      },
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         minimumSize: const Size.fromHeight(60),
         primary: AppColors.secondaryColor500,

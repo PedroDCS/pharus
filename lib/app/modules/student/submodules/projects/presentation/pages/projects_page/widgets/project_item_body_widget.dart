@@ -11,12 +11,14 @@ class ProjectItemBodyWidget extends StatelessWidget {
     required this.score,
     required this.endDate,
     required this.startDate,
+    required this.onPressed
   }) : super(key: key);
   final String urlParter;
   final String description;
   final int score;
   final DateTime endDate;
   final DateTime startDate;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +104,7 @@ class ProjectItemBodyWidget extends StatelessWidget {
           children: [
             ProjectPartnershipWidget(urlParter: urlParter),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: onPressed,
               style: OutlinedButton.styleFrom(
                 primary: AppColors.secondaryColor500,
                 side: BorderSide(
