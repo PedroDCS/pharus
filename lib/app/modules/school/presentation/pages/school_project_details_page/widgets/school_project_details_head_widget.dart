@@ -15,8 +15,12 @@ class SchoolProjectDetailsHeadWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Mentor: $mentor',
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+          mentor,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+          ),
+          overflow: TextOverflow.ellipsis,
         ),
         const Padding(
           padding: EdgeInsets.only(top: 24, bottom: 16),
@@ -27,7 +31,9 @@ class SchoolProjectDetailsHeadWidget extends StatelessWidget {
         ),
         Text(
           description,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+          style: const TextStyle(
+            fontSize: 14,
+          ),
         ),
       ],
     );

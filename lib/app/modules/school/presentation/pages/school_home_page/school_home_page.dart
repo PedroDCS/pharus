@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import '../../../../../shared/app_colors/app_colors.dart';
 import 'school_home_controller.dart';
 import 'widgets/school_home_buttom_widget.dart';
 import 'widgets/school_news_feed_carousel_widget.dart';
@@ -20,16 +21,21 @@ class _SchoolHomePageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE6E6E6),
+      backgroundColor: AppColors.primaryColor30,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-                padding: const EdgeInsets.only(top: 26.33, bottom: 34.33),
-                alignment: Alignment.center,
-                child: Image.asset('assets/images/pharos_icon.png',
-                    height: 51.33, width: 36.56)),
+              padding: const EdgeInsets.only(top: 26.33, bottom: 34.33),
+              alignment: Alignment.center,
+              child: Image.asset(
+                'assets/images/Logo_Pharus.png',
+                height: 64,
+                width: 63.99,
+                color: AppColors.primaryColor,
+              ),
+            ),
             const Text(
               "Olá",
               textAlign: TextAlign.center,
@@ -64,21 +70,21 @@ class _SchoolHomePageState
                 SchoolHomeButtomWidget(
                   iconButtom: 'assets/icons/projects.png',
                   textButtom: "Projetos",
-                  function: () {
+                  functionNavigateTo: () {
                     Modular.to.pushNamed('projects');
                   },
                 ),
                 SchoolHomeButtomWidget(
                   iconButtom: 'assets/icons/profile.png',
                   textButtom: "Perfil",
-                  function: () {
+                  functionNavigateTo: () {
                     Modular.to.pushNamed('profile');
                   },
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(16, 32, 16, 32),
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
               child: SchoolNewsFeedCarouselWidget(
                 newslist: controller.getNewsListRepository('link'),
               ),

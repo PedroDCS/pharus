@@ -36,16 +36,18 @@ class ProjectListWidget extends StatelessWidget {
                     itemBuilder: (_, index) {
                       var project = snapshot.data![index];
                       return ProjectItemWidget(
-                          ontap: () {
-                            controller.navigateToDetails(project);
-                          },
-                          name: project.name,
-                          mentor: project.mentor,
-                          urlParter: project.urlParter,
-                          description: project.description,
-                          score: project.score,
-                          endDate: project.endDate,
-                          startDate: project.startDate);
+                        ontap: () {
+                          controller.navigateToDetails(project);
+                        },
+                        name: project.name,
+                        mentor: project.mentor,
+                        urlParter: project.urlParter,
+                        description: project.description,
+                        score: project.score,
+                        endDate: project.endDate,
+                        startDate: project.startDate,
+                        register: () => controller.registerProject(context),
+                      );
                     }),
               );
           }

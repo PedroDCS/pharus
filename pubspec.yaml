@@ -25,6 +25,7 @@ dependencies:
   animated: ^2.0.0
   flutter_svg: ^1.0.3
   carousel_slider: ^4.0.0
+  url_launcher: 6.0.18
   
 dev_dependencies:
   flutter_test:

@@ -15,6 +15,7 @@ class ProjectItemWidget extends StatelessWidget {
     required this.score,
     required this.endDate,
     required this.startDate,
+    required this.register,
   }) : super(key: key);
   final VoidCallback ontap;
   final String name;
@@ -24,6 +25,7 @@ class ProjectItemWidget extends StatelessWidget {
   final int score;
   final DateTime endDate;
   final DateTime startDate;
+  final Function() register;
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +43,13 @@ class ProjectItemWidget extends StatelessWidget {
           children: [
             ProjectItemHeadWidget(name: name, mentor: mentor),
             ProjectItemBodyWidget(
-                urlParter: urlParter,
-                description: description,
-                score: score,
-                endDate: endDate,
-                startDate: startDate)
+              urlParter: urlParter,
+              description: description,
+              score: score,
+              endDate: endDate,
+              startDate: startDate,
+              onPressed: register,
+            )
           ],
         ),
       ),
