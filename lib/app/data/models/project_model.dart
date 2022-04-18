@@ -16,6 +16,7 @@ class ProjectModel extends ProjectEntity {
       required String companyID,
       required List<String> students,
       required bool finished,
+      int? score,
       required int projectId})
       : super(
             name: name,
@@ -30,6 +31,7 @@ class ProjectModel extends ProjectEntity {
             companyID: companyID,
             students: students,
             finished: finished,
+            score: score,
             projectId: projectId);
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) {
@@ -57,6 +59,7 @@ class ProjectModel extends ProjectEntity {
         taskList: tasks,
         companyID: json['companyID'],
         finished: bool.fromEnvironment(json['subscribed']),
+        score: json['score'],
         projectId: int.parse(json['projectId']));
   }
 
@@ -74,6 +77,7 @@ class ProjectModel extends ProjectEntity {
         companyID: project.companyID,
         students: project.students,
         finished: project.finished,
+        score: project.score,
         projectId: project.projectId);
   }
 
@@ -99,6 +103,7 @@ class ProjectModel extends ProjectEntity {
       'taskList': tasklist,
       'companyID': companyID,
       'subscribed': finished.toString(),
+      'score': score,
       'projectId': projectId.toString(),
     };
   }

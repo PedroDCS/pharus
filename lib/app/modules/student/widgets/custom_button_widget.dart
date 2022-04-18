@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../../../../../../shared/app_colors/app_colors.dart';
+import 'package:pharus/app/shared/app_colors/app_colors.dart';
 
-class ProjectButtonWidget extends StatelessWidget {
+class ButtonWidget extends StatelessWidget {
   final Function() onPressed;
   final String nameButton;
   final bool outlineActive;
-  const ProjectButtonWidget({
+  const ButtonWidget({
     Key? key,
     required this.onPressed,
     required this.nameButton,
@@ -29,7 +29,7 @@ class ProjectButtonWidget extends StatelessWidget {
       child: Text(
         nameButton,
         style: TextStyle(
-            fontSize: 15,
+            fontSize: 14,
             fontWeight: FontWeight.w500,
             color: outlineActive
                 ? AppColors.secondaryColor500

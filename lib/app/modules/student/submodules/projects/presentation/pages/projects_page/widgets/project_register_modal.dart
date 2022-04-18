@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pharus/app/modules/student/widgets/custom_button_widget.dart';
 
 import '../../../../../../../../domain/entities/project_entity.dart';
 import '../../../../../../../../shared/app_colors/app_colors.dart';
 import '../controller/subscrive_bottom_controller.dart';
-import 'project_register_button.dart';
 
 class ModalRegisterProject extends StatelessWidget {
   const ModalRegisterProject({
@@ -44,7 +44,7 @@ class ModalRegisterProject extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          ProjectButtonWidget(
+          ButtonWidget(
             nameButton: 'Sim, quero me inscrever',
             onPressed: () => confirmRegistration(project, email, subcontroller),
             outlineActive: false,
@@ -52,7 +52,7 @@ class ModalRegisterProject extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          ProjectButtonWidget(
+          ButtonWidget(
             nameButton: 'Não quero, mudei de idéia',
             onPressed: () => Navigator.of(context).pop(),
             outlineActive: true,

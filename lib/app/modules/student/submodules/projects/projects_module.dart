@@ -20,7 +20,8 @@ class ProjectsModule extends Module {
                 )),
         ChildRoute('/projectdetails',
             child: (context, args) => ProjectDetailsPage(
-                  project: args.data,
+                  project: args.data[0],
+                  email: args.data[1],
                 )),
         ChildRoute('/rankings',
             child: (context, args) => RankingPage(

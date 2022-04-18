@@ -136,6 +136,7 @@ class SplashController {
             endDate: DateTime(2022, 05, 20),
             mentor: "Savio Costa",
             numStudents: 20,
+            score: 25,
             rules:
                 'Tarefa 01 – Entrega 04/05/2022, com mínimo de 10 inteirações.\nTarefa 02 – Entrega 09/05/2022, com mínimo de 15 inteirações.\nTarefa 03 – Entrega 11/05/2022, utilizar os conhecimentos do material e do minicurso para o desenho do fluxo do algoritmo.\n Tarefa 04 – Entrega 16/05/2022, considerar no mínimo 30 inteirações e informar o nome do amigo. O algoritmo deverá ter a visão de futuro de ambos.\n',
             urlParter: "https://nerdin.com.br/img/empresa/1798.png",
