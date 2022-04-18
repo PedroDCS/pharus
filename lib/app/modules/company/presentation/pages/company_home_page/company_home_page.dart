@@ -77,7 +77,7 @@ class _CompanyHomePageState
                     iconButtom: 'assets/icons/projects.png',
                     textButtom: "Projetos",
                     functionNavigateTo: () {
-                      Modular.to.pushNamed('projects');
+                      Modular.to.pushNamed('projects', );
                     }),
                 CompanyHomeButtomWidget(
                   iconButtom: 'assets/icons/profile.png',

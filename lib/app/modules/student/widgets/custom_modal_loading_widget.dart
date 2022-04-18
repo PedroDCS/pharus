@@ -1,29 +1,36 @@
 import 'package:flutter/material.dart';
 
+import '../../../shared/app_colors/app_colors.dart';
+
 class ModalLoadingWidget extends StatelessWidget {
   const ModalLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      padding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
-      decoration: BoxDecoration(
-        color: const Color(0xFFE1E1E1),
-        borderRadius: BorderRadius.circular(16),
+    return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25),
       ),
-      child: Column(
+      backgroundColor: AppColors.primaryColor30,
+      content: Column(
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+        children: [
+          const SizedBox(
+            height: 30,
           ),
-          SizedBox(
-            height: 24,
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 100, vertical: 45),
+            child: CircularProgressIndicator(
+              valueColor:
+                  AlwaysStoppedAnimation<Color>(AppColors.secondaryColor500),
+            ),
+          ),
+          const SizedBox(
+            height: 30,
           ),
         ],
       ),
     );
   }
 }
+

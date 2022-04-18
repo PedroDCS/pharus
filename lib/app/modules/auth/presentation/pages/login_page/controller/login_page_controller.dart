@@ -45,8 +45,8 @@ class LoginPageController {
     por enquanto o aplicativo está navegando para a proxima tela, sem validar o email
     ou senha, e nem verifica se é aluno, empresa ou escola,
 */
-    emailController.text = "antonia.ferreira@gmail.com";
-    passwordController.text = "password";
+    // emailController.text = "antonia.ferreira@gmail.com";
+    // passwordController.text = "password";
     if (!validacao(emailController.text, passwordController.text)) {
       return null;
     }

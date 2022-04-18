@@ -42,13 +42,13 @@ class ProjectListWidget extends StatelessWidget {
 
                       return ProjectItemWidget(
                         ontap: () {
-                          controller.navigateToDetails(project);
+                          controller.navigateToDetails(project, email);
                         },
                         name: project.name,
                         mentor: project.mentor,
                         urlParter: project.urlParter,
                         description: project.description,
-                        score: 0,
+                        score: project.score ?? 0,
                         endDate: project.endDate,
                         startDate: project.startDate,
                         register: () => controller.registerProject(

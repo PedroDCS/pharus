@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../../../shared/app_colors/app_colors.dart';
+
 class ModalUploadFiles extends StatelessWidget {
   const ModalUploadFiles(
       {required this.uploadFiles,
@@ -20,7 +22,7 @@ class ModalUploadFiles extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(25, 5, 25, 5),
       decoration: BoxDecoration(
-        color: const Color(0xFFE1E1E1),
+        color: AppColors.primaryColor30,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -29,7 +31,7 @@ class ModalUploadFiles extends StatelessWidget {
             alignment: Alignment.topRight,
             child: IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.close),
+              icon: const Icon(Icons.close, size: 35,),
             ),
           ),
           const Text(
@@ -61,7 +63,7 @@ class ModalUploadFiles extends StatelessWidget {
               height: 120,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
-                color: const Color(0xFFC3C3C3),
+                color: AppColors.primaryColor50,
               ),
               alignment: Alignment.center,
               child: Padding(
@@ -96,6 +98,10 @@ class ModalUploadFiles extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(
+                      width: 1,
+                      color: AppColors.secondaryColor500
+                    )
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -109,7 +115,7 @@ class ModalUploadFiles extends StatelessWidget {
                             width: 12,
                           ),
                           SizedBox(
-                              width: 220,
+                              width: 180,
                               child: ValueListenableBuilder(
                                 valueListenable: imageName,
                                 builder: (_, String name, __) {
@@ -142,7 +148,7 @@ class ModalUploadFiles extends StatelessWidget {
             child: ElevatedButton(
               onPressed: uploadFiles,
               style: ElevatedButton.styleFrom(
-                primary: const Color(0xFFC3C3C3),
+                primary: AppColors.secondaryColor500,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 27.5, vertical: 11),
                 shape: RoundedRectangleBorder(
@@ -154,7 +160,7 @@ class ModalUploadFiles extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
             ),

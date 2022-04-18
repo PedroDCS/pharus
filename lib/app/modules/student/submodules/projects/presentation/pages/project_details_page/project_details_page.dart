@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../../../domain/entities/project_entity.dart';
@@ -9,6 +10,7 @@ import '../../../../../../../shared/app_colors/app_colors.dart';
 import '../../../../../presentation/widgets/student_app_bar.dart';
 import '../../../../../widgets/custom_modal_loading_widget.dart';
 import '../../../../../widgets/custom_modal_success_widget.dart';
+import '../projects_page/controller/projects_controller.dart';
 import 'state_page/modal_state_enum.dart';
 import 'widgets/project_details_head_widget.dart';
 import 'widgets/project_game_rules_widget.dart';
@@ -19,76 +21,25 @@ class ProjectDetailsPage extends StatefulWidget {
   const ProjectDetailsPage({
     Key? key,
     required this.project,
+    required this.email,
   }) : super(key: key);
   final ProjectEntity project;
+  final String email;
 
   @override
   State<ProjectDetailsPage> createState() => _ProjectDetailsPageState();
 }
 
-class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
-  final FirebaseStorage storage = FirebaseStorage.instance;
+class _ProjectDetailsPageState
+    extends ModularState<ProjectDetailsPage, ProjectsController> {
   var modalStatusEnum = ValueNotifier<ModalStatusEnum>(ModalStatusEnum.initial);
 
-  XFile? image;
-  var isData = ValueNotifier<bool>(false);
-  var nameImage = ValueNotifier<String>('');
-  String path = '';
-
-  Future<void> _getFile() async {
-    final ImagePicker _pick = ImagePicker();
-    image = await _pick.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      nameImage.value = image!.name;
-      path = image!.path;
-      isData.value = true;
-    } else {
-      isData.value = false;
-    }
-  }
-
-  void _showToast(BuildContext context) {
-    final scaffold = ScaffoldMessenger.of(context);
-    scaffold.showSnackBar(
-      SnackBar(
-        content: const Text(
-          'Atenção Adicione uma Imagem!',
-          style: TextStyle(color: Colors.black),
-        ),
-        backgroundColor: Colors.transparent,
-        action: SnackBarAction(
-            label: 'OK', onPressed: scaffold.hideCurrentSnackBar),
-      ),
-    );
-  }
-
-  Future<void> upload(String path) async {
-    if (path.isEmpty) {
-      _showToast(context);
-      return;
-    }
-    modalStatusEnum.value = ModalStatusEnum.loading;
-    if (isData.value) {
-      File file = File(path);
-      try {
-        String ref = 'images/img-${DateTime.now()}.jpg';
-        var data = await storage.ref(ref).putFile(file);
-        data != null
-            ? modalStatusEnum.value = ModalStatusEnum.success
-            : modalStatusEnum.value = ModalStatusEnum.failure;
-      } on FirebaseException catch (e) {
-        modalStatusEnum.value = ModalStatusEnum.failure;
-        throw Exception('Error no upload: ${e.code}');
-      }
-    }
-  }
-
   void clearData() {
-    isData.value = false;
+    controller.isData.value = false;
   }
 
   void onClose() async {
-    isData.value = false;
+    controller.isData.value = false;
     Navigator.pop(context);
   }
 
@@ -108,11 +59,29 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: PreferredSize(
-          child: StudentAppBarWidget(
-            title: widget.project.name,
-            barColor: Colors.transparent,
-            imageAsset: 'assets/images/perfil_default.png',
-            textColor: Colors.white,
+          child: FutureBuilder<String>(
+            future: controller.getAtavar(widget.email),
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  return const Center(
+                    child: CircularProgressIndicator(color: Colors.green),
+                  );
+                case ConnectionState.none:
+                  return const LinearProgressIndicator(
+                    value: 1,
+                    color: Colors.red,
+                  );
+                default:
+                  return StudentAppBarWidget(
+                    title: 'Seus Projetos',
+                    barColor: Colors.transparent,
+                    textColor: Colors.white,
+                    imageAsset: snapshot.data!,
+                    buttomGoBack: false,
+                  );
+              }
+            },
           ),
           preferredSize: const Size.fromHeight(60),
         ),
@@ -192,26 +161,13 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                             context: context,
                             isScrollControlled: true,
                             builder: (BuildContext context) {
-                              return ValueListenableBuilder(
-                                valueListenable: modalStatusEnum,
-                                builder: (_, ModalStatusEnum state, __) {
-                                  if (state == ModalStatusEnum.loading) {
-                                    return const ModalLoadingWidget();
-                                  }
-                                  if (state == ModalStatusEnum.success) {
-                                    return ModalSuccessWidget(
-                                      modalState: modalStatusEnum,
-                                      onClose: onClose,
-                                    );
-                                  }
-                                  return ModalUploadFiles(
-                                    clearData: clearData,
-                                    getFile: _getFile,
-                                    imageName: nameImage,
-                                    isFile: isData,
-                                    uploadFiles: () => upload(path),
-                                  );
-                                },
+                              return ModalUploadFiles(
+                                clearData: clearData,
+                                getFile: controller.getFile,
+                                imageName: controller.nameImage,
+                                isFile: controller.isData,
+                                uploadFiles: () =>
+                                    controller.upload(controller.path, context),
                               );
                             },
                           );
