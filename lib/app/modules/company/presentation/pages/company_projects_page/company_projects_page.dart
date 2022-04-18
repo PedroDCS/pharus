@@ -6,7 +6,11 @@ import 'controller/company_projects_controller.dart';
 import 'widgets/company_project_list_widget.dart';
 
 class CompanyProjectsPage extends StatefulWidget {
-  const CompanyProjectsPage({Key? key}) : super(key: key);
+  const CompanyProjectsPage({
+    Key? key,
+    required this.email,
+  }) : super(key: key);
+  final String email;
 
   @override
   State<CompanyProjectsPage> createState() => _CompanyProjectsPageState();
@@ -33,7 +37,7 @@ class _CompanyProjectsPageState
         child: Column(
           children: [
             CompanyProjectListWidget(
-              future: controller.getProjectListRepository("link"),
+              future: controller.getProjectListRepository("link", widget.email),
               navigateTo: controller.navigateToDetails,
             )
           ],

@@ -3,15 +3,16 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../domain/entities/project_entity.dart';
-import 'state_page/modal_state_enum.dart';
-import 'widgets/project_modal_upload_files.dart';
-import '../../../../../widgets/custom_modal_loading_widget.dart';
-import '../../../../../widgets/custom_modal_success_widget.dart';
+
+import '../../../../../../../domain/entities/project_entity.dart';
 import '../../../../../../../shared/app_colors/app_colors.dart';
 import '../../../../../presentation/widgets/student_app_bar.dart';
+import '../../../../../widgets/custom_modal_loading_widget.dart';
+import '../../../../../widgets/custom_modal_success_widget.dart';
+import 'state_page/modal_state_enum.dart';
 import 'widgets/project_details_head_widget.dart';
 import 'widgets/project_game_rules_widget.dart';
+import 'widgets/project_modal_upload_files.dart';
 import 'widgets/project_task_list_widget.dart';
 
 class ProjectDetailsPage extends StatefulWidget {
@@ -195,7 +196,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                                 valueListenable: modalStatusEnum,
                                 builder: (_, ModalStatusEnum state, __) {
                                   if (state == ModalStatusEnum.loading) {
-                                    return ModalLoadingWidget();
+                                    return const ModalLoadingWidget();
                                   }
                                   if (state == ModalStatusEnum.success) {
                                     return ModalSuccessWidget(

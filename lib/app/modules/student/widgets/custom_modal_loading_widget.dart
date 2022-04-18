@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pharus/app/modules/student/submodules/projects/presentation/pages/project_details_page/state_page/modal_state_enum.dart';
 
 class ModalLoadingWidget extends StatelessWidget {
-  const ModalLoadingWidget(
-      {Key? key})
-      : super(key: key);
+  const ModalLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +17,7 @@ class ModalLoadingWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
           CircularProgressIndicator(
-            valueColor:  AlwaysStoppedAnimation<Color>(Colors.black),
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
           ),
           SizedBox(
             height: 24,

@@ -25,11 +25,22 @@ dependencies:
   animated: ^2.0.0
   flutter_svg: ^1.0.3
   carousel_slider: ^4.0.0
+  hive:
+  hive_flutter:
+  url_launcher: 6.0.18
   
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+  hive_generator: ^1.1.2
+  build_runner: ^2.1.8
+  flutter_launcher_icons: "^0.9.2"
+
+flutter_icons:
+  image_path: "assets/images/Logo_Pharus.png"
+  android: true
+  ios: true
 
 flutter:
   uses-material-design: true
@@ -38,6 +49,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/avatar/
   fonts:
     - family: Montserrat
       fonts:

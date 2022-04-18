@@ -29,9 +29,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginPageController> {
               Padding(
                 padding: const EdgeInsets.only(top: 36.0),
                 child: GetInButtonWidget(
-                  login: () {
-                    controller.login();
-                  },
+                  onPressed: controller.login,
                 ),
               ),
             ],

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pharus/app/modules/student/presentation/widgets/student_app_bar.dart';
-import 'package:pharus/app/modules/student/submodules/avatar/presentation/pages/avatar_page/controller/avatar_controller.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../../../shared/app_colors/app_colors.dart';
+import '../../../../../presentation/widgets/student_app_bar.dart';
+import 'controller/avatar_controller.dart';
 
 class AvatarPage extends StatefulWidget {
-  const AvatarPage({Key? key}) : super(key: key);
+  const AvatarPage({
+    Key? key,
+    required this.email,
+  }) : super(key: key);
+  final String email;
 
   @override
   State<AvatarPage> createState() => _AvatarPageState();
@@ -15,38 +18,12 @@ class AvatarPage extends StatefulWidget {
 
 class _AvatarPageState extends ModularState<AvatarPage, AvatarController>
     with TickerProviderStateMixin {
-  final List<dynamic> avatar = [
-    {
-      'avatar': {
-        'profile': 'assets/images/profile_avatar_1.png',
-        'avatar_img': 'assets/images/avatar_1.svg'
-      }
-    },
-    {
-      'avatar': {
-        'profile': 'assets/images/profile_avatar_2.png',
-        'avatar_img': 'assets/images/avatar_2.svg'
-      }
-    },
-    {
-      'avatar': {
-        'profile': 'assets/images/profile_avatar_3.png',
-        'avatar_img': 'assets/images/avatar_3.svg'
-      }
-    },
-    {
-      'avatar': {
-        'profile': 'assets/images/profile_avatar_4.png',
-        'avatar_img': 'assets/images/avatar_4.svg'
-      }
-    },
-    {
-      'avatar': {
-        'profile': 'assets/images/profile_avatar_5.png',
-        'avatar_img': 'assets/images/avatar_5.svg'
-      }
-    },
-  ];
+  @override
+  void initState() {
+    controller.getAtavar(widget.email);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -62,15 +39,19 @@ class _AvatarPageState extends ModularState<AvatarPage, AvatarController>
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: const PreferredSize(
-          child: StudentAppBarWidget(
-            title: 'Avatar',
-            imageAsset: 'assets/images/perfil_default.png',
-            barColor: Colors.transparent,
-            buttomGoBack: false,
-            textColor: Colors.white,
-          ),
-          preferredSize: Size.fromHeight(60),
+        appBar: PreferredSize(
+          child: ValueListenableBuilder(
+              valueListenable: controller.avatarimage,
+              builder: (BuildContext context, String imageasset, _) {
+                return StudentAppBarWidget(
+                  title: 'Avatar',
+                  imageAsset: imageasset,
+                  barColor: Colors.transparent,
+                  buttomGoBack: false,
+                  textColor: Colors.white,
+                );
+              }),
+          preferredSize: const Size.fromHeight(60),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -90,10 +71,10 @@ class _AvatarPageState extends ModularState<AvatarPage, AvatarController>
                     GestureDetector(
                       onTap: controller.animatedSize,
                       child: Container(
-                        margin: const EdgeInsets.only(right: 99),
+                        margin: const EdgeInsets.only(right: 50),
                         alignment: Alignment.bottomRight,
                         child: CircleAvatar(
-                          radius: 20,
+                          radius: 24,
                           backgroundColor:
                               const Color.fromRGBO(182, 182, 182, 1),
                           child: ValueListenableBuilder(
@@ -118,24 +99,24 @@ class _AvatarPageState extends ModularState<AvatarPage, AvatarController>
                     color: AppColors.neutralColor10,
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 150,
                   child: ListView.builder(
-                      itemCount: avatar.length,
+                      itemCount: controller.avatar.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Center(
                             child: GestureDetector(
-                              onTap: () =>
-                                  controller.onChangeAvatar(avatar[index]),
+                              onTap: () => controller.onChangeAvatar(
+                                  controller.avatar[index], widget.email),
                               child: CircleAvatar(
                                 radius: 50,
                                 backgroundColor:
                                     const Color.fromRGBO(182, 182, 182, 1),
                                 child: Image.asset(
-                                  avatar[index]['avatar']['profile'],
+                                  controller.avatar[index]['avatar']['profile'],
                                   fit: BoxFit.scaleDown,
                                 ),
                               ),
@@ -156,12 +137,8 @@ class _AvatarPageState extends ModularState<AvatarPage, AvatarController>
     return ValueListenableBuilder(
         valueListenable: controller.assetImgAvatar,
         builder: (_, String imgAvatar, __) {
-          return SvgPicture.asset(
-            imgAvatar,
-            fit: BoxFit.fitHeight,
-            height: 200,
-            width: 200,
-          );
+          return Image.asset(imgAvatar,
+              fit: BoxFit.fitHeight, height: 200, width: 200);
         });
   }
 

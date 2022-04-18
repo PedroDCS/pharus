@@ -8,13 +8,11 @@ class SchoolProjectItemBodyWidget extends StatelessWidget {
     Key? key,
     required this.urlParter,
     required this.description,
-    required this.score,
     required this.endDate,
     required this.startDate,
   }) : super(key: key);
   final String urlParter;
   final String description;
-  final int score;
   final DateTime endDate;
   final DateTime startDate;
 
@@ -61,8 +59,8 @@ class SchoolProjectItemBodyWidget extends StatelessWidget {
                       radius: 72.0,
                       lineWidth: 10.0,
                       backgroundWidth: 10,
-                      percent: score.toDouble() / 100,
-                      center: Text("$score%"),
+                      percent: 100 / 100,
+                      center: const Text("100%"),
                       backgroundColor: Colors.white,
                     ),
                   ),

@@ -1,6 +1,9 @@
 import 'dart:async';
 
-import '../../domain/entities/project_entity.dart';
+import 'package:hive/hive.dart';
+
+import '../../../../data/models/project_model.dart';
+import '../../../../domain/entities/project_entity.dart';
 import '../../domain/repositories/project_repository_interface.dart';
 
 class ProjectRepository extends IProjectRepository {
@@ -12,8 +15,20 @@ class ProjectRepository extends IProjectRepository {
     //return ProjectModel.fromJson(_response.data);
     //throw UnimplementedError();
     await Future.delayed(const Duration(seconds: 1));
+    var hiveProjectssBox = await Hive.openBox("projects");
+    var hiveprojects = hiveProjectssBox.toMap();
+    List<ProjectModel> auxList = [];
+    hiveprojects.forEach((key, value) {
+      auxList.add(ProjectModel.fromJson(Map<String, dynamic>.from(value)));
+    });
+    hiveProjectssBox.close();
 
-    return [
+    return auxList;
+  }
+}
+
+/*
+   return [
       ProjectEntity(
           name: "Projeto 1",
           score: 45,
@@ -60,5 +75,4 @@ class ProjectRepository extends IProjectRepository {
           urlParter:
               "https://logodownload.org/wp-content/uploads/2015/03/havaianas-logo-1-1.png")
     ];
-  }
-}
+    */
