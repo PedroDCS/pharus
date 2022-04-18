@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../../../domain/entities/project_entity.dart';
 import '../../../../../shared/app_colors/app_colors.dart';
 import '../../widgets/school_app_bar.dart';
-import '../../../domain/entities/project_entity.dart';
 import 'widgets/school_project_details_head_widget.dart';
 import 'widgets/school_project_game_rules_widget.dart';
 import 'widgets/school_project_task_list_widget.dart';
@@ -127,7 +127,9 @@ class _ProjectDetailsPageState extends State<SchoolProjectDetailsPage> {
                         ],
                       ),
                     ),
-                    const SchoolProjectTaskListWidget(),
+                    SchoolProjectTaskListWidget(
+                      taskList: widget.project.taskList,
+                    ),
                   ]),
             ),
           ],

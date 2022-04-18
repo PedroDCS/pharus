@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pharus/app/modules/student/submodules/projects/presentation/pages/project_details_page/state_page/modal_state_enum.dart';
+import '../submodules/projects/presentation/pages/project_details_page/state_page/modal_state_enum.dart';
 
 class ModalSuccessWidget extends StatelessWidget {
   const ModalSuccessWidget(
-      {
-      required this.onClose,
-      required this.modalState,
-      Key? key})
+      {required this.onClose, required this.modalState, Key? key})
       : super(key: key);
   final ValueNotifier<ModalStatusEnum> modalState;
   final Function() onClose;

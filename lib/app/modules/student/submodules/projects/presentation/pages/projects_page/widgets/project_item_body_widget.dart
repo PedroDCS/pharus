@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+
 import '../../../../../../../../shared/app_colors/app_colors.dart';
+import '../controller/subscrive_bottom_controller.dart';
 import 'project_partnership_widget.dart';
 
 class ProjectItemBodyWidget extends StatelessWidget {
@@ -11,15 +13,22 @@ class ProjectItemBodyWidget extends StatelessWidget {
     required this.score,
     required this.endDate,
     required this.startDate,
+    required this.onPressed,
+    required this.isSubscribed,
+    required this.subcontroller,
   }) : super(key: key);
   final String urlParter;
   final String description;
   final int score;
   final DateTime endDate;
   final DateTime startDate;
+  final Function() onPressed;
+  final bool isSubscribed;
+  final SubscriveController subcontroller;
 
   @override
   Widget build(BuildContext context) {
+    subcontroller.chageSubscrive(isSubscribed);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -69,7 +78,7 @@ class ProjectItemBodyWidget extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(2),
                     margin: const EdgeInsets.symmetric(
-                      horizontal: 16,
+                      horizontal: 6,
                       vertical: 16,
                     ),
                     decoration: BoxDecoration(
@@ -101,29 +110,37 @@ class ProjectItemBodyWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             ProjectPartnershipWidget(urlParter: urlParter),
-            OutlinedButton(
-              onPressed: () {},
-              style: OutlinedButton.styleFrom(
-                primary: AppColors.secondaryColor500,
-                side: BorderSide(
-                  color: AppColors.secondaryColor500,
-                  width: 2,
-                  style: BorderStyle.solid,
-                ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 28.5, vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-              ),
-              child: const Text(
-                "Inscrever-se",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
-                ),
-              ),
-            )
+            ValueListenableBuilder(
+                valueListenable: subcontroller.isSubcribed,
+                builder: (BuildContext context, bool isSub, _) {
+                  return OutlinedButton(
+                    onPressed: isSub ? () {} : onPressed,
+                    style: OutlinedButton.styleFrom(
+                      primary: isSub
+                          ? AppColors.neutralColor60
+                          : AppColors.secondaryColor500,
+                      side: BorderSide(
+                        color: isSub
+                            ? AppColors.neutralColor60
+                            : AppColors.secondaryColor500,
+                        width: 2,
+                        style: BorderStyle.solid,
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 28.5, vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16.0),
+                      ),
+                    ),
+                    child: Text(
+                      isSub ? "Inscrito" : "Inscrever-se",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                      ),
+                    ),
+                  );
+                }),
           ],
         )
       ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../domain/entities/project_entity.dart';
+import '../../../../../../domain/entities/project_entity.dart';
 import 'school_project_item_widget.dart';
 
 class SchoolProjectListWidget extends StatelessWidget {
@@ -44,7 +44,6 @@ class SchoolProjectListWidget extends StatelessWidget {
                           mentor: project.mentor,
                           urlParter: project.urlParter,
                           description: project.description,
-                          score: project.score,
                           endDate: project.endDate,
                           startDate: project.startDate);
                     }),

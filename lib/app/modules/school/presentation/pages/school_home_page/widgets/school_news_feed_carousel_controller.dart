@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
-import '../../../../../school/domain/entities/news_entity.dart';
+
+import '../../../../../../domain/entities/news_entity.dart';
 
 class SchoolNewsFeedCarouselController {
   int current = 0;

@@ -29,7 +29,7 @@ class ModalUploadFiles extends StatelessWidget {
             alignment: Alignment.topRight,
             child: IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: Icon(Icons.close),
+              icon: const Icon(Icons.close),
             ),
           ),
           const Text(

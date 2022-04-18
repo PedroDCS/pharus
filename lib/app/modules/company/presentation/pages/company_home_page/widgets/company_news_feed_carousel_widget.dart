@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import '../../../../domain/entities/news_entity.dart';
+import '../../../../../../domain/entities/news_entity.dart';
 import 'company_news_feed_carousel_controller.dart';
 
 class CompanyNewsFeedCarouselWidget extends StatefulWidget {

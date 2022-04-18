@@ -14,11 +14,17 @@ class ProjectsModule extends Module {
       ];
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/', child: (context, args) => const ProjectsPage()),
+        ChildRoute('/',
+            child: (context, args) => ProjectsPage(
+                  email: args.data,
+                )),
         ChildRoute('/projectdetails',
             child: (context, args) => ProjectDetailsPage(
                   project: args.data,
                 )),
-        ChildRoute('/rankings', child: (context, args) => const RankingPage()),
+        ChildRoute('/rankings',
+            child: (context, args) => RankingPage(
+                  email: args.data,
+                )),
       ];
 }

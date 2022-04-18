@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import '../../../../../../domain/entities/news_entity.dart';
 import '../../../../../../shared/app_colors/app_colors.dart';
-import '../../../../domain/entities/news_entity.dart';
 import 'school_news_feed_carousel_controller.dart';
 
 class SchoolNewsFeedCarouselWidget extends StatefulWidget {

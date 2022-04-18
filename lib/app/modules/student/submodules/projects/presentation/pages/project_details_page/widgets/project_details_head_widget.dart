@@ -30,7 +30,7 @@ class ProjectDetailsHeadWidget extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {},
-              padding: EdgeInsets.all(0),
+              padding: const EdgeInsets.all(0),
               icon: const ImageIcon(
                 AssetImage('assets/icons/icon-envelope.png'),
                 color: Colors.black,

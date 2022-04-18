@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../../../domain/entities/project_entity.dart';
+import 'package:hive/hive.dart';
+import '../../../../../../../../domain/entities/project_entity.dart';
 import '../../../../infra/repositories/project_repository.dart';
 
 class RankingsController {
@@ -7,6 +8,14 @@ class RankingsController {
 
   navigateToDetails(ProjectEntity proj) {
     Modular.to.pushNamed('projectdetails', arguments: proj);
+  }
+
+  Future<String> getAtavar(email) async {
+    var profilesBox = await Hive.openBox("users");
+    var profile = await profilesBox.get(email);
+    String avatarimage = profile['avatarCircle'];
+    await profilesBox.close();
+    return avatarimage;
   }
 
   Future<List<ProjectEntity>> getProjectListRepository(String link) async {
