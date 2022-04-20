@@ -67,7 +67,7 @@ class _CustomBottomnavBarWidgetState extends ModularState<
           ),
         ),
         BottomNavigationBarItem(
-          icon: ImageIcon(AssetImage('assets/icons/icon5.png'), size: 30),
+          icon: ImageIcon(AssetImage('assets/icons/icon55.png'), size: 30),
           label: '',
           activeIcon: ImageIcon(
             AssetImage('assets/icons/icon5-selected.png'),

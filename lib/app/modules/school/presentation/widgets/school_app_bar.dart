@@ -8,12 +8,15 @@ class SchoolAppBarWidget extends StatelessWidget {
     required this.barColor,
     required this.textColor,
     this.buttomGoBack = true,
+    this.ontap,
   }) : super(key: key);
   final String title;
   final String imageAsset;
   final Color barColor;
   final Color textColor;
   final bool buttomGoBack;
+  final Function()? ontap;
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -42,20 +45,23 @@ class SchoolAppBarWidget extends StatelessWidget {
         backgroundColor: barColor,
         elevation: 0,
         actions: [
-          Container(
-            height: 50,
-            width: 50,
-            margin: const EdgeInsets.only(right: 19),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              image: DecorationImage(image: AssetImage(imageAsset)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 20,
-                  spreadRadius: 1,
-                ),
-              ],
+          GestureDetector(
+            onTap: ontap ?? () {},
+            child: Container(
+              height: 50,
+              width: 50,
+              margin: const EdgeInsets.only(right: 19),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                image: DecorationImage(image: AssetImage(imageAsset)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 20,
+                    spreadRadius: 1,
+                  ),
+                ],
+              ),
             ),
           ),
         ]);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pharus/app/modules/student/widgets/custom_button_widget.dart';
+import '../../../../../../widgets/custom_button_widget.dart';
 
-import '../../../../../../../../domain/entities/project_entity.dart';
 import '../../../../../../../../shared/app_colors/app_colors.dart';
+import '../../../../domain/entities/project_entity.dart';
 import '../controller/subscrive_bottom_controller.dart';
 
 class ModalRegisterProject extends StatelessWidget {

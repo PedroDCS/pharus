@@ -16,7 +16,7 @@ class LoginInputGroupWidget extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 80),
+          padding: const EdgeInsets.only(top: 60),
           child: LoginInputAreaWidget(
             areaName: 'E-mail',
             control: controller.emailController,

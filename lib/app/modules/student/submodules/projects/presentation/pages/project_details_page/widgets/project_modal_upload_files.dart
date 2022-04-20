@@ -31,7 +31,10 @@ class ModalUploadFiles extends StatelessWidget {
             alignment: Alignment.topRight,
             child: IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.close, size: 35,),
+              icon: const Icon(
+                Icons.close,
+                size: 35,
+              ),
             ),
           ),
           const Text(
@@ -44,7 +47,7 @@ class ModalUploadFiles extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.only(top: 12, bottom: 18),
             child: Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum elit tellus, at condimentum mauris sagittis ut. Nam auctor nunc non ipsum blandit tempus.',
+              'Aqui você pode enviar o arquivo referente a tarefa completada.Para enviar mais de um arquivo em um única vez, selecione todos os documentos a serem encaminhados e seguida, clique em “ENVIAR ARQUIVOS”.',
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
@@ -96,13 +99,10 @@ class ModalUploadFiles extends StatelessWidget {
                   height: 40,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0),
-                    border: Border.all(
-                      width: 1,
-                      color: AppColors.secondaryColor500
-                    )
-                  ),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                          width: 1, color: AppColors.secondaryColor500)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

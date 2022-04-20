@@ -24,7 +24,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginPageController> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const LoginHeadWidget(),
+              LoginHeadWidget(valueListenable: controller.errorText),
               LoginInputGroupWidget(controller: controller),
               Padding(
                 padding: const EdgeInsets.only(top: 36.0),

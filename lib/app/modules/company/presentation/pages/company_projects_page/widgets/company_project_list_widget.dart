@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../../domain/entities/project_entity.dart';
+import '../../../../domain/entities/project_entity.dart';
 import 'company_project_item_widget.dart';
 
 class CompanyProjectListWidget extends StatelessWidget {

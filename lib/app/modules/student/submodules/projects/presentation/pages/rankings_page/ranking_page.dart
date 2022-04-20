@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../../../../../domain/entities/project_entity.dart';
 import '../../../../../../../shared/app_colors/app_colors.dart';
 import '../../../../../presentation/widgets/student_app_bar.dart';
+import '../../../domain/entities/project_entity.dart';
 import 'controller/rankings_controller.dart';
 import 'widgets/ranking_project_item_widget.dart';
 
@@ -49,7 +49,7 @@ class _RankingPageState extends ModularState<RankingPage, RankingsController> {
                   );
                 default:
                   return StudentAppBarWidget(
-                    title: 'Seus Projetos',
+                    title: 'Seus Rankings',
                     barColor: Colors.transparent,
                     textColor: Colors.white,
                     imageAsset: snapshot.data!,
@@ -66,7 +66,7 @@ class _RankingPageState extends ModularState<RankingPage, RankingsController> {
           child: Column(
             children: [
               FutureBuilder<List<ProjectEntity>>(
-                  future: controller.getProjectListRepository("link"),
+                  future: controller.getProjectListRepository("rankings"),
                   builder: (context, snapshot) {
                     switch (snapshot.connectionState) {
                       case ConnectionState.waiting:
@@ -89,8 +89,8 @@ class _RankingPageState extends ModularState<RankingPage, RankingsController> {
                                 var item = snapshot.data![index];
                                 return RankingProjectItemWidget(
                                     project: item,
-                                    medal: controller.getMedal("item.medal"),
-                                    place: controller.getPlace(1),
+                                    medal: controller.getMedal(item.medal!),
+                                    place: controller.getPlace(item.ranking!),
                                     ontap: () {
                                       controller.navigateToDetails(item);
                                     });
