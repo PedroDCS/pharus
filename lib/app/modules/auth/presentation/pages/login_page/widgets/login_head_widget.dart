@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../shared/app_colors/app_colors.dart';
@@ -5,8 +6,9 @@ import '../../../../../../shared/app_colors/app_colors.dart';
 class LoginHeadWidget extends StatelessWidget {
   const LoginHeadWidget({
     Key? key,
+    required this.valueListenable,
   }) : super(key: key);
-
+  final ValueListenable<String> valueListenable;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,6 +28,21 @@ class LoginHeadWidget extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: ValueListenableBuilder(
+              valueListenable: valueListenable,
+              builder: (context, String text, _) {
+                return Text(
+                  text,
+                  style: TextStyle(
+                    color: AppColors.errorColor,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                  ),
+                );
+              }),
         ),
       ],
     );

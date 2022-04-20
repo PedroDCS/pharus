@@ -16,14 +16,18 @@ class ButtonWidget extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        minimumSize: const Size.fromHeight(10),
+        minimumSize: const Size(110, 10),
         primary: outlineActive
             ? AppColors.primaryColor30
             : AppColors.secondaryColor500,
-        padding: const EdgeInsets.symmetric(horizontal: 28.5, vertical: 16),
+        side: BorderSide(
+          color: AppColors.secondaryColor500,
+          width: 2,
+          style: BorderStyle.solid,
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),
-          side: BorderSide(color: AppColors.secondaryColor500),
         ),
       ),
       child: Text(

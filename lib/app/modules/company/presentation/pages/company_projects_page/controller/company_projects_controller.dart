@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../../../../../domain/entities/project_entity.dart';
 import '../../../../data/repositories/project_repository.dart';
+import '../../../../domain/entities/project_entity.dart';
 
 class CompanyProjectsController {
   final _repository = ProjectRepository();
@@ -11,16 +11,8 @@ class CompanyProjectsController {
 
   Future<List<ProjectEntity>> getProjectListRepository(
       String link, String email) async {
-    List<ProjectEntity> lista = await _repository
-        .getProjectList(link: link)
+    return await _repository
+        .getProjectList(link: link, email: email)
         .onError((error, stackTrace) => throw Error());
-    List<ProjectEntity> listaux = [];
-
-    for (var element in lista) {
-      if (element.companyID.toString().compareTo(email) == 0) {
-        listaux.add(element);
-      }
-    }
-    return listaux;
   }
 }

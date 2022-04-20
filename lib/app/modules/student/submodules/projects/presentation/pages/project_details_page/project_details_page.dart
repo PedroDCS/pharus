@@ -1,19 +1,14 @@
-import 'dart:io';
-
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../../../../domain/entities/project_entity.dart';
 import '../../../../../../../shared/app_colors/app_colors.dart';
 import '../../../../../presentation/widgets/student_app_bar.dart';
-import '../../../../../widgets/custom_modal_loading_widget.dart';
-import '../../../../../widgets/custom_modal_success_widget.dart';
-import '../projects_page/controller/projects_controller.dart';
+import '../../../domain/entities/project_entity.dart';
+import '../../controllers/projects_controller.dart';
 import 'state_page/modal_state_enum.dart';
 import 'widgets/project_details_head_widget.dart';
-import 'widgets/project_game_rules_widget.dart';
 import 'widgets/project_modal_upload_files.dart';
 import 'widgets/project_task_list_widget.dart';
 
@@ -78,7 +73,7 @@ class _ProjectDetailsPageState
                     barColor: Colors.transparent,
                     textColor: Colors.white,
                     imageAsset: snapshot.data!,
-                    buttomGoBack: false,
+                    buttomGoBack: true,
                   );
               }
             },
@@ -105,27 +100,23 @@ class _ProjectDetailsPageState
                       ProjectDetailsHeadWidget(
                         mentor: widget.project.mentor,
                         description: widget.project.description,
+                        onpress: () => controller.genericModal(
+                          context,
+                          "Avaliação do mentor",
+                          "assets/icons/icon-feedback.png",
+                          widget.project.mentorComment!,
+                        ),
                       ),
                       TextButton(
                         style: TextButton.styleFrom(
                           padding: const EdgeInsets.only(top: 32, bottom: 32),
                         ),
-                        onPressed: () {
-                          showModalBottomSheet<void>(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            constraints: BoxConstraints.tightFor(
-                              height: MediaQuery.of(context).size.height * 0.80,
-                              width: MediaQuery.of(context).size.width * 0.90,
-                            ),
-                            isScrollControlled: true,
-                            context: context,
-                            builder: (BuildContext context) {
-                              return const ProjectGameRulesWidget();
-                            },
-                          );
-                        },
+                        onPressed: () => controller.genericModal(
+                          context,
+                          "atividades",
+                          "assets/icons/icon-rules.png",
+                          widget.project.rules,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -144,7 +135,7 @@ class _ProjectDetailsPageState
                           ],
                         ),
                       ),
-                      const ProjectTaskListWidget(),
+                      ProjectTaskListWidget(taskList: widget.project.taskList),
                       ElevatedButton(
                         onPressed: () {
                           showModalBottomSheet<void>(

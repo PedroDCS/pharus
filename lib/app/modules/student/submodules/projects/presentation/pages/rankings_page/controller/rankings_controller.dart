@@ -1,7 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hive/hive.dart';
-import '../../../../../../../../domain/entities/project_entity.dart';
-import '../../../../infra/repositories/project_repository.dart';
+
+import '../../../../data/repositories/project_repository.dart';
+import '../../../../domain/entities/project_entity.dart';
 
 class RankingsController {
   final _repository = ProjectRepository();
@@ -42,7 +43,7 @@ class RankingsController {
         return 'assets/icons/5place.png';
 
       default:
-        return 'assets/icons/book.png';
+        return 'assets/icons/5place.png';
     }
   }
 
@@ -64,7 +65,7 @@ class RankingsController {
         return 'assets/icons/5medal.png';
 
       default:
-        return 'assets/icons/book.png';
+        return 'assets/icons/5medal.png';
     }
   }
 }

@@ -1,21 +1,19 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../domain/entities/news_entity.dart';
+import '../../../../domain/entities/news_entity.dart';
 import 'student_news_feed_carousel_controller.dart';
 
 class StudentNewsFeedCarouselWidget extends StatefulWidget {
   const StudentNewsFeedCarouselWidget({
     Key? key,
     required this.newslist,
-    required this.goToLauch,
   }) : super(key: key);
 
   @override
   State<StudentNewsFeedCarouselWidget> createState() =>
       _StudentNewsFeedCarouselWidgetState();
   final Future<NewsEntity> newslist;
-  final Function() goToLauch;
 }
 
 class _StudentNewsFeedCarouselWidgetState
@@ -52,22 +50,19 @@ class _StudentNewsFeedCarouselWidgetState
                   );
                 default:
                   return Column(children: [
-                    GestureDetector(
-                      onTap: widget.goToLauch,
-                      child: CarouselSlider(
-                        items: _controller.getNewsList(snapshot.data!),
-                        carouselController: _controller.controller,
-                        options: CarouselOptions(
-                            autoPlay: true,
-                            enlargeCenterPage: true,
-                            height: 150,
-                            viewportFraction: 1,
-                            onPageChanged: (index, reason) {
-                              setState(() {
-                                _controller.current = index;
-                              });
-                            }),
-                      ),
+                    CarouselSlider(
+                      items: _controller.getNewsList(snapshot.data!),
+                      carouselController: _controller.controller,
+                      options: CarouselOptions(
+                          autoPlay: true,
+                          enlargeCenterPage: true,
+                          height: 150,
+                          viewportFraction: 1,
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              _controller.current = index;
+                            });
+                          }),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -85,11 +80,11 @@ class _StudentNewsFeedCarouselWidgetState
                             margin: const EdgeInsets.symmetric(
                                 vertical: 8.0, horizontal: 4.0),
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.black.withOpacity(
-                                    _controller.current == entry.key
-                                        ? 0.9
-                                        : 0.4)),
+                              shape: BoxShape.circle,
+                              color: Colors.black.withOpacity(
+                                _controller.current == entry.key ? 0.9 : 0.4,
+                              ),
+                            ),
                           ),
                         );
                       }).toList(),

@@ -4,15 +4,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../../../../data/models/company_model.dart';
-import '../../../../../data/models/news_model.dart';
-import '../../../../../data/models/notify_model.dart';
-import '../../../../../data/models/project_model.dart';
-import '../../../../../data/models/school_model.dart';
-import '../../../../../data/models/student_model.dart';
-import '../../../../../domain/entities/task_entity.dart';
-import '../../../../../domain/enums/notify_type_enum.dart';
-import '../../../../../domain/enums/user_type_enum.dart';
+import '../../../data/models/company_model.dart';
+import '../../../data/models/news_model.dart';
+import '../../../data/models/notify_model.dart';
+import '../../../data/models/project_model.dart';
+import '../../../data/models/school_model.dart';
+import '../../../data/models/student_model.dart';
+import '../../../domain/entities/task_entity.dart';
+import '../../../domain/enums/notify_type_enum.dart';
+import '../../../domain/enums/user_type_enum.dart';
 
 class SplashController {
   void navigationToNextPage() {
@@ -26,7 +26,7 @@ class SplashController {
       await hiveUsersBox.put(
         "antonia.ferreira@gmail.com",
         StudentModel(
-          name: "Antonia Ferreita",
+          name: "Antonia Ferreira",
           email: "antonia.ferreira@gmail.com",
           password: "password",
           city: 'Lavras, MG',
@@ -41,6 +41,8 @@ class SplashController {
           studentClass: "Turma A",
           avatar: 'assets/avatar/Property 1=Avatar_01.png',
           avatarCircle: 'assets/avatar/Property 1=1.png',
+          projectsIDs: [],
+          rankingsIDs: ['1'],
         ).toJson(),
       );
     }
@@ -92,44 +94,14 @@ class SplashController {
 
     hiveUsersBox.close();
 
-    /*
-    await hiveUsersBox.put(
-      "escola@pharus.com",
-      UserEntity(
-        name: "Escola Pharus",
-        email: "escola@pharus.com",
-        password: "password",
-        type: userTypeEnum.SCHOOL,
-      ),
-    );
-    await hiveUsersBox.put(
-      "empresa@pharus.com",
-      UserEntity(
-        name: "Empresa Pharus",
-        email: "empresa@pharus.com",
-        password: "password",
-        type: userTypeEnum.COMPANY,
-      ),
-    );
-    await hiveUsersBox.put(
-      "estudante@pharus.com",
-      UserEntity(
-        name: "Estudante Pharus",
-        email: "estudante@pharus.com",
-        password: "password",
-        type: userTypeEnum.STUDENT,
-      ),
-    );
-*/
-
     var hiveProjectBox = await Hive.openBox("projects");
     await hiveProjectBox.clear();
     if (hiveProjectBox.isEmpty) {
       await hiveProjectBox.addAll(
         [
           ProjectModel(
-            name: "Algoritmo no seu dia.2",
-            companyID: "empresa2@pharus.com",
+            name: "Algoritmo no seu dia 1ª Edição",
+            companyID: "empresa@pharus.com",
             description:
                 "Um algoritmo é um conjunto finito de diretrizes que descrevem como executar uma tarefa.  Isso significa que até mesmo algo tão simples quanto uma receita ou uma lista de direções para a casa podem ser entendidos como um algoritmo.",
             startDate: DateTime(2022, 05, 02),
@@ -139,7 +111,8 @@ class SplashController {
             score: 25,
             rules:
                 'Tarefa 01 – Entrega 04/05/2022, com mínimo de 10 inteirações.\nTarefa 02 – Entrega 09/05/2022, com mínimo de 15 inteirações.\nTarefa 03 – Entrega 11/05/2022, utilizar os conhecimentos do material e do minicurso para o desenho do fluxo do algoritmo.\n Tarefa 04 – Entrega 16/05/2022, considerar no mínimo 30 inteirações e informar o nome do amigo. O algoritmo deverá ter a visão de futuro de ambos.\n',
-            urlParter: "https://nerdin.com.br/img/empresa/1798.png",
+            urlParter:
+                "https://ioasys.com.br/static/og-image-7578fe3bd736621f7d9d987908812ee0.jpg",
             taskList: [
               TaskEntity(
                 name: "Tarefa 1",
@@ -184,7 +157,8 @@ class SplashController {
             numStudents: 30,
             rules:
                 'Tarefa 01 – Entrega 10/06/2022, considerar como uma folha A4.\nTarefa 02 – Entrega 17/06/2022, utilizar ferramenta informada no minicurso, salvar o arquivo com nome do aluno, e tamanho até 1600px a 1900px de largura e sua altura pode variar entre 800 e 1200 pixels\nTarefa 03 – Entrega 22/06/2022, utilizar os conhecimentos do material e do minicurso para o desenho do fluxo do algoritmo. \nTarefa 04 – Entrega 28/06/2022, considerar no mínimo 30 inteirações e informar o nome do amigo. O algoritmo deverá ter a visão de futuro de ambos. \n',
-            urlParter: "https://nerdin.com.br/img/empresa/1798.png",
+            urlParter:
+                "https://ioasys.com.br/static/og-image-7578fe3bd736621f7d9d987908812ee0.jpg",
             taskList: [
               TaskEntity(
                 name: "Tarefa 1",
@@ -223,7 +197,7 @@ class SplashController {
             students: ['antonia.ferreira@gmail.com'],
             finished: false,
             name: "Transformação Digital e Você!",
-            companyID: "empresa@pharus.com",
+            companyID: "guilherme.neto@empresa.com.br",
             description:
                 "Transformação Digital - é uma mudança de mentalidade que as empresas passam com o objetivo de se tornarem mais modernas e acompanharem os avanços tecnológicos que não param de surgir.\nNão há pessoa no mundo que não tenha sido impactada por esse processo, e com as empresas, é a mesma coisa. \nO termo é muito usado no mundo corporativo quando o assunto são as exigências de uma nova realidade, na qual a tecnologia avança mais rápido que nunca.",
             startDate: DateTime(2022, 08, 08),
@@ -272,13 +246,75 @@ class SplashController {
     }
     hiveProjectBox.close();
 
+    var hiveRankingsBox = await Hive.openBox("rankings");
+    await hiveRankingsBox.clear();
+    if (hiveRankingsBox.isEmpty) {
+      await hiveRankingsBox.addAll(
+        [
+          ProjectModel(
+            name: "Algoritmo no seu dia 1ª Edição",
+            companyID: "empresa@pharus.com",
+            description:
+                "Um algoritmo é um conjunto finito de diretrizes que descrevem como executar uma tarefa.  Isso significa que até mesmo algo tão simples quanto uma receita ou uma lista de direções para a casa podem ser entendidos como um algoritmo.",
+            startDate: DateTime(2022, 03, 02),
+            endDate: DateTime(2022, 03, 20),
+            mentor: "Savio Costa",
+            numStudents: 20,
+            rules:
+                'Tarefa 01 – Entrega 04/05/2022, com mínimo de 10 inteirações.\nTarefa 02 – Entrega 09/05/2022, com mínimo de 15 inteirações.\nTarefa 03 – Entrega 11/05/2022, utilizar os conhecimentos do material e do minicurso para o desenho do fluxo do algoritmo.\n Tarefa 04 – Entrega 16/05/2022, considerar no mínimo 30 inteirações e informar o nome do amigo. O algoritmo deverá ter a visão de futuro de ambos.\n',
+            urlParter:
+                "https://ioasys.com.br/static/og-image-7578fe3bd736621f7d9d987908812ee0.jpg",
+            taskList: [
+              TaskEntity(
+                name: "Tarefa 1",
+                isComplete: false,
+                description:
+                    "Escrever um algoritmo sobre a sua organização para ida para a escola. O fim do algoritmo deverá ser com a “Entrada na sala de aula”. Anexar a tarefa 01 no aplicativo pharus. ",
+              ),
+              TaskEntity(
+                name: "Tarefa 2",
+                isComplete: false,
+                description:
+                    "Escrever um algoritmo sobre a sua rotina após o fim da aula.  Anexar a tarefa 02 no aplicativo pharus.",
+              ),
+              TaskEntity(
+                name: "Tarefa 3",
+                isComplete: false,
+                description:
+                    "Desenhar um algoritmo sobre o final de semanal. Término será considerado como domingo às 20:00 h. Anexar tarefa 03 no aplicativo pharus.  ",
+              ),
+              TaskEntity(
+                name: "Tarefa 4",
+                isComplete: false,
+                description:
+                    "Escrever um algoritmo com um amigo de turma sobre a rotina de parceria de amizade. Considera juntamente uma visão de futuro. Anexar tarefa 04 no aplicativo pharus. ",
+              ),
+            ],
+            projectId: 0,
+            students: [],
+            finished: true,
+            medal: 'first',
+            mentorComment:
+                'Parabéns pelo esforço e trabalho, a escola João da Silva orgulha-se de ter um aluno como você.\nAcreditamos que terá um futuro brilhante! ',
+            ranking: 1,
+          ).toJson(),
+        ],
+      );
+    }
+    hiveRankingsBox.close();
+
     var hiveNewstBox = await Hive.openBox("news");
+
     await hiveNewstBox.put(
       "news",
       NewsModel(
         news: [
           'O UNICEF lança, esta semana, a segunda edição do Tamo Junto UNICEF (#tmjUNICEF), programa de voluntariado digital voltado a adolescentes e jovens de 16 a 24 anos.',
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum elit tellus, at condimentum mauris sagittis ut. Nam auctor nunc non ipsum blandit tempus. ',
+          'O programa Dev the Devs, que oferece capacitação gratuita na área de tecnologia para jovens, será lançado nesta quinta-feira (16), a partir das 11h com transmissão pelo YouTube da PUCRS e do Banco Regional de Desenvolvimento do Extremo Sul (BRDE).',
+        ],
+        newsLink: [
+          'https://www.unicef.org/brazil/comunicados-de-imprensa/unicef-lanca-segunda-edicao-do-tmjunicef-programa-de-voluntariado-digital',
+          'https://g1.globo.com/rs/rio-grande-do-sul/noticia/2021/09/16/programa-que-oferece-formacao-gratuita-para-jovens-e-lancado-no-rs.ghtml',
         ],
       ).toJson(),
     );

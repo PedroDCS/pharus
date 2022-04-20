@@ -43,27 +43,6 @@ class SchoolProjectItemBodyWidget extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  SizedBox(
-                    width: (MediaQuery.of(context).size.width / 2) / 2,
-                    child: CircularPercentIndicator(
-                      curve: Curves.easeInBack,
-                      circularStrokeCap: CircularStrokeCap.round,
-                      linearGradient: LinearGradient(
-                        colors: [
-                          AppColors.secondaryColor600,
-                          AppColors.secondaryColor60,
-                        ],
-                      ),
-                      animation: true,
-                      animationDuration: 700,
-                      radius: 72.0,
-                      lineWidth: 10.0,
-                      backgroundWidth: 10,
-                      percent: 100 / 100,
-                      center: const Text("100%"),
-                      backgroundColor: Colors.white,
-                    ),
-                  ),
                   Container(
                     padding: const EdgeInsets.all(2),
                     margin: const EdgeInsets.symmetric(

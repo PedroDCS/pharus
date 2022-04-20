@@ -33,7 +33,7 @@ class _SchoolProjectsPageState
         child: Column(
           children: [
             SchoolProjectListWidget(
-              future: controller.getProjectListRepository("link"),
+              future: controller.getProjectListRepository("projects"),
               navigateTo: controller.navigateToDetails,
             )
           ],

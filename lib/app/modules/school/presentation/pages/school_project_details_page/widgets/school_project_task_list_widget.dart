@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-import '../../../../../../domain/entities/task_entity.dart';
 import '../../../../../../shared/app_colors/app_colors.dart';
+import '../../../../domain/entities/task_entity.dart';
 
 class SchoolProjectTaskListWidget extends StatelessWidget {
   const SchoolProjectTaskListWidget({
@@ -31,7 +31,7 @@ class SchoolProjectTaskListWidget extends StatelessWidget {
         ),
         SizedBox(
           width: double.infinity,
-          height: 50 * double.parse(taskList.length.toString()),
+          height: 60 * double.parse(taskList.length.toString()),
           child: ListView.builder(
               shrinkWrap: true,
               primary: false,

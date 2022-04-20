@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../../data/models/student_model.dart';
-import '../../../../../domain/entities/news_entity.dart';
-import '../../../../../domain/entities/notify_entity.dart';
-import '../../../../../domain/entities/student_entity.dart';
-import '../../../../../domain/enums/notify_type_enum.dart';
 import '../../../../../shared/app_colors/app_colors.dart';
+import '../../../data/models/student_model.dart';
 import '../../../data/repositories/news_repository.dart';
 import '../../../data/repositories/notify_repository.dart';
+import '../../../domain/entities/news_entity.dart';
+import '../../../domain/entities/notify_entity.dart';
+import '../../../domain/entities/student_entity.dart';
+import '../../../domain/enums/notify_type_enum.dart';
 
 class StudentHomeController {
   final _repository = NewsRepository();
   final _notifyrepository = NotifyRepository();
 
-  Future<NewsEntity> getNewsListRepository(String link) async {
+  Future<NewsEntity> getNewsListRepository() async {
     return await _repository
-        .getNewsList(link: link)
+        .getNewsList()
         .onError((error, stackTrace) => throw Error());
   }
 
@@ -66,13 +66,9 @@ class StudentHomeController {
 
   Future<void> lauchLink(String url) async {
     if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceWebView: false,
-        forceSafariVC: false,
-        enableJavaScript: true
-      );
-    }else{
+      await launch(url,
+          forceWebView: false, forceSafariVC: false, enableJavaScript: true);
+    } else {
       print('Houve um erro ao acessar o link');
     }
   }

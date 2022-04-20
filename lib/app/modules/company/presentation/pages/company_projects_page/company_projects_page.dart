@@ -37,7 +37,8 @@ class _CompanyProjectsPageState
         child: Column(
           children: [
             CompanyProjectListWidget(
-              future: controller.getProjectListRepository("link", widget.email),
+              future:
+                  controller.getProjectListRepository("projects", widget.email),
               navigateTo: controller.navigateToDetails,
             )
           ],

@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../../../../shared/app_colors/app_colors.dart';
 import '../../../../../presentation/widgets/student_app_bar.dart';
-import 'controller/projects_controller.dart';
+import '../../controllers/projects_controller.dart';
 import 'widgets/project_list_widget.dart';
 
 class ProjectsPage extends StatefulWidget {

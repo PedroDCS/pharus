@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../domain/entities/project_entity.dart';
-import '../controller/projects_controller.dart';
+import '../../../../domain/entities/project_entity.dart';
+import '../../../controllers/projects_controller.dart';
 import '../controller/subscrive_bottom_controller.dart';
 import 'project_item_widget.dart';
 
@@ -17,7 +17,7 @@ class ProjectListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<ProjectEntity>>(
-        future: controller.getProjectListRepository("link"),
+        future: controller.getProjectListRepository("projects"),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:

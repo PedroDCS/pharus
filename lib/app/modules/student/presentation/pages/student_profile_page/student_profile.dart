@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 
-import '../../../../../data/models/student_model.dart';
-import '../../../../../domain/entities/student_entity.dart';
 import '../../../../../shared/app_colors/app_colors.dart';
+import '../../../../../shared/modal/log_out_modal.dart';
+import '../../../data/models/student_model.dart';
+import '../../../domain/entities/student_entity.dart';
 import '../../widgets/student_app_bar.dart';
 import 'widgets/student_profile_input_widget.dart';
 
@@ -36,15 +37,18 @@ class StudentProfile extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: const PreferredSize(
+        appBar: PreferredSize(
           child: StudentAppBarWidget(
             title: 'Perfil',
             imageAsset: 'assets/icons/exit.png',
             barColor: Colors.transparent,
             buttomGoBack: false,
             textColor: Colors.white,
+            ontap: () {
+              logOutModal(context);
+            },
           ),
-          preferredSize: Size.fromHeight(60),
+          preferredSize: const Size.fromHeight(60),
         ),
         body: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(53, 48, 53, 48),

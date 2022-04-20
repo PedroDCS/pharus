@@ -1,6 +1,6 @@
-import '../../../../domain/entities/user_entity.dart';
+import '../entities/user_entity.dart';
 
 abstract class IUSerRepository {
-  Future<UserEntity?> fetchUserData(
+  Future<UserEntity> fetchUserData(
       {required String email, required String password});
 }

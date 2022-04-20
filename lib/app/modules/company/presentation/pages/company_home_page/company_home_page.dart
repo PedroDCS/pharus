@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../../../../shared/app_colors/app_colors.dart';
 import 'company_home_controller.dart';
 import 'widgets/company_home_buttom_widget.dart';
+import 'widgets/company_news_feed_carousel_widget.dart';
 
 class CompanyHomePage extends StatefulWidget {
   const CompanyHomePage({
@@ -77,23 +78,23 @@ class _CompanyHomePageState
                     iconButtom: 'assets/icons/projects.png',
                     textButtom: "Projetos",
                     functionNavigateTo: () {
-                      Modular.to.pushNamed('projects', );
+                      Modular.to.pushNamed('projects', arguments: widget.email);
                     }),
                 CompanyHomeButtomWidget(
                   iconButtom: 'assets/icons/profile.png',
                   textButtom: "Perfil",
                   functionNavigateTo: () {
-                    Modular.to.pushNamed('profile');
+                    Modular.to.pushNamed('profile', arguments: widget.email);
                   },
                 ),
               ],
             ),
-            // Padding(
-            //   padding: const EdgeInsets.fromLTRB(16, 32, 16, 32),
-            //   child: CompanyNewsFeedCarouselWidget(
-            //     newslist: controller.getNewsListRepository('link'),
-            //   ),
-            // )
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 32, 16, 32),
+              child: CompanyNewsFeedCarouselWidget(
+                newslist: controller.getNewsListRepository(),
+              ),
+            )
           ],
         ),
       ),
