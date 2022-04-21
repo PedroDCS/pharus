@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharus/app/shared/app_colors/app_colors.dart';
+import '../../../../../../../../shared/app_colors/app_colors.dart';
 
 class ProjectButtonWidget extends StatelessWidget {
   final Function() onPressed;

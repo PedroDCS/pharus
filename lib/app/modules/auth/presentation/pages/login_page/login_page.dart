@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'widgets/login_head_widget.dart';
-import 'widgets/login_input_group_widget.dart';
+
 import 'controller/login_page_controller.dart';
 import 'widgets/get_in_button_widget.dart';
+import 'widgets/login_head_widget.dart';
+import 'widgets/login_input_group_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

@@ -53,8 +53,8 @@ class LoginPageController {
 */
     // emailController.text = "antonia.ferreira@gmail.com";
     // emailController.text = "maria.helena.diretora@gmail.com";
-    emailController.text = "empresa@pharus.com";
-    passwordController.text = "password";
+    // emailController.text = "empresa@pharus.com";
+    // passwordController.text = "password";
     if (!validacao(emailController.text, passwordController.text)) {
       return null;
     }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../domain/entities/project_entity.dart';
 import '../../../../../../../../shared/app_colors/app_colors.dart';
-
+import '../../../../domain/entities/project_entity.dart';
 import 'ranking_project_item_coment_widget.dart';
 import 'ranking_project_item_head_widget.dart';
 import 'ranking_project_item_medal_widget.dart';

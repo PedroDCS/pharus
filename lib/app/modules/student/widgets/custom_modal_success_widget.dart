@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pharus/app/modules/student/widgets/custom_button_widget.dart';
-import 'package:pharus/app/shared/app_colors/app_colors.dart';
+import '../../../shared/app_colors/app_colors.dart';
+
+import 'custom_button_widget.dart';
 
 class ModalSuccessWidget extends StatelessWidget {
   const ModalSuccessWidget({

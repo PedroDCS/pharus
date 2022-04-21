@@ -69,7 +69,6 @@ class StudentHomeController {
       await launch(url,
           forceWebView: false, forceSafariVC: false, enableJavaScript: true);
     } else {
-      print('Houve um erro ao acessar o link');
     }
   }
 }

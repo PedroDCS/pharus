@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../domain/entities/notify_entity.dart';
 import '../../../../domain/entities/student_entity.dart';
