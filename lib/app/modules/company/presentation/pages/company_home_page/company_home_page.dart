@@ -6,12 +6,18 @@ import 'widgets/company_home_buttom_widget.dart';
 import 'widgets/company_news_feed_carousel_widget.dart';
 
 class CompanyHomePage extends StatefulWidget {
-  const CompanyHomePage({Key? key}) : super(key: key);
+  const CompanyHomePage({
+    Key? key,
+    required this.email,
+    required this.name,
+  }) : super(key: key);
   static const titleStyle = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w700,
     color: Colors.white,
   );
+  final String email;
+  final String name;
 
   @override
   State<CompanyHomePage> createState() => _CompanyHomePageState();
@@ -42,10 +48,10 @@ class _CompanyHomePageState
               textAlign: TextAlign.center,
               style: CompanyHomePage.titleStyle,
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 8),
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
               child: Text(
-                "Empresa",
+                widget.name,
                 textAlign: TextAlign.center,
                 style: CompanyHomePage.titleStyle,
               ),
@@ -72,13 +78,13 @@ class _CompanyHomePageState
                     iconButtom: 'assets/icons/projects.png',
                     textButtom: "Projetos",
                     functionNavigateTo: () {
-                      Modular.to.pushNamed('projects');
+                      Modular.to.pushNamed('projects', arguments: widget.email);
                     }),
                 CompanyHomeButtomWidget(
                   iconButtom: 'assets/icons/profile.png',
                   textButtom: "Perfil",
                   functionNavigateTo: () {
-                    Modular.to.pushNamed('profile');
+                    Modular.to.pushNamed('profile', arguments: widget.email);
                   },
                 ),
               ],
@@ -86,7 +92,7 @@ class _CompanyHomePageState
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 32, 16, 32),
               child: CompanyNewsFeedCarouselWidget(
-                newslist: controller.getNewsListRepository('link'),
+                newslist: controller.getNewsListRepository(),
               ),
             )
           ],

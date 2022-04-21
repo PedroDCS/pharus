@@ -2,11 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../../../../../shared/app_colors/app_colors.dart';
+import '../../../../domain/entities/task_entity.dart';
 
 class SchoolProjectTaskListWidget extends StatelessWidget {
   const SchoolProjectTaskListWidget({
     Key? key,
+    required this.taskList,
   }) : super(key: key);
+  final List<TaskEntity> taskList;
+
+  int completetasks(List<TaskEntity> tasklist) {
+    int completes = 0;
+    for (var element in tasklist) {
+      if (element.isComplete) completes++;
+    }
+    return completes;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,33 +31,37 @@ class SchoolProjectTaskListWidget extends StatelessWidget {
         ),
         SizedBox(
           width: double.infinity,
-          height: 220,
+          height: 60 * double.parse(taskList.length.toString()),
           child: ListView.builder(
-              physics: const ScrollPhysics(),
-              itemCount: 4,
+              shrinkWrap: true,
+              primary: false,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: taskList.length,
               itemBuilder: ((context, index) {
+                TaskEntity tarefa = taskList[index];
+
                 return CheckboxListTile(
                   contentPadding: const EdgeInsets.all(0),
                   controlAffinity: ListTileControlAffinity.leading,
-                  value: false,
+                  value: tarefa.isComplete,
                   title: Text(
-                    "Tarefa ${index + 1}",
+                    tarefa.name,
                     style: const TextStyle(decoration: TextDecoration.none),
                   ),
                   onChanged: (bool? value) {},
                 );
               })),
         ),
-        const Center(
+        Center(
           child: Text(
-            "Completadas 3 de 4 tarefas (75%)",
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            "Completadas ${completetasks(taskList)} de ${taskList.length} tarefas (${(completetasks(taskList) / taskList.length) * 100})",
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 16, bottom: 32),
           child: LinearPercentIndicator(
-            percent: 0.75,
+            percent: (completetasks(taskList) / taskList.length),
             progressColor: AppColors.successColor,
             backgroundColor: AppColors.neutralColor40,
             lineHeight: 22,

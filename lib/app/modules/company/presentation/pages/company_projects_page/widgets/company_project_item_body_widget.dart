@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import '../../../../../../shared/app_colors/app_colors.dart';
 import 'company_project_partnership_widget.dart';
 
@@ -45,27 +44,6 @@ class CompanyProjectItemBodyWidget extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  SizedBox(
-                    width: (MediaQuery.of(context).size.width / 2) / 2,
-                    child: CircularPercentIndicator(
-                      curve: Curves.easeInBack,
-                      circularStrokeCap: CircularStrokeCap.round,
-                      linearGradient: LinearGradient(
-                        colors: [
-                          AppColors.secondaryColor600,
-                          AppColors.secondaryColor60,
-                        ],
-                      ),
-                      animation: true,
-                      animationDuration: 700,
-                      radius: 72.0,
-                      lineWidth: 10.0,
-                      backgroundWidth: 10,
-                      percent: score.toDouble() / 100,
-                      center: Text("$score%"),
-                      backgroundColor: Colors.white,
-                    ),
-                  ),
                   Container(
                     padding: const EdgeInsets.all(2),
                     margin: const EdgeInsets.symmetric(
@@ -86,7 +64,7 @@ class CompanyProjectItemBodyWidget extends StatelessWidget {
                         Text(
                           '${endDate.difference(startDate).inDays.toString()} Dias',
                           style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w700),
+                              fontSize: 15, fontWeight: FontWeight.w700),
                         )
                       ],
                     ),

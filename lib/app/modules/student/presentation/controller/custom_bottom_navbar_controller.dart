@@ -11,8 +11,8 @@ class CustomBottomNavbarController {
     '/student/profile',
   ];
 
-  changePage(int id) {
+  changePage({required int id, required String email}) {
     index = id;
-    Modular.to.navigate(routesOptions[id]);
+    Modular.to.navigate(routesOptions[id], arguments: email);
   }
 }

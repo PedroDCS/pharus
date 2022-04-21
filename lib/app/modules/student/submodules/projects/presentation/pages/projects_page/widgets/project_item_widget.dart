@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../shared/app_colors/app_colors.dart';
+import '../controller/subscrive_bottom_controller.dart';
 import 'project_item_body_widget.dart';
 import 'project_item_head_widget.dart';
 
@@ -12,20 +13,26 @@ class ProjectItemWidget extends StatelessWidget {
     required this.mentor,
     required this.urlParter,
     required this.description,
-    required this.score,
+    required this.tasks,
+    required this.tasksCompletes,
     required this.endDate,
     required this.startDate,
     required this.register,
+    required this.isSubscribed,
+    required this.subcontroller,
   }) : super(key: key);
   final VoidCallback ontap;
   final String name;
   final String mentor;
   final String urlParter;
   final String description;
-  final int score;
+  final int tasks;
+  final int tasksCompletes;
   final DateTime endDate;
   final DateTime startDate;
   final Function() register;
+  final bool isSubscribed;
+  final SubscriveController subcontroller;
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +52,13 @@ class ProjectItemWidget extends StatelessWidget {
             ProjectItemBodyWidget(
               urlParter: urlParter,
               description: description,
-              score: score,
               endDate: endDate,
               startDate: startDate,
+              tasks: tasks,
+              tasksCompletes: tasksCompletes,
               onPressed: register,
+              isSubscribed: isSubscribed,
+              subcontroller: subcontroller,
             )
           ],
         ),

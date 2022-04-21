@@ -1,38 +1,48 @@
-# bootcamp-ioasys
+# App flutter Pharus 
+Guiando mentes para um futuro brilhante.
+ioasys Camp 4ª edição 2022
 
-Projeto Desenvolvido durante o bootcamp-ioasys
+Pharus é um produto voltado para auxiliar o jovens no mercado de trabalho
+diante da baixa qualificação do jovem ao finalizar o período escolar para
+buscar oportunidades no mercado de trabalho e complementar a grande curricular.
 
-## Getting started
+## Pharus -> Farol em latim;
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Este app é baseado em um desafio do camp em Flutter da empresa ioasys. 
+Tendo em vista todo conhecimento que pudemos aprender durante as aulas da trilha de flutter.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
-## Add your files
+### Principais bibliotecas utilizadas:
+- Banco local: Hive
+- Injeção de dependência: Flutter Modular
+- Gerenciamento de estado: ValueNotify
+- flutter svg: Visualizador de Images SVG
+- url launcher: Para Acessar outras aplicações do dispositivo
+- image picker: Para Acessar os Arquivos do Dispositivos
+- animated: Realizar as animações do app
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+### Melhorias e futuras implementações:
+- Para requisições api REST: Dio
+- Testes unitários: Mockito
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/wendellperes/bootcamp-ioasys.git
-git branch -M main
-git push -uf origin main
-```
+Status do Projeto: Hoje o app se encontra na versão: 1.1
 
-# pharus
+### Uso do Projeto:
+1: Baixar o repositorio
 
-A new Flutter project.
+2: Abrir a pastar do repositorio no seu Editor ou IDE
 
-## Getting Started
+3: Abra o terminal e rode o seguinte comando
+    - flutter pub get
+4: Execute um emulador e de play no build da aplicação
 
-This project is a starting point for a Flutter application.
+Tecnologias Utilizadas:
+- Linguagem Dart
 
-A few resources to get you started if this is your first Flutter project:
+## Pessoas Contribuidoras:
+[Wendell Peres da Costa](https://www.linkedin.com/in/wendell-peres-da-costa-973076147/) /
+[Pedro Daniel](https://www.linkedin.com/in/pedro-daniel-camargos-soares/)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+##

@@ -5,10 +5,11 @@ class ProjectDetailsHeadWidget extends StatelessWidget {
     Key? key,
     required this.mentor,
     required this.description,
+    required this.onpress,
   }) : super(key: key);
   final String mentor;
   final String description;
-
+  final Function onpress;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,8 +30,8 @@ class ProjectDetailsHeadWidget extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () {},
-              padding: EdgeInsets.all(0),
+              onPressed: () => onpress(),
+              padding: const EdgeInsets.all(0),
               icon: const ImageIcon(
                 AssetImage('assets/icons/icon-envelope.png'),
                 color: Colors.black,

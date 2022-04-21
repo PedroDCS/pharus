@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../../../domain/entities/project_entity.dart';
 import '../../../../data/repositories/project_repository.dart';
+import '../../../../domain/entities/project_entity.dart';
 
 class ProjectsController {
   final _repository = ProjectRepository();

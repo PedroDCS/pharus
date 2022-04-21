@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+
 import '../../../../domain/entities/news_entity.dart';
 import 'student_news_feed_carousel_controller.dart';
 
@@ -84,11 +85,11 @@ class _StudentNewsFeedCarouselWidgetState
                             margin: const EdgeInsets.symmetric(
                                 vertical: 8.0, horizontal: 4.0),
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.black.withOpacity(
-                                    _controller.current == entry.key
-                                        ? 0.9
-                                        : 0.4)),
+                              shape: BoxShape.circle,
+                              color: Colors.black.withOpacity(
+                                _controller.current == entry.key ? 0.9 : 0.4,
+                              ),
+                            ),
                           ),
                         );
                       }).toList(),

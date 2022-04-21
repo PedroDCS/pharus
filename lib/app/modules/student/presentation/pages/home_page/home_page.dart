@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../shared/app_colors/app_colors.dart';
 import 'widgets/home_student_body_widget.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  const HomePage({
+    Key? key,
+    required this.email,
+  }) : super(key: key);
+  final String email;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +46,7 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(18, 27, 10, 20),
                     child: Column(children: const []),
                   ),
-                  const HomeStudentBodyWidget(),
+                  HomeStudentBodyWidget(name: email),
                 ],
               ),
             ],

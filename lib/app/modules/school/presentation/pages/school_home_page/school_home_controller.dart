@@ -6,7 +6,7 @@ class SchoolHomeController {
 
   Future<NewsEntity> getNewsListRepository(String link) async {
     return await _repository
-        .getNewsList(link: link)
+        .getNewsList()
         .onError((error, stackTrace) => throw Error());
   }
 }

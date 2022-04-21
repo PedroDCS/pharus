@@ -1,12 +1,22 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:hive/hive.dart';
+
+import '../../../../data/repositories/project_repository.dart';
 import '../../../../domain/entities/project_entity.dart';
-import '../../../../infra/repositories/project_repository.dart';
 
 class RankingsController {
   final _repository = ProjectRepository();
 
   navigateToDetails(ProjectEntity proj) {
     Modular.to.pushNamed('projectdetails', arguments: proj);
+  }
+
+  Future<String> getAtavar(email) async {
+    var profilesBox = await Hive.openBox("users");
+    var profile = await profilesBox.get(email);
+    String avatarimage = profile['avatarCircle'];
+    await profilesBox.close();
+    return avatarimage;
   }
 
   Future<List<ProjectEntity>> getProjectListRepository(String link) async {
@@ -33,7 +43,7 @@ class RankingsController {
         return 'assets/icons/5place.png';
 
       default:
-        return 'assets/icons/book.png';
+        return 'assets/icons/5place.png';
     }
   }
 
@@ -55,7 +65,7 @@ class RankingsController {
         return 'assets/icons/5medal.png';
 
       default:
-        return 'assets/icons/book.png';
+        return 'assets/icons/5medal.png';
     }
   }
 }

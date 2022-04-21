@@ -32,21 +32,23 @@ class CompanyProjectListWidget extends StatelessWidget {
                 height: snapshot.data!.length * (397 + 32),
                 child: ListView.builder(
                     shrinkWrap: true,
+                    primary: false,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: snapshot.data?.length,
                     itemBuilder: (_, index) {
                       var project = snapshot.data![index];
                       return CompanyProjectItemWidget(
-                          ontap: () {
-                            navigateTo(project);
-                          },
-                          name: project.name,
-                          mentor: project.mentor,
-                          urlParter: project.urlParter,
-                          description: project.description,
-                          score: project.score,
-                          endDate: project.endDate,
-                          startDate: project.startDate);
+                        ontap: () {
+                          navigateTo(project);
+                        },
+                        name: project.name,
+                        mentor: project.mentor,
+                        urlParter: project.urlParter,
+                        description: project.description,
+                        score: 0,
+                        endDate: project.endDate,
+                        startDate: project.startDate,
+                      );
                     }),
               );
           }

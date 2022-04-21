@@ -3,14 +3,16 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../domain/entities/notify_entity.dart';
+import '../../../../domain/entities/student_entity.dart';
 import '../student_home_controller.dart';
 import 'student_news_feed_carousel_widget.dart';
 
 class HomeStudentBodyWidget extends StatefulWidget {
   const HomeStudentBodyWidget({
     Key? key,
+    required this.name,
   }) : super(key: key);
-
+  final String name;
   @override
   State<HomeStudentBodyWidget> createState() => _HomeStudentBodyWidgetState();
 }
@@ -22,27 +24,48 @@ class _HomeStudentBodyWidgetState
     return Center(
       child: Column(
         children: [
-          Text(
-            "Olá Antonia!",
-            style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 20,
-                color: Theme.of(context).colorScheme.onSecondary),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 32, bottom: 49),
-            child: Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(100),
-                image: const DecorationImage(
-                  image: AssetImage(
-                      'assets/images/girl happy drinking coffe flat illustration 2.png'),
-                ),
-              ),
-            ),
+          FutureBuilder<StudentEntity>(
+            future: controller.getProfifeData(widget.name),
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  return const Center(
+                    child: CircularProgressIndicator(color: Colors.green),
+                  );
+                case ConnectionState.none:
+                  return const LinearProgressIndicator(
+                    value: 1,
+                    color: Colors.red,
+                  );
+
+                default:
+                  return Column(
+                    children: [
+                      Text(
+                        "Olá ${snapshot.data!.name}!",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                            color: Theme.of(context).colorScheme.onSecondary),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 32, bottom: 49),
+                        child: Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(100),
+                            image: DecorationImage(
+                              image: AssetImage(snapshot.data!.avatarCircle),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+              }
+            },
           ),
           FutureBuilder<List<NotifyEntity>>(
               future: controller.getNotifyListRepository("link"),
@@ -80,18 +103,8 @@ class _HomeStudentBodyWidgetState
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 49, 16, 45),
             child: StudentNewsFeedCarouselWidget(
-                newslist: controller.getNewsListRepository("link"),
-                goToLauch: () async {
-                  if (await canLaunch('https://www.unicef.org/brazil/comunicados-de-imprensa/unicef-lanca-segunda-edicao-do-tmjunicef-programa-de-voluntariado-digital')) {
-                    await launch('https://www.unicef.org/brazil/comunicados-de-imprensa/unicef-lanca-segunda-edicao-do-tmjunicef-programa-de-voluntariado-digital',
-                        forceWebView: false,
-                        forceSafariVC: false,
-                        enableJavaScript: true);
-                  } else {
-                    print('Houve um erro ao acessar o link');
-                  }
-                  
-                }),
+              newslist: controller.getNewsListRepository(),
+            ),
           )
         ],
       ),

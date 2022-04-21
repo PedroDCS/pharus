@@ -1,5 +1,6 @@
 import '../entities/project_entity.dart';
 
 abstract class IProjectRepository {
-  Future<List<ProjectEntity>> getProjectList({required String link});
+  Future<List<ProjectEntity>> getProjectList(
+      {required String link, required String email});
 }

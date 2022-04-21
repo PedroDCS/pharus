@@ -12,7 +12,6 @@ class SchoolProjectItemWidget extends StatelessWidget {
     required this.mentor,
     required this.urlParter,
     required this.description,
-    required this.score,
     required this.endDate,
     required this.startDate,
   }) : super(key: key);
@@ -21,7 +20,6 @@ class SchoolProjectItemWidget extends StatelessWidget {
   final String mentor;
   final String urlParter;
   final String description;
-  final int score;
   final DateTime endDate;
   final DateTime startDate;
 
@@ -43,7 +41,6 @@ class SchoolProjectItemWidget extends StatelessWidget {
             SchoolProjectItemBodyWidget(
                 urlParter: urlParter,
                 description: description,
-                score: score,
                 endDate: endDate,
                 startDate: startDate)
           ],

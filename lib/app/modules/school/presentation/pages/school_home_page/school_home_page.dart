@@ -6,11 +6,17 @@ import 'widgets/school_home_buttom_widget.dart';
 import 'widgets/school_news_feed_carousel_widget.dart';
 
 class SchoolHomePage extends StatefulWidget {
-  const SchoolHomePage({Key? key}) : super(key: key);
+  const SchoolHomePage({
+    Key? key,
+    required this.email,
+    required this.name,
+  }) : super(key: key);
   static const titleStyle = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w700,
   );
+  final String email;
+  final String name;
 
   @override
   State<SchoolHomePage> createState() => _SchoolHomePageState();
@@ -41,10 +47,10 @@ class _SchoolHomePageState
               textAlign: TextAlign.center,
               style: SchoolHomePage.titleStyle,
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 8),
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
               child: Text(
-                "Escola Estadual João da Silva!",
+                widget.name,
                 textAlign: TextAlign.center,
                 style: SchoolHomePage.titleStyle,
               ),
@@ -78,7 +84,7 @@ class _SchoolHomePageState
                   iconButtom: 'assets/icons/profile.png',
                   textButtom: "Perfil",
                   functionNavigateTo: () {
-                    Modular.to.pushNamed('profile');
+                    Modular.to.pushNamed('profile', arguments: widget.email);
                   },
                 ),
               ],

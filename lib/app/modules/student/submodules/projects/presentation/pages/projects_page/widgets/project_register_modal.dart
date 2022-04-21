@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:pharus/app/modules/student/submodules/projects/presentation/pages/projects_page/widgets/project_register_button.dart';
+
 import '../../../../../../../../shared/app_colors/app_colors.dart';
+import '../../../../../../widgets/custom_button_widget.dart';
+import '../../../../domain/entities/project_entity.dart';
+import '../controller/subscrive_bottom_controller.dart';
 
 class ModalRegisterProject extends StatelessWidget {
   const ModalRegisterProject({
-    required this.confirmRegistration,
     Key? key,
+    required this.project,
+    required this.email,
+    required this.subcontroller,
+    required this.confirmRegistration,
   }) : super(key: key);
-  final Function() confirmRegistration;
+  final Future<void> Function(ProjectEntity, String, SubscriveController)
+      confirmRegistration;
+  final ProjectEntity project;
+  final String email;
+  final SubscriveController subcontroller;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -18,10 +28,10 @@ class ModalRegisterProject extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text("Confirmar inscrição"),
+          const Text("Confirmar inscrição", style: TextStyle(fontSize: 16)),
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
-            icon: Icon(
+            icon: const Icon(
               Icons.clear,
             ),
           ),
@@ -30,19 +40,19 @@ class ModalRegisterProject extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text("Você deseja se inscrever no projeto ”Introdução a física”?"),
+          Text('Você deseja se inscrever no projeto "${project.name}"?'),
           const SizedBox(
             height: 30,
           ),
-          ProjectButtonWidget(
+          ButtonWidget(
             nameButton: 'Sim, quero me inscrever',
-            onPressed: confirmRegistration,
+            onPressed: () => confirmRegistration(project, email, subcontroller),
             outlineActive: false,
           ),
           const SizedBox(
             height: 30,
           ),
-          ProjectButtonWidget(
+          ButtonWidget(
             nameButton: 'Não quero, mudei de idéia',
             onPressed: () => Navigator.of(context).pop(),
             outlineActive: true,
