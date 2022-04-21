@@ -13,7 +13,8 @@ class ProjectItemWidget extends StatelessWidget {
     required this.mentor,
     required this.urlParter,
     required this.description,
-    required this.score,
+    required this.tasks,
+    required this.tasksCompletes,
     required this.endDate,
     required this.startDate,
     required this.register,
@@ -25,7 +26,8 @@ class ProjectItemWidget extends StatelessWidget {
   final String mentor;
   final String urlParter;
   final String description;
-  final int score;
+  final int tasks;
+  final int tasksCompletes;
   final DateTime endDate;
   final DateTime startDate;
   final Function() register;
@@ -50,9 +52,10 @@ class ProjectItemWidget extends StatelessWidget {
             ProjectItemBodyWidget(
               urlParter: urlParter,
               description: description,
-              score: score,
               endDate: endDate,
               startDate: startDate,
+              tasks: tasks,
+              tasksCompletes: tasksCompletes,
               onPressed: register,
               isSubscribed: isSubscribed,
               subcontroller: subcontroller,

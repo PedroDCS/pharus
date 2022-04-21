@@ -31,7 +31,7 @@ class ProjectListWidget extends StatelessWidget {
               );
             default:
               return SizedBox(
-                height: snapshot.data!.length * (397 + 32),
+                height: snapshot.data!.length * (397 + 40),
                 child: ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -48,7 +48,9 @@ class ProjectListWidget extends StatelessWidget {
                         mentor: project.mentor,
                         urlParter: project.urlParter,
                         description: project.description,
-                        score: project.score ?? 0,
+                        tasksCompletes:
+                            controller.getTasksCompletes(project.taskList),
+                        tasks: project.taskList.length,
                         endDate: project.endDate,
                         startDate: project.startDate,
                         register: () => controller.registerProject(
