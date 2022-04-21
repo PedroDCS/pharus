@@ -23,6 +23,23 @@ linter:
   # producing the lint.
   rules:
     prefer_relative_imports: true
+    directives_ordering: true
+    # TODO HABILITAR AS REGRAS E IR CORRIGINDO
+    public_member_api_docs: false
+    constant_identifier_names: false
+    lowercase_with_underscores: false
+    file_names: false
+    iterable_contains_unrelated_type: false
+    prefer_const_literals_to_create_immutables: false
+    prefer_const_constructors: false
+    avoid_returning_null_for_void: false
+    annotate_overrides: false
+    overridden_fields: false
+    avoid_renaming_method_parameters: false
+    use_key_in_widget_constructors: false
+    prefer_function_declarations_over_variables: false
+    deprecated_member_use_from_same_package: false
+    deprecated_member_use: false
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
 

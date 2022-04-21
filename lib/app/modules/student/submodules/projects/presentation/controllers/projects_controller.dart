@@ -13,8 +13,8 @@ import '../../data/repositories/project_repository.dart';
 import '../../domain/entities/project_entity.dart';
 import '../pages/project_details_page/state_page/modal_state_enum.dart';
 import '../pages/project_details_page/widgets/project_game_rules_widget.dart';
-import '../pages/projects_page/widgets/project_register_modal.dart';
 import '../pages/projects_page/controller/subscrive_bottom_controller.dart';
+import '../pages/projects_page/widgets/project_register_modal.dart';
 
 class ProjectsController {
   final _repository = ProjectRepository();

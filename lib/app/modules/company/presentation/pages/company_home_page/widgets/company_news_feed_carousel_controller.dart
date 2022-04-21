@@ -16,7 +16,6 @@ class CompanyNewsFeedCarouselController {
         enableJavaScript: true,
       );
     } else {
-      print('Houve um erro ao acessar o link');
     }
   }
 

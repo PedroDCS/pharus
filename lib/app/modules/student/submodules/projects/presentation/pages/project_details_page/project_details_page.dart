@@ -1,7 +1,5 @@
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../../../../../shared/app_colors/app_colors.dart';
 import '../../../../../presentation/widgets/student_app_bar.dart';

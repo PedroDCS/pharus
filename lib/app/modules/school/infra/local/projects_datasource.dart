@@ -6,7 +6,6 @@ import '../../data/models/project_model.dart';
 class ProjectDatasource extends IProjectsDatasource {
   @override
   Future<List<ProjectModel>> getProjects({required String link}) async {
-    print(link);
     await Future.delayed(const Duration(seconds: 1));
     var hiveProjectssBox = await Hive.openBox(link);
     var hiveprojects = hiveProjectssBox.toMap();

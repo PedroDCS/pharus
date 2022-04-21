@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pharus/app/modules/student/submodules/projects/presentation/pages/projects_page/widgets/project_register_button.dart';
+
 import '../../../../../../../../shared/app_colors/app_colors.dart';
+import 'project_register_button.dart';
 
 class ModalRegisterSuccessProject extends StatelessWidget {
   const ModalRegisterSuccessProject({

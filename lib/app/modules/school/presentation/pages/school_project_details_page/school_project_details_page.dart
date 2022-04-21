@@ -28,16 +28,6 @@ class _ProjectDetailsPageState extends State<SchoolProjectDetailsPage> {
   var isData = ValueNotifier<bool>(false);
   var nameImage = ValueNotifier<String>('');
 
-  Future<void> _getFile() async {
-    final ImagePicker _pick = ImagePicker();
-    image = await _pick.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      nameImage.value = image!.name;
-      isData.value = true;
-    } else {
-      isData.value = false;
-    }
-  }
 
   Future<void> upload(String path) async {
     Navigator.pop(context);
@@ -45,8 +35,7 @@ class _ProjectDetailsPageState extends State<SchoolProjectDetailsPage> {
       File file = File(path);
       try {
         String ref = 'images/img-${DateTime.now()}.jpg';
-        var data = await storage.ref(ref).putFile(file);
-        String url = await data.ref.getDownloadURL();
+         await storage.ref(ref).putFile(file);
       } on FirebaseException catch (e) {
         throw Exception('Error no upload: ${e.code}');
       }

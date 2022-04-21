@@ -17,7 +17,6 @@ class StudentNewsFeedCarouselController {
         enableJavaScript: true,
       );
     } else {
-      print('Houve um erro ao acessar o link');
     }
   }
 

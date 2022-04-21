@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'presentation/pages/project_details_page/project_details_page.dart';
 import 'presentation/controllers/projects_controller.dart';
+import 'presentation/pages/project_details_page/project_details_page.dart';
 import 'presentation/pages/projects_page/projects_page.dart';
 import 'presentation/pages/rankings_page/controller/rankings_controller.dart';
 import 'presentation/pages/rankings_page/ranking_page.dart';
