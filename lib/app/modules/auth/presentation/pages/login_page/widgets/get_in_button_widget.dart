@@ -8,7 +8,6 @@ class GetInButtonWidget extends StatelessWidget {
     Key? key,
     required this.onPressed,
   }) : super(key: key);
-//Theme.of(context).colorScheme.secondary
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(

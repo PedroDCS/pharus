@@ -8,6 +8,8 @@ import '../../../../domain/entities/user_type_enum.dart';
 class LoginPageController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  var errorText = ValueNotifier<String>('');
+  final _repository = UserRepository();
 
   bool validacao(String email, String password) {
     if (email.isEmpty) {
@@ -35,10 +37,6 @@ class LoginPageController {
     return true;
   }
 
-  var errorText = ValueNotifier<String>('');
-
-  final _repository = UserRepository();
-
   Future<UserEntity> getUserRepository(
       {required String email, required String password}) async {
     return await _repository
@@ -58,9 +56,13 @@ class LoginPageController {
     if (!validacao(emailController.text, passwordController.text)) {
       return null;
     }
-
-    var user = await getUserRepository(
-        email: emailController.text, password: passwordController.text);
+    var user;
+    try {
+      user = await getUserRepository(
+          email: emailController.text, password: passwordController.text);
+    } catch (e) {
+      errorText.value = "Algo deu errado...";
+    }
 
     switch (user.type) {
       case userTypeEnum.COMPANY:
@@ -77,13 +79,5 @@ class LoginPageController {
         break;
       default:
     }
-
-    // if (emailController.text.isEmpty || emailController.text == '1') {
-    //   Modular.to.navigate('/student/studenthome');
-    // } else if (emailController.text == '2') {
-    //   Modular.to.navigate('/school');
-    // } else if (emailController.text == '3') {
-    //   Modular.to.navigate('/company', arguments: "user?.email");
-    // }
   }
 }

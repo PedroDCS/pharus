@@ -118,10 +118,6 @@ class _ProjectDetailsPageState
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const ImageIcon(
-                              AssetImage("assets/icons/icon-book.png"),
-                              color: Colors.black,
-                            ),
                             Text(
                               " Atividades do Projeto",
                               style: TextStyle(
@@ -129,7 +125,11 @@ class _ProjectDetailsPageState
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
                               ),
-                            )
+                            ),
+                            const ImageIcon(
+                              AssetImage("assets/icons/icon-left-arrow.png"),
+                              color: Colors.black,
+                            ),
                           ],
                         ),
                       ),

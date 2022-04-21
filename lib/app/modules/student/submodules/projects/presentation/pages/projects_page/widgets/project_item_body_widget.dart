@@ -10,7 +10,8 @@ class ProjectItemBodyWidget extends StatelessWidget {
     Key? key,
     required this.urlParter,
     required this.description,
-    required this.score,
+    required this.tasks,
+    required this.tasksCompletes,
     required this.endDate,
     required this.startDate,
     required this.onPressed,
@@ -19,7 +20,8 @@ class ProjectItemBodyWidget extends StatelessWidget {
   }) : super(key: key);
   final String urlParter;
   final String description;
-  final int score;
+  final int tasks;
+  final int tasksCompletes;
   final DateTime endDate;
   final DateTime startDate;
   final Function() onPressed;
@@ -29,6 +31,7 @@ class ProjectItemBodyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     subcontroller.chageSubscrive(isSubscribed);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -70,8 +73,8 @@ class ProjectItemBodyWidget extends StatelessWidget {
                       radius: 82.0,
                       lineWidth: 10.0,
                       backgroundWidth: 10,
-                      percent: score.toDouble() / 100,
-                      center: Text("$score%"),
+                      percent: ((tasksCompletes) / tasks) / 100,
+                      center: Text("$tasksCompletes de $tasks"),
                       backgroundColor: Colors.white,
                     ),
                   ),
@@ -86,17 +89,21 @@ class ProjectItemBodyWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     alignment: Alignment.center,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    child: Column(
                       children: [
-                        const ImageIcon(AssetImage('assets/icons/idea.png'),
-                            size: 36),
+                        Text(
+                          "Termina em",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.neutralColor10,
+                          ),
+                        ),
                         Text(
                           '${endDate.difference(startDate).inDays.toString()} Dias',
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w700),
-                        )
+                        ),
                       ],
                     ),
                   )

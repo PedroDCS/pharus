@@ -345,7 +345,7 @@ class SplashController {
     var _duration = const Duration(seconds: 2);
     await Hive.initFlutter();
     mockarInformacoes();
-    await Firebase.initializeApp();
+    // await Firebase.initializeApp();
     return Timer(_duration, navigationToNextPage);
   }
 }

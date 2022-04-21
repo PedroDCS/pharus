@@ -11,6 +11,7 @@ import '../../../../widgets/custom_modal_success_widget.dart';
 import '../../data/models/project_model.dart';
 import '../../data/repositories/project_repository.dart';
 import '../../domain/entities/project_entity.dart';
+import '../../domain/entities/task_entity.dart';
 import '../pages/project_details_page/state_page/modal_state_enum.dart';
 import '../pages/project_details_page/widgets/project_game_rules_widget.dart';
 import '../pages/projects_page/controller/subscrive_bottom_controller.dart';
@@ -19,7 +20,7 @@ import '../pages/projects_page/widgets/project_register_modal.dart';
 class ProjectsController {
   final _repository = ProjectRepository();
   var modalStatusEnum = ValueNotifier<ModalStatusEnum>(ModalStatusEnum.initial);
-  final FirebaseStorage storage = FirebaseStorage.instance;
+  // final FirebaseStorage storage = FirebaseStorage.instance;
 
   XFile? image;
   var isData = ValueNotifier<bool>(false);
@@ -28,6 +29,16 @@ class ProjectsController {
 
   navigateToDetails(ProjectEntity proj, String email) {
     Modular.to.pushNamed('projectdetails', arguments: [proj, email]);
+  }
+
+  int getTasksCompletes(List<TaskEntity> tasklist) {
+    int completes = 0;
+    for (var element in tasklist) {
+      if (element.isComplete == true) {
+        completes++;
+      }
+    }
+    return completes;
   }
 
   Future<String> getAtavar(email) async {
@@ -139,10 +150,10 @@ class ProjectsController {
       File file = File(path);
       try {
         String ref = 'images/img-${DateTime.now()}.jpg';
-        var data = await storage.ref(ref).putFile(file);
-        data != null
-            ? modalStatusEnum.value = ModalStatusEnum.success
-            : modalStatusEnum.value = ModalStatusEnum.failure;
+        // var data = await storage.ref(ref).putFile(file);
+        // data != null
+        //     ? modalStatusEnum.value = ModalStatusEnum.success
+        //     : modalStatusEnum.value = ModalStatusEnum.failure;
       } on FirebaseException catch (e) {
         modalStatusEnum.value = ModalStatusEnum.failure;
         throw Exception('Error no upload: ${e.code}');
