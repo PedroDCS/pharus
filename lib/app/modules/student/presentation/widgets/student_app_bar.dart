@@ -47,8 +47,8 @@ class StudentAppBarWidget extends StatelessWidget {
           GestureDetector(
             onTap: ontap ?? () {},
             child: Container(
-              height: 50,
-              width: 50,
+              height: 40,
+              width: 40,
               margin: const EdgeInsets.only(right: 19),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),

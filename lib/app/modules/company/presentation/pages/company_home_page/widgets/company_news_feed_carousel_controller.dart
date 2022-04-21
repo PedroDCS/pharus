@@ -15,7 +15,6 @@ class CompanyNewsFeedCarouselController {
         forceSafariVC: false,
         enableJavaScript: true,
       );
-    } else {
     }
   }
 
@@ -24,28 +23,53 @@ class CompanyNewsFeedCarouselController {
     for (var element in newslist.newsLink) {
       linkList.add(element);
     }
-    List<Widget> newsList = newslist.news
-        .map(
-          (item) => Container(
-            width: double.infinity,
-            color: Colors.transparent,
-            margin: const EdgeInsets.fromLTRB(16, 5, 16, 5),
-            alignment: Alignment.center,
-            child: GestureDetector(
-              onTap: () => gotopage(linkList[current]),
-              child: Text(
-                item.toString(),
-                maxLines: 6,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
+    List<Widget> newsList;
+
+    try {
+      newsList = newslist.news
+          .map(
+            (item) => Container(
+              width: double.infinity,
+              color: Colors.transparent,
+              margin: const EdgeInsets.fromLTRB(16, 5, 16, 5),
+              alignment: Alignment.center,
+              child: GestureDetector(
+                onTap: () => gotopage(linkList[current]),
+                child: Text(
+                  item.toString(),
+                  maxLines: 6,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
+              ),
+            ),
+          )
+          .toList();
+    } catch (e) {
+      newsList = [
+        Container(
+          width: double.infinity,
+          color: Colors.transparent,
+          margin: const EdgeInsets.fromLTRB(16, 5, 16, 5),
+          alignment: Alignment.center,
+          child: GestureDetector(
+            onTap: () => gotopage(linkList[current]),
+            child: Text(
+              "Error",
+              maxLines: 6,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),
         )
-        .toList();
+      ];
+    }
 
     return newsList;
   }
