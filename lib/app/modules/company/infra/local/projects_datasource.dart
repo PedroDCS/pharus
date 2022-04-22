@@ -23,6 +23,5 @@ class ProjectDatasource extends IProjectsDatasource {
       }
     }
     return listaux;
-    // return auxList;
   }
 }

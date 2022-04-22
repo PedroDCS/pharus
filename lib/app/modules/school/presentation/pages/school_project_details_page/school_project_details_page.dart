@@ -1,7 +1,5 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../../../shared/app_colors/app_colors.dart';
 import '../../../domain/entities/project_entity.dart';

@@ -20,33 +20,6 @@ class DatasourceError extends Failure {
   });
 }
 
-// class HttpClientError extends Failure implements DioError {
-//   final int? statusCode;
-//   @override
-//   final String message;
-
-//   HttpClientError({
-//     required this.message,
-//     required this.statusCode,
-//     this.error,
-//     required this.requestOptions,
-//     this.response,
-//     this.stackTrace,
-//     required this.type,
-//   });
-
-//   @override
-//   dynamic error;
-//   @override
-//   RequestOptions requestOptions;
-//   @override
-//   Response? response;
-//   @override
-//   StackTrace? stackTrace;
-//   @override
-//   DioErrorType type;
-// }
-
 enum DomainError { httpServerError, unexpectedError }
 
 class RepositoryFailure extends Failure {

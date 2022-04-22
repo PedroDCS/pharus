@@ -55,17 +55,21 @@ class CompanyProjectItemBodyWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     alignment: Alignment.center,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    child: Column(
                       children: [
-                        const ImageIcon(AssetImage('assets/icons/idea.png'),
-                            size: 36),
+                        Text(
+                          "Termina em",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.neutralColor10,
+                          ),
+                        ),
                         Text(
                           '${endDate.difference(startDate).inDays.toString()} Dias',
                           style: const TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w700),
-                        )
+                              fontSize: 18, fontWeight: FontWeight.w700),
+                        ),
                       ],
                     ),
                   )

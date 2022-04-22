@@ -53,7 +53,7 @@ class RankingProjectItemComentWidget extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 12),
                           child: ButtonWidget(
-                            nameButton: 'Sait',
+                            nameButton: 'Sair',
                             onPressed: () =>
                                 Navigator.of(context, rootNavigator: true)
                                     .pop(),
