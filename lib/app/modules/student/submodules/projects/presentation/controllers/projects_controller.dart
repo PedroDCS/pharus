@@ -3,12 +3,11 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../../splash/data/repositories/avatar_repository.dart';
 import '../../../../widgets/custom_modal_loading_widget.dart';
 import '../../../../widgets/custom_modal_success_widget.dart';
-import '../../data/models/project_model.dart';
 import '../../data/repositories/project_repository.dart';
 import '../../domain/entities/project_entity.dart';
 import '../../domain/entities/task_entity.dart';
@@ -20,12 +19,21 @@ import '../pages/projects_page/widgets/project_register_modal.dart';
 class ProjectsController {
   final _repository = ProjectRepository();
   var modalStatusEnum = ValueNotifier<ModalStatusEnum>(ModalStatusEnum.initial);
-  // final FirebaseStorage storage = FirebaseStorage.instance;
+  final FirebaseStorage storage = FirebaseStorage.instance;
 
   XFile? image;
   var isData = ValueNotifier<bool>(false);
   var nameImage = ValueNotifier<String>('');
   String path = '';
+
+  void clearData() {
+    isData.value = false;
+  }
+
+  void onClose(BuildContext ctx) async {
+    isData.value = false;
+    Navigator.pop(ctx);
+  }
 
   navigateToDetails(ProjectEntity proj, String email) {
     Modular.to.pushNamed('projectdetails', arguments: [proj, email]);
@@ -42,11 +50,9 @@ class ProjectsController {
   }
 
   Future<String> getAtavar(email) async {
-    var profilesBox = await Hive.openBox("users");
-    var profile = await profilesBox.get(email);
-    String avatarimage = profile['avatarCircle'];
-    await profilesBox.close();
-    return avatarimage;
+    AvatarRepository _avatarrepository = AvatarRepository();
+    var avatar = await _avatarrepository.getAvatar(email: email);
+    return avatar['avatarCircle'];
   }
 
   Future<List<ProjectEntity>> getProjectListRepository(String link) async {
@@ -59,13 +65,8 @@ class ProjectsController {
       SubscriveController subcontroller) async {
     modalStatusEnum.value = ModalStatusEnum.loading;
     await Future.delayed(const Duration(seconds: 2));
+    _repository.subscribeProjects(email: email, project: project);
 
-    var hiveProjectssBox = await Hive.openBox("projects");
-    project.students.add(email);
-
-    hiveProjectssBox.put(
-        project.projectId, ProjectModel.fromEntity(project).toJson());
-    hiveProjectssBox.close();
     subcontroller.chageSubscrive(!subcontroller.isSubcribed.value);
     modalStatusEnum.value = ModalStatusEnum.success;
   }
@@ -150,10 +151,10 @@ class ProjectsController {
       File file = File(path);
       try {
         String ref = 'images/img-${DateTime.now()}.jpg';
-        // var data = await storage.ref(ref).putFile(file);
-        // data != null
-        //     ? modalStatusEnum.value = ModalStatusEnum.success
-        //     : modalStatusEnum.value = ModalStatusEnum.failure;
+        var data = await storage.ref(ref).putFile(file);
+        data != null
+            ? modalStatusEnum.value = ModalStatusEnum.success
+            : modalStatusEnum.value = ModalStatusEnum.failure;
       } on FirebaseException catch (e) {
         modalStatusEnum.value = ModalStatusEnum.failure;
         throw Exception('Error no upload: ${e.code}');

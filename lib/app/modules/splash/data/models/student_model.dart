@@ -39,6 +39,27 @@ class StudentModel extends StudentEntity {
             projectsIDs: projectsIDs,
             rankingsIDs: rankingsIDs);
 
+  factory StudentModel.fromEntity(StudentEntity student) {
+    return StudentModel(
+      name: student.name,
+      city: student.city,
+      email: student.email,
+      password: student.password,
+      type: student.type,
+      birthDate: student.birthDate,
+      gender: student.gender,
+      registration: student.registration,
+      shift: student.shift,
+      schoolYear: student.schoolYear,
+      schoolName: student.schoolName,
+      schoolId: student.schoolId,
+      studentClass: student.studentClass,
+      avatar: student.avatar,
+      avatarCircle: student.avatarCircle,
+      projectsIDs: student.projectsIDs,
+      rankingsIDs: student.rankingsIDs,
+    );
+  }
   factory StudentModel.fromJson(Map<String, dynamic> json) {
     userTypeEnum typ;
 

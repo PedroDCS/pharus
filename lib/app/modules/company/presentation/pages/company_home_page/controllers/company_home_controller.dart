@@ -1,5 +1,5 @@
-import '../../../data/repositories/news_repository.dart';
-import '../../../domain/entities/news_entity.dart';
+import '../../../../data/repositories/news_repository.dart';
+import '../../../../domain/entities/news_entity.dart';
 
 class CompanyHomeController {
   final _repository = NewsRepository();

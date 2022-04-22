@@ -24,7 +24,6 @@ class CompanyAppBarWidget extends StatelessWidget {
             ? IconButton(
                 onPressed: () {
                   Navigator.of(context).pop();
-                  //Modular.to.canPop();
                 },
                 icon: Icon(
                   Icons.arrow_back,

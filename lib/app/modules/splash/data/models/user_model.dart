@@ -13,7 +13,13 @@ class UserModel extends UserEntity {
           password: password,
           type: type,
         );
-
+  factory UserModel.fromEntity(UserEntity user) {
+    return UserModel(
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        type: user.type);
+  }
   factory UserModel.fromJson(Map<String, dynamic> json) {
     userTypeEnum typ;
     switch (json['type']) {

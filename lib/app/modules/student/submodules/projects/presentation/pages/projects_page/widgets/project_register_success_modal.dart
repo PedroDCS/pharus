@@ -24,7 +24,7 @@ class ModalRegisterSuccessProject extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
+          const Text(
             "Inscrição confirmada!",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
