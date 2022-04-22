@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../../../../shared/app_colors/app_colors.dart';
-import 'company_home_controller.dart';
+import 'controllers/company_home_controller.dart';
 import 'widgets/company_home_buttom_widget.dart';
 import 'widgets/company_news_feed_carousel_widget.dart';
 

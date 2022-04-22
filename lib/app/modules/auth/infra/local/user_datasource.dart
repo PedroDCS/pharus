@@ -11,7 +11,6 @@ class UserDatasource extends IUserDatasource {
     var hiveUsersBox = await Hive.openBox("users");
     var hiveuser = await hiveUsersBox.get(email);
     hiveUsersBox.close();
-
     if (hiveuser == null || hiveuser['password'] != password) {
       return UserModel(
           name: '', email: '', password: '', type: userTypeEnum.NULL);

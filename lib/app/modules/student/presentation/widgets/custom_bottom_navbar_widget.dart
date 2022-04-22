@@ -26,13 +26,10 @@ class _CustomBottomnavBarWidgetState extends ModularState<
         controller.changePage(id: id, email: widget.email);
       }),
       currentIndex: controller.index,
-
       unselectedItemColor: Colors.white,
-      // selectedItemColor: Colors.transparent,
       backgroundColor: AppColors.secondaryColor600,
       fixedColor: AppColors.neutralColor10,
       enableFeedback: true,
-      // selectedIconTheme: ,
       items: const [
         BottomNavigationBarItem(
           icon: ImageIcon(AssetImage('assets/icons/icon1.png'), size: 30),

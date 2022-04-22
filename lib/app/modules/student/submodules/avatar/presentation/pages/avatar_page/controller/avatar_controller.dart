@@ -1,17 +1,19 @@
-import 'package:flutter/cupertino.dart';
-import 'package:hive/hive.dart';
+import 'package:flutter/material.dart';
+
+import '../../../../../../../splash/data/repositories/avatar_repository.dart';
+import '../../../../../../widgets/custom_modal_loading_widget.dart';
+import '../../../../../../widgets/custom_modal_success_widget.dart';
+import '../../../../../projects/presentation/pages/project_details_page/state_page/modal_state_enum.dart';
 
 class AvatarController {
   var size = ValueNotifier<double>(0.55);
+  bool get initialSizeValue => size.value == initialSize;
   final double initialSize = 0.55;
   final double expandSize = 0.7;
-  bool get initialSizeValue => size.value == initialSize;
-
+  var modalStatusEnum = ValueNotifier<ModalStatusEnum>(ModalStatusEnum.initial);
   var iconTypeActive = ValueNotifier<String>('assets/icons/icon-expand.png');
-
   var assetImgAvatar =
       ValueNotifier<String>('assets/avatar/Property 1=Avatar_01.png');
-
   ValueNotifier<String> avatarimage =
       ValueNotifier("assets/avatar/Property 1=1.png");
 
@@ -21,30 +23,61 @@ class AvatarController {
   }
 
   Future<void> iconType(bool initialSizeValue) async {
-    iconTypeActive.value = initialSizeValue 
+    iconTypeActive.value = initialSizeValue
         ? 'assets/icons/icon-expand.png'
         : 'assets/icons/icon-retract.png';
   }
 
   getAtavar(email) async {
-    var profilesBox = await Hive.openBox("users");
-    var profile = await profilesBox.get(email);
-    assetImgAvatar.value = profile['avatar'];
-    avatarimage.value = profile['avatarCircle'];
-    await profilesBox.close();
+    AvatarRepository _avatarrepository = AvatarRepository();
+    var avatar = await _avatarrepository.getAvatar(email: email);
+    assetImgAvatar.value = avatar['avatar'];
+    avatarimage.value = avatar['avatarCircle'];
+  }
+
+  saveAvatar(email, context) async {
+    modalStatusEnum.value = ModalStatusEnum.loading;
+    AvatarRepository _avatarrepository = AvatarRepository();
+    showModalLoadandSuccess(context);
+    await Future.delayed(const Duration(seconds: 1));
+    await _avatarrepository.saveAvatar(
+        email: email,
+        avatarimage: avatarimage.value,
+        assetImgAvatar: assetImgAvatar.value);
+    modalStatusEnum.value = ModalStatusEnum.success;
+  }
+
+  Future<void> showModalLoadandSuccess(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (ctx) {
+        return ValueListenableBuilder(
+          valueListenable: modalStatusEnum,
+          builder: (_, ModalStatusEnum statusModal, __) {
+            if (statusModal.isLoading) {
+              return const ModalLoadingWidget();
+            }
+            return ModalSuccessWidget(
+              title: "Avatar Salvo!",
+              onClose: () {
+                Navigator.of(ctx).pop();
+              },
+            );
+          },
+        );
+      },
+    );
   }
 
   Future<void> onChangeAvatar(avatar, email) async {
     assetImgAvatar.value = avatar['avatar']['avatar_img'];
     avatarimage.value = avatar['avatar']['profile'];
 
-    var profilesBox = await Hive.openBox("users");
-    var profile = await profilesBox.get(email);
-    profile['avatarCircle'] = avatarimage.value;
-    profile['avatar'] = assetImgAvatar.value;
-    await profilesBox.put(email, profile);
-
-    await profilesBox.close();
+    AvatarRepository _avatarrepository = AvatarRepository();
+    await _avatarrepository.saveAvatar(
+        email: email,
+        avatarimage: avatarimage.value,
+        assetImgAvatar: assetImgAvatar.value);
   }
 
   final List<dynamic> avatar = [
