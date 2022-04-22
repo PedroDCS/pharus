@@ -21,14 +21,13 @@ class SplashController {
 
   void mockarInformacoes() async {
     var hiveUsersBox = await Hive.openBox("users");
-    await hiveUsersBox.clear();
     if (!hiveUsersBox.containsKey("antonia.ferreira@gmail.com")) {
       await hiveUsersBox.put(
         "antonia.ferreira@gmail.com",
         StudentModel(
           name: "Antonia Ferreira",
           email: "antonia.ferreira@gmail.com",
-          password: "password",
+          password: "Eemcsas12!",
           city: 'Lavras, MG',
           type: userTypeEnum.STUDENT,
           birthDate: DateTime.parse("2002-06-18"),
@@ -56,7 +55,7 @@ class SplashController {
           city: "Lavras, MG",
           name: "Escola estadual João da Silva",
           email: "maria.helena.diretora@gmail.com",
-          password: "password",
+          password: "Eemcsas12!",
           type: userTypeEnum.SCHOOL,
         ).toJson(),
       );
@@ -71,7 +70,7 @@ class SplashController {
           city: "Belo Horizonte, MG",
           name: "Guilherme Almeida Neto",
           email: "guilherme.neto@empresa.com.br",
-          password: "password",
+          password: "Eemcsas12!",
           type: userTypeEnum.COMPANY,
         ).toJson(),
       );
@@ -86,7 +85,37 @@ class SplashController {
           city: "Belo Horizonte, MG",
           name: "Empresa Pharus",
           email: "empresa@pharus.com",
-          password: "password",
+          password: "Eemcsas12!",
+          type: userTypeEnum.COMPANY,
+        ).toJson(),
+      );
+    }
+    if (!hiveUsersBox.containsKey("dupe@pharus.com")) {
+      await hiveUsersBox.put(
+        "dupe@pharus.com",
+        CompanyModel(
+          avatarUrl: "companyAvatar2",
+          administeredby: "Pharus LMTD.",
+          position: "CEO",
+          city: "Belo Horizonte, MG",
+          name: "Dupe",
+          email: "dupe@pharus.com",
+          password: "Eemcsas12!",
+          type: userTypeEnum.COMPANY,
+        ).toJson(),
+      );
+    }
+    if (!hiveUsersBox.containsKey("osklen@pharus.com")) {
+      await hiveUsersBox.put(
+        "osklen@pharus.com",
+        CompanyModel(
+          avatarUrl: "companyAvatar2",
+          administeredby: "Pharus LMTD.",
+          position: "CEO",
+          city: "Belo Horizonte, MG",
+          name: "Osklen",
+          email: "osklen@pharus.com",
+          password: "Eemcsas12!",
           type: userTypeEnum.COMPANY,
         ).toJson(),
       );
@@ -241,6 +270,149 @@ class SplashController {
               ),
             ],
           ).toJson(),
+          ProjectModel(
+            name: "Criando moda!",
+            description:
+                "Descrição Design - uma maneira ou costume mais predominante em um determinado grupo em um determinado momento. É uma palavra muito usada para designar uma forma de se vestir que é comum para muitos ou apreciada por muitas pessoas.",
+            startDate: DateTime(2022, 09, 05),
+            endDate: DateTime(2022, 09, 23),
+            mentor: "Ricardo Almeida",
+            numStudents: 20,
+            rules: "rules",
+            urlParter:
+                'https://www.institucional.dupe.com.br/wp-content/themes/dupe/images/logo.png',
+            taskList: [
+              TaskEntity(
+                name: " Moda do Momento",
+                isComplete: false,
+                description:
+                    'Faça uma dissertação sobre como observa a moda em seu ambiente escola. Poderá escrever até 500 palavras, e encaminhar fotos com referências da moda em sua escola.',
+              ),
+              TaskEntity(
+                  name: "Moda na Família",
+                  isComplete: false,
+                  description:
+                      " Converse com algum familiar e entenda a moda de quando ele ou ela foi adolescente. Faça 04 desenhos com a moda da adolescência de seu familiar. Coloque no início do desenho ano referencial da moda."),
+              TaskEntity(
+                  name: "Rascunho Inovação",
+                  isComplete: false,
+                  description:
+                      "Imagine um futuro de 30 anos a frente, e desenhe a moda como poderá estar. Crie em uma ferramenta de design. Faça 03 desenhos completos, incluindo o tipo de caçado que poderá ser usado."),
+              TaskEntity(
+                  name: "Moda Verão Escolar",
+                  isComplete: false,
+                  description:
+                      "Com dias quentes durante o verão, desenhe calçados que possam ser confortáveis para ir a escola. Use a imaginação para cores, e que poderia ser usado. Faça 04 modelos em uma ferramenta de design.")
+            ],
+            companyID: "dupe@pharus.com",
+            students: [],
+            finished: false,
+            projectId: 4,
+          ).toJson(),
+          ProjectModel(
+            name: "Startup Go!",
+            description:
+                "Uma startup é uma empresa que tem o objetivo de crescer de maneira agressiva. As startups costumam oferecer produtos ou serviços inovadores, visando solucionar uma dor ou trazendo inovação incremental a mercadorias que já existem. Quase sempre, as startups baseiam o seu modelo de negócio em tecnologia digital, mas isso não é uma regra.",
+            startDate: DateTime(2022, 10, 03),
+            endDate: DateTime(2022, 10, 28),
+            mentor: "Sávio Costa",
+            numStudents: 30,
+            rules: "rules",
+            urlParter:
+                'https://ioasys.com.br/static/og-image-7578fe3bd736621f7d9d987908812ee0.jpg',
+            taskList: [
+              TaskEntity(
+                  name: 'Aprendendo a empreender',
+                  isComplete: false,
+                  description:
+                      'Forme um grupo de 04 amigos da escola para executar esta tarefa. Com base no aprendizado sobre o que é uma startup, reúnam-se para descobrir um possível nicho do ambiente escolar ou externo que possa ser um possível produto de uma startup. Para esta entrega, Façam: Descreva o problema a ser atuado / Como chegaram na conclusão do tema a ser trabalhado / Coloquem um nome para a startup. '),
+              TaskEntity(
+                  name: 'Desbravando o produto.',
+                  isComplete: false,
+                  description:
+                      'Conhecendo o problema que escolheram, para tarefa escolha um nome este produto. Defina o que será este produto. Façam uma dissertação explicando como o produto irá ser importante para o problema escolhido. Descreva qual será o publico que o produto irá atender'),
+              TaskEntity(
+                  name: 'Design em ação...',
+                  isComplete: false,
+                  description:
+                      'Com uma ferramenta de design criem uma logomarca para o produto escolhido, e um slogan (slogan é uma frase criada para gerar no consumidor uma associação mental a uma marca, favorecendo que se lembre dela facilmente.). '),
+              TaskEntity(
+                  name: 'Hora do show!',
+                  isComplete: false,
+                  description:
+                      'Definido o produto na tarefa 02, agora é hora de desenhar um protótipo (é o termo usado para se referir ao que foi criado pela primeira vez, servindo de modelo ou molde para futuras produções.) desta inovação. Com seus amigos de grupo, escolham uma ferramenta adequada para que possam rascunhar o produto. Façam ao menos 03 referenciais do produto'),
+            ],
+            companyID: 'empresa@pharus.com',
+            students: [],
+            finished: false,
+            projectId: 5,
+          ).toJson(),
+          ProjectModel(
+            name: 'Sustentabilidade Hipster',
+            description:
+                'Sustentabilidade - é a capacidade de cumprir com as necessidades do presente sem comprometer as mesma das gerações futuras. O conceito de sustentabilidade é composto por três pilares: econômico, ambiental e social.',
+            startDate: DateTime(2022, 11, 07),
+            endDate: DateTime(2022, 11, 30),
+            mentor: 'Oskar Metsavaht',
+            numStudents: 20,
+            rules: 'rules',
+            urlParter:
+                'https://i.pinimg.com/600x315/ab/21/69/ab2169bd537cf3c877cc25821a3e26b3.jpg',
+            taskList: [
+              TaskEntity(
+                  name: 'Sustentabilidade na prática!',
+                  isComplete: false,
+                  description:
+                      'Atividade será em equipe de 04 pessoas. Conhecendo os tipos de materiais para reciclagem, monte um trabalho de divulgação sobre como separar os materiais, e divulgue na escola. Utilize material que possam ser reciclados. Inovem!!!'),
+              TaskEntity(
+                  name: 'Família na onda da sustentabilidade!',
+                  isComplete: false,
+                  description:
+                      ' Esta atividade será individual. Com seu responsável familiar, monte em casa repositórios para a coleta de materiais para o direcionamento correto do lixo residencial. Faça etiquetas para os locais de depósito dos lixos. Ah! use produto reciclado para o deposito do lixo para reciclagem.'),
+              TaskEntity(
+                  name: 'Ação na Comunidade',
+                  isComplete: false,
+                  description:
+                      'Esta tarefa será em grupo com acompanhamento de um responsável escolar. Inicialmente desenvolva material explicativo de como organizar o lixo para reciclagem. Crie um cronograma para que possam visitar residências da região escolar promovendo o conhecimento da reciclagem. Encaminhe os registros no app ! '),
+            ],
+            companyID: 'empresa@pharus.com',
+            students: [],
+            finished: false,
+            projectId: 6,
+          ).toJson(),
+          ProjectModel(
+            name: 'Memória em ação!',
+            description:
+                'Projeto Social - Projetos sociais são trabalhos desenvolvidos sem fins lucrativos que visam o desenvolvimento social, econômico e cultural de uma comunidade ou grupo.',
+            startDate: DateTime(2022, 12, 05),
+            endDate: DateTime(2022, 12, 16),
+            mentor: 'Rafael Felício',
+            numStudents: 25,
+            rules: 'rules',
+            urlParter:
+                'https://logodownload.org/wp-content/uploads/2015/03/havaianas-logo-1-1.png',
+            taskList: [
+              TaskEntity(
+                  name: 'Desapegando! ',
+                  isComplete: false,
+                  description:
+                      'Atividade individual. Para esta tarefa você deverá escolher uma peça de roupa ou calçado que não usa a um bom tempo, e está em boa conservação para que possa ser utilizado outra pessoa. Faça uma dissertação sobre o que esta peça lhe traz de memória, não limite para o texto. Encaminhe no APP!'),
+              TaskEntity(
+                  name: 'Amigos de Escola!',
+                  isComplete: false,
+                  description:
+                      'Junte a dissertação criada mais a peça escolhida. A tarefa será o mentor da escola irá acompanhar uma reunião para que todos possam realizar a passagem da peça para um colega de turma, e livremente ler sua dissertação. '),
+              TaskEntity(
+                  name: 'Imaginação no Social!',
+                  isComplete: false,
+                  description:
+                      'Atividade será individual. Observe sua comunidade, sua escola todo o ambiente por onde tenha sua vivência diária. Imagine como poderia ser útil para este ambiente. Crie um Projeto Social com base em suas observações, siga a seguinte lista: O ambiente que será beneficiado / Nome do Projeto Social / O problema observado / Como será o projeto social. Anexo o documento no APP. ')
+            ],
+            companyID: 'empresa@pharus.com',
+            students: [],
+            finished: false,
+            projectId: 7,
+          ).toJson()
         ],
       );
     }

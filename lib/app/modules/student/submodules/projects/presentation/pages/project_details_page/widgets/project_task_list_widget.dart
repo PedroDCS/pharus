@@ -34,7 +34,7 @@ class ProjectTaskListWidget extends StatelessWidget {
           width: double.infinity,
           height: 60 * double.parse(taskList.length.toString()),
           child: ListView.builder(
-              padding: EdgeInsets.all(0),
+              padding: const EdgeInsets.all(0),
               shrinkWrap: true,
               primary: false,
               physics: const NeverScrollableScrollPhysics(),

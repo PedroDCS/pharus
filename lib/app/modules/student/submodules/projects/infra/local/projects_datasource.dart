@@ -16,6 +16,5 @@ class ProjectDatasource extends IProjectsDatasource {
     hiveProjectssBox.close();
 
     return auxList;
-    // return auxList;
   }
 }

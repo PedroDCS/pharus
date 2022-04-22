@@ -103,8 +103,17 @@ class _HomeStudentBodyWidgetState
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 49, 16, 45),
             child: StudentNewsFeedCarouselWidget(
-              newslist: controller.getNewsListRepository(),
-            ),
+                newslist: controller.getNewsListRepository(),
+                goToLauch: () async {
+                  if (await canLaunch(
+                      'https://www.unicef.org/brazil/comunicados-de-imprensa/unicef-lanca-segunda-edicao-do-tmjunicef-programa-de-voluntariado-digital')) {
+                    await launch(
+                        'https://www.unicef.org/brazil/comunicados-de-imprensa/unicef-lanca-segunda-edicao-do-tmjunicef-programa-de-voluntariado-digital',
+                        forceWebView: false,
+                        forceSafariVC: false,
+                        enableJavaScript: true);
+                  } else {}
+                }),
           )
         ],
       ),
@@ -129,7 +138,9 @@ class HomeButtom extends StatelessWidget {
       child: ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
-            fixedSize: const Size.fromWidth(127),
+            fixedSize: Size.fromWidth(
+              MediaQuery.of(context).size.width * 0.35,
+            ),
             minimumSize: const Size.square(130),
             primary: colorButtom,
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 31),
@@ -148,10 +159,12 @@ class HomeButtom extends StatelessWidget {
               ),
               Text(
                 textButtom,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
               )
             ],
           )),

@@ -24,7 +24,6 @@ class SchoolAppBarWidget extends StatelessWidget {
             ? IconButton(
                 onPressed: () {
                   Navigator.of(context).pop();
-                  //Modular.to.canPop();
                 },
                 icon: const Icon(
                   Icons.arrow_back,
