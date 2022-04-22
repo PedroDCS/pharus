@@ -21,7 +21,17 @@ class CompanyModel extends CompanyEntity {
           password: password,
           type: type,
         );
-
+  factory CompanyModel.fromEntity(CompanyEntity company) {
+    return CompanyModel(
+        name: company.name,
+        administeredby: company.administeredby,
+        avatarUrl: company.avatarUrl,
+        city: company.city,
+        email: company.email,
+        password: company.password,
+        position: company.position,
+        type: company.type);
+  }
   factory CompanyModel.fromJson(Map<String, dynamic> json) {
     userTypeEnum typ;
 

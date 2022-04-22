@@ -1,8 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'presentation/controller/custom_bottom_navbar_controller.dart';
+import 'presentation/pages/home_page/controllers/student_home_controller.dart';
+import 'presentation/pages/home_page/controllers/student_news_feed_carousel_controller.dart';
 import 'presentation/pages/home_page/home_page.dart';
-import 'presentation/pages/home_page/student_home_controller.dart';
 import 'presentation/pages/start_page/start_page.dart';
 import 'presentation/pages/student_profile_page/student_profile.dart';
 import 'submodules/avatar/avatar_module.dart';
@@ -13,6 +14,7 @@ class StudentModule extends Module {
   List<Bind> get binds => [
         Bind.factory((i) => CustomBottomNavbarController()),
         Bind.factory((i) => StudentHomeController()),
+        Bind.factory((i) => StudentNewsFeedCarouselController()),
       ];
 
   @override

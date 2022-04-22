@@ -4,6 +4,12 @@ class NewsModel extends NewsEntity {
   NewsModel({required List<String> news, required List<String> newsLink})
       : super(news: news, newsLink: newsLink);
 
+  factory NewsModel.fromEntity(NewsEntity newsentity) {
+    return NewsModel(
+      news: newsentity.news,
+      newsLink: newsentity.newsLink,
+    );
+  }
   factory NewsModel.fromJson(Map<String, dynamic> json) {
     List<String> news = [];
     List<String> newsink = [];

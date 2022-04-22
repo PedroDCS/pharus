@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../../shared/app_colors/app_colors.dart';
@@ -8,24 +7,17 @@ import 'widgets/company_project_details_head_widget.dart';
 import 'widgets/company_project_game_rules_widget.dart';
 import 'widgets/company_project_task_list_widget.dart';
 
-class CompanyProjectDetailsPage extends StatefulWidget {
-  const CompanyProjectDetailsPage({
-    Key? key,
-    required this.project,
-  }) : super(key: key);
+class CompanyProjectDetailsPage extends StatelessWidget {
+  const CompanyProjectDetailsPage({Key? key, required this.project})
+      : super(key: key);
   final ProjectEntity project;
 
-  @override
-  State<CompanyProjectDetailsPage> createState() => _ProjectDetailsPageState();
-}
-
-class _ProjectDetailsPageState extends State<CompanyProjectDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         child: CompanyAppBarWidget(
-          title: widget.project.name,
+          title: project.name,
           imageAsset: 'assets/icons/company.png',
           barColor: Colors.transparent,
           textColor: Colors.white,
@@ -51,8 +43,8 @@ class _ProjectDetailsPageState extends State<CompanyProjectDetailsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CompanyProjectDetailsHeadWidget(
-                      mentor: widget.project.mentor,
-                      description: widget.project.description,
+                      mentor: project.mentor,
+                      description: project.description,
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
@@ -70,7 +62,9 @@ class _ProjectDetailsPageState extends State<CompanyProjectDetailsPage> {
                           isScrollControlled: true,
                           context: context,
                           builder: (BuildContext context) {
-                            return const CompanyProjectGameRulesWidget();
+                            return CompanyProjectGameRulesWidget(
+                              rules: project.rules,
+                            );
                           },
                         );
                       },
@@ -93,7 +87,7 @@ class _ProjectDetailsPageState extends State<CompanyProjectDetailsPage> {
                       ),
                     ),
                     CompanyProjectTaskListWidget(
-                      taskList: widget.project.taskList,
+                      taskList: project.taskList,
                     ),
                   ]),
             ),
