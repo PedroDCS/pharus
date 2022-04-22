@@ -5,6 +5,7 @@ import '../../../../../../widgets/custom_modal_loading_widget.dart';
 import '../../../../../../widgets/custom_modal_success_widget.dart';
 import '../../../../../projects/presentation/pages/project_details_page/state_page/modal_state_enum.dart';
 
+
 class AvatarController {
   var size = ValueNotifier<double>(0.55);
   bool get initialSizeValue => size.value == initialSize;
@@ -68,6 +69,9 @@ class AvatarController {
       },
     );
   }
+
+
+
 
   Future<void> onChangeAvatar(avatar, email) async {
     assetImgAvatar.value = avatar['avatar']['avatar_img'];
