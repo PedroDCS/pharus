@@ -45,10 +45,11 @@ class _AvatarPageState extends ModularState<AvatarPage, AvatarController>
               builder: (BuildContext context, String imageasset, _) {
                 return StudentAppBarWidget(
                   title: 'Avatar',
-                  imageAsset: imageasset,
+                  imageAsset: 'assets/icons/idea.png',
                   barColor: Colors.transparent,
                   buttomGoBack: false,
                   textColor: Colors.white,
+                  ontap: () => controller.saveAvatar(widget.email, context),
                 );
               }),
           preferredSize: const Size.fromHeight(60),

@@ -34,7 +34,15 @@ Status do Projeto: Hoje o app se encontra na versão: 1.1
 
 3: Abra o terminal e rode o seguinte comando
     - flutter pub get
+    
 4: Execute um emulador e de play no build da aplicação
+
+### Usuarios no App
+Aluno: antonia.ferreira@gmail.com
+Escola: maria.helena.diretora@gmail.com
+Empresa: empresa@pharus.com
+
+Senha: Eemcsas12!
 
 Tecnologias Utilizadas:
 - Linguagem Dart

@@ -10,7 +10,13 @@ class TaskModel extends TaskEntity {
           isComplete: isComplete,
           description: description,
         );
-
+  factory TaskModel.fromEntity(TaskEntity task) {
+    return TaskModel(
+      name: task.name,
+      description: task.description,
+      isComplete: task.isComplete,
+    );
+  }
   factory TaskModel.fromJson(Map<String, dynamic> json) {
     return TaskModel(
       name: json['name'],

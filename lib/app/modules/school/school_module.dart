@@ -1,7 +1,10 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'presentation/pages/school_home_page/school_home_controller.dart';
+import 'presentation/pages/school_home_page/controllers/school_home_controller.dart';
+import 'presentation/pages/school_home_page/controllers/school_news_feed_carousel_controller.dart';
 import 'presentation/pages/school_home_page/school_home_page.dart';
+import 'presentation/pages/school_profile_page/school_profile_controller.dart';
 import 'presentation/pages/school_profile_page/school_profile_page.dart';
+import 'presentation/pages/school_project_details_page/school_project_details_controller.dart';
 import 'presentation/pages/school_project_details_page/school_project_details_page.dart';
 import 'presentation/pages/school_projects_page/controller/school_projects_controller.dart';
 import 'presentation/pages/school_projects_page/school_projects_page.dart';
@@ -11,6 +14,9 @@ class SchoolModule extends Module {
   List<Bind> get binds => [
         Bind.factory((i) => ProjectsController()),
         Bind.factory((i) => SchoolHomeController()),
+        Bind.factory((i) => SchoolNewsFeedCarouselController()),
+        Bind.factory((i) => SchoolProfileController()),
+        Bind.factory((i) => SchoolProjectDetailsController()),
       ];
   @override
   List<ModularRoute> get routes => [

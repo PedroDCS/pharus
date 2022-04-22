@@ -1,8 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import '../../../../../../shared/app_colors/app_colors.dart';
 import '../../../../domain/entities/news_entity.dart';
-import 'school_news_feed_carousel_controller.dart';
+import '../controllers/school_news_feed_carousel_controller.dart';
 
 class SchoolNewsFeedCarouselWidget extends StatefulWidget {
   const SchoolNewsFeedCarouselWidget({
@@ -16,11 +17,8 @@ class SchoolNewsFeedCarouselWidget extends StatefulWidget {
   final Future<NewsEntity> newslist;
 }
 
-class _SchoolNewsFeedCarouselWidgetState
-    extends State<SchoolNewsFeedCarouselWidget> {
-  final SchoolNewsFeedCarouselController _controller =
-      SchoolNewsFeedCarouselController();
-
+class _SchoolNewsFeedCarouselWidgetState extends ModularState<
+    SchoolNewsFeedCarouselWidget, SchoolNewsFeedCarouselController> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,8 +49,8 @@ class _SchoolNewsFeedCarouselWidgetState
                 default:
                   return Column(children: [
                     CarouselSlider(
-                      items: _controller.getNewsList(snapshot.data!),
-                      carouselController: _controller.controller,
+                      items: controller.getNewsList(snapshot.data!),
+                      carouselController: controller.controller,
                       options: CarouselOptions(
                           autoPlay: true,
                           enlargeCenterPage: true,
@@ -60,20 +58,20 @@ class _SchoolNewsFeedCarouselWidgetState
                           viewportFraction: 1,
                           onPageChanged: (index, reason) {
                             setState(() {
-                              _controller.current = index;
+                              controller.current = index;
                             });
                           }),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: _controller
+                      children: controller
                           .getNewsList(snapshot.data!)
                           .asMap()
                           .entries
                           .map((entry) {
                         return GestureDetector(
                           onTap: () =>
-                              _controller.controller.animateToPage(entry.key),
+                              controller.controller.animateToPage(entry.key),
                           child: Container(
                             width: 12.0,
                             height: 12.0,
@@ -82,7 +80,7 @@ class _SchoolNewsFeedCarouselWidgetState
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.black.withOpacity(
-                                    _controller.current == entry.key
+                                    controller.current == entry.key
                                         ? 0.9
                                         : 0.4)),
                           ),

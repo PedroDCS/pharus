@@ -16,6 +16,14 @@ class ProjectDatasource extends IProjectsDatasource {
     hiveProjectssBox.close();
 
     return auxList;
-    // return auxList;
+  }
+
+  @override
+  Future<void> subscribeProjects(
+      {required String email, required ProjectModel project}) async {
+    var hiveProjectssBox = await Hive.openBox("projects");
+    project.students.add(email);
+    hiveProjectssBox.put(project.projectId, project.toJson());
+    hiveProjectssBox.close();
   }
 }

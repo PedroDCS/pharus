@@ -28,12 +28,11 @@ class LoginPageController {
       errorText.value = "Email Invalido";
       return false;
     }
-
-    // if (!RegExp(r"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z$*&@#]{8,32}$")
-    //     .hasMatch(password)) {
-    //   errorText.value = "Senha Invalida";
-    //   return false;
-    // }
+    if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+        .hasMatch(password)) {
+      errorText.value = "Senha Invalida";
+      return false;
+    }
     return true;
   }
 
@@ -45,14 +44,6 @@ class LoginPageController {
   }
 
   void login() async {
-    /*
-    por enquanto o aplicativo está navegando para a proxima tela, sem validar o email
-    ou senha, e nem verifica se é aluno, empresa ou escola,
-*/
-    // emailController.text = "antonia.ferreira@gmail.com";
-    // emailController.text = "maria.helena.diretora@gmail.com";
-    // emailController.text = "empresa@pharus.com";
-    // passwordController.text = "password";
     if (!validacao(emailController.text, passwordController.text)) {
       return null;
     }

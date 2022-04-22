@@ -9,7 +9,9 @@ class NotifyModel extends NotifyEntity {
           notify: notify,
           type: type,
         );
-
+  factory NotifyModel.fromEntity(NotifyEntity not) {
+    return NotifyModel(notify: not.notify, type: not.type);
+  }
   factory NotifyModel.fromJson(Map<String, dynamic> json) {
     NotifyType typ;
     switch (json['type']) {

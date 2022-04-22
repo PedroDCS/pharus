@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../../shared/app_colors/app_colors.dart';
 import '../../../../../shared/modal/log_out_modal.dart';
-import '../../../data/models/company_model.dart';
 import '../../../domain/entities/company_entity.dart';
 import '../../widgets/company_app_bar.dart';
+import 'company_profile_controller.dart';
 import 'widgets/company_profile_input_widget.dart';
 
-class CompanyProfilePage extends StatelessWidget {
+class CompanyProfilePage extends StatefulWidget {
   const CompanyProfilePage({
     Key? key,
     required this.email,
   }) : super(key: key);
   final String email;
 
-  Future<CompanyEntity> getProfifeData(String email) async {
-    var profilesBox = await Hive.openBox("users");
-    var profile = await profilesBox.get(email);
-    await profilesBox.close();
-    return CompanyModel.fromJson(Map<String, dynamic>.from(profile));
-  }
+  @override
+  State<CompanyProfilePage> createState() => _CompanyProfilePageState();
+}
 
+class _CompanyProfilePageState
+    extends ModularState<CompanyProfilePage, CompanyProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +40,7 @@ class CompanyProfilePage extends StatelessWidget {
       body: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(53, 48, 53, 48),
           child: FutureBuilder<CompanyEntity>(
-            future: getProfifeData(email),
+            future: controller.getProfifeData(widget.email),
             builder: (context, snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting:

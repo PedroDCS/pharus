@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../../shared/app_colors/app_colors.dart';
 import '../../../../../shared/modal/log_out_modal.dart';
-import '../../../data/models/school_model.dart';
 import '../../../domain/entities/school_entity.dart';
 import '../../widgets/school_app_bar.dart';
+import 'school_profile_controller.dart';
 import 'widgets/school_profile_input_widget.dart';
 
-class SchoolProfilePage extends StatelessWidget {
+class SchoolProfilePage extends StatefulWidget {
   const SchoolProfilePage({
     Key? key,
     required this.email,
   }) : super(key: key);
   final String email;
 
-  Future<SchoolEntity> getProfifeData(String email) async {
-    var profilesBox = await Hive.openBox("users");
-    var profile = await profilesBox.get(email);
-    await profilesBox.close();
-    return SchoolModel.fromJson(Map<String, dynamic>.from(profile));
-  }
+  @override
+  State<SchoolProfilePage> createState() => _SchoolProfilePageState();
+}
 
+class _SchoolProfilePageState
+    extends ModularState<SchoolProfilePage, SchoolProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +40,7 @@ class SchoolProfilePage extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(53, 48, 53, 48),
         child: FutureBuilder<SchoolEntity>(
-          future: getProfifeData(email),
+          future: controller.getProfifeData(widget.email),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:

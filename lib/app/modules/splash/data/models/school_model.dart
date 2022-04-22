@@ -21,7 +21,17 @@ class SchoolModel extends SchoolEntity {
           password: password,
           type: type,
         );
-
+  factory SchoolModel.fromEntity(SchoolEntity school) {
+    return SchoolModel(
+        name: school.name,
+        administeredby: school.administeredby,
+        avatarUrl: school.avatarUrl,
+        city: school.city,
+        email: school.email,
+        password: school.password,
+        position: school.position,
+        type: school.type);
+  }
   factory SchoolModel.fromJson(Map<String, dynamic> json) {
     userTypeEnum typ;
 
