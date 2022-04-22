@@ -16,8 +16,7 @@ class SchoolNewsFeedCarouselController {
         forceSafariVC: false,
         enableJavaScript: true,
       );
-    } else {
-    }
+    } else {}
   }
 
   List<Widget> getNewsList(NewsEntity newslist) {

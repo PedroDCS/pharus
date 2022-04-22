@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:hive/hive.dart';
 
+import '../../../../../../../splash/data/repositories/avatar_repository.dart';
 import '../../../../data/repositories/project_repository.dart';
 import '../../../../domain/entities/project_entity.dart';
 
@@ -12,11 +12,9 @@ class RankingsController {
   }
 
   Future<String> getAtavar(email) async {
-    var profilesBox = await Hive.openBox("users");
-    var profile = await profilesBox.get(email);
-    String avatarimage = profile['avatarCircle'];
-    await profilesBox.close();
-    return avatarimage;
+    AvatarRepository _avatarrepository = AvatarRepository();
+    var avatar = await _avatarrepository.getAvatar(email: email);
+    return avatar['avatarCircle'];
   }
 
   Future<List<ProjectEntity>> getProjectListRepository(String link) async {

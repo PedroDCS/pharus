@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../domain/entities/notify_entity.dart';
 import '../../../../domain/entities/student_entity.dart';
-import '../student_home_controller.dart';
+import '../controllers/student_home_controller.dart';
 import 'student_news_feed_carousel_widget.dart';
 
 class HomeStudentBodyWidget extends StatefulWidget {

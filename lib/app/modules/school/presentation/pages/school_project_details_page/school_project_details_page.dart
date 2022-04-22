@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../../shared/app_colors/app_colors.dart';
@@ -8,7 +7,7 @@ import 'widgets/school_project_details_head_widget.dart';
 import 'widgets/school_project_game_rules_widget.dart';
 import 'widgets/school_project_task_list_widget.dart';
 
-class SchoolProjectDetailsPage extends StatefulWidget {
+class SchoolProjectDetailsPage extends StatelessWidget {
   const SchoolProjectDetailsPage({
     Key? key,
     required this.project,
@@ -16,16 +15,11 @@ class SchoolProjectDetailsPage extends StatefulWidget {
   final ProjectEntity project;
 
   @override
-  State<SchoolProjectDetailsPage> createState() => _ProjectDetailsPageState();
-}
-
-class _ProjectDetailsPageState extends State<SchoolProjectDetailsPage> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         child: SchoolAppBarWidget(
-          title: widget.project.name,
+          title: project.name,
           imageAsset: 'assets/icons/school.png',
           barColor: Colors.transparent,
           textColor: Colors.black,
@@ -51,8 +45,8 @@ class _ProjectDetailsPageState extends State<SchoolProjectDetailsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SchoolProjectDetailsHeadWidget(
-                      mentor: widget.project.mentor,
-                      description: widget.project.description,
+                      mentor: project.mentor,
+                      description: project.description,
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
@@ -70,7 +64,8 @@ class _ProjectDetailsPageState extends State<SchoolProjectDetailsPage> {
                           isScrollControlled: true,
                           context: context,
                           builder: (BuildContext context) {
-                            return const SchoolProjectGameRulesWidget();
+                            return SchoolProjectGameRulesWidget(
+                                rules: project.rules);
                           },
                         );
                       },
@@ -93,7 +88,7 @@ class _ProjectDetailsPageState extends State<SchoolProjectDetailsPage> {
                       ),
                     ),
                     SchoolProjectTaskListWidget(
-                      taskList: widget.project.taskList,
+                      taskList: project.taskList,
                     ),
                   ]),
             ),
