@@ -20,7 +20,7 @@ import '../pages/projects_page/widgets/project_register_modal.dart';
 class ProjectsController {
   final _repository = ProjectRepository();
   var modalStatusEnum = ValueNotifier<ModalStatusEnum>(ModalStatusEnum.initial);
-  // final FirebaseStorage storage = FirebaseStorage.instance;
+  final FirebaseStorage storage = FirebaseStorage.instance;
 
   XFile? image;
   var isData = ValueNotifier<bool>(false);
@@ -150,10 +150,10 @@ class ProjectsController {
       File file = File(path);
       try {
         String ref = 'images/img-${DateTime.now()}.jpg';
-        // var data = await storage.ref(ref).putFile(file);
-        // data != null
-        //     ? modalStatusEnum.value = ModalStatusEnum.success
-        //     : modalStatusEnum.value = ModalStatusEnum.failure;
+        var data = await storage.ref(ref).putFile(file);
+        data != null
+            ? modalStatusEnum.value = ModalStatusEnum.success
+            : modalStatusEnum.value = ModalStatusEnum.failure;
       } on FirebaseException catch (e) {
         modalStatusEnum.value = ModalStatusEnum.failure;
         throw Exception('Error no upload: ${e.code}');
