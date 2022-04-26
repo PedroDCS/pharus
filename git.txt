@@ -1,0 +1,14 @@
+git branch //checar a branch
+git checkout develop // cria ou muda pra uma branch existente
+git pull origin develop //atualiza a branch local
+
+git add . //salva as alterações
+git commit -m "adicionado tela de login e validações" //commit
+git push origin task/002 //push pro repositorio na nuvem
+
+
+> git checkout develop 
+ git pull origin develop
+  git checkout task/ColoringStudentModule
+   git merge origin develop
+    git add .
